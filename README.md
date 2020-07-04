@@ -1,4 +1,3 @@
-<a href="https://zavolan.biozentrum.unibas.ch/">
 <img align="right" width="50" height="50" src="images/logo.128px.png">
 
 # Binding Scanner
@@ -19,4 +18,5 @@ by email: <zavolab-biozentrum@unibas.ch>
 
 (c) 2020 [Zavolan lab, Biozentrum, University of Basel][res-zavolab]
 
+[res-issue-tracker]: <https://github.com/zavolanlab/binding-scanner/issues>
 [res-zavolab]: <https://zavolan.biozentrum.unibas.ch/>
