@@ -36,3 +36,5 @@ script:
   - bash scripts/download-ATtRACT-motifs.sh -s hsa -o ATtRACT_hsa
   - bash scripts/download-ATtRACT-motifs.sh -s mmu -o ATtRACT_mmu
   - ls -al
+  - ls -al ATtRACT_hsa
+  - ls -al ATtRACT_mmu
