@@ -111,18 +111,18 @@ happen smoothly:
 2. Clone the repository, create a feature branch off of the default branch
    (never commit changes to protected branches directly) and implement your
    code changes
-3. If applicable, update relevant sections of the [documentation][res-docs]
+3. If applicable, update relevant sections of the [documentation][res-documentation]
 4. Add or update tests; untested code will not be merged; refer to the
-   [guidelines](#code-style-&-testing) above for details
+   [guidelines](#code-style--testing) above for details
 5. Ensure that your coding style is in line with the
-   [guidelines](#code-style-&-testing) described above
+   [guidelines](#code-style--testing) described above
 6. Ensure that all tests and linter checks configured in the [Travis
    CI][res-travis-docs] [continuous integration][res-ci-cd] (CI) pipeline pass without
    issues
 7. If necessary, clean up excessive commits with `git rebase`; cherry-pick and
    merge commits as you see fit; use concise and descriptive commit messages
 8. Push your clean, tested and documented feature branch to the remote; make
-   sure the [Travis CI][res-travis-docs] [CI][res-ci-cd] pipeline passes
+   sure the Travis CI pipeline passes
 9. Issue a pull request against the default branch; follow the instructions in
    the [template][res-pull-request]; importantly, describe your changes in
    detail, yet with concise language, and do not forget to indicate which
@@ -143,6 +143,7 @@ happen smoothly:
 [res-conv-commits-lint]: <https://github.com/conventional-changelog/commitlint>
 [res-conv-commits-blog]: <https://nitayneeman.com/posts/understanding-semantic-commit-messages-using-git-and-angular/>
 [res-docs]: README.md
+[res-documentation]: documentation.md
 [res-ci-cd]: <https://en.wikipedia.org/wiki/Continuous_integration>
 [res-travis-docs]: <https://docs.travis-ci.com/>
 [res-pull-request]: PULL_REQUEST_TEMPLATE.md
