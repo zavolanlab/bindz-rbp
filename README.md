@@ -1,3 +1,6 @@
+<a href="https://zavolan.biozentrum.unibas.ch/">
+<img align="right" width="50" height="50" src="images/logo.128px.png">
+
 # Binding Scanner
 
 ## Contributing
