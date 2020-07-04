@@ -24,7 +24,7 @@ Please use each project's GitHub [issue tracker][res-issue-tracker] to:
 
 Please choose a template when submitting an issue: choose the [Bug report
 template][res-bug-report] only when reporting bugs; for all other issues,
-choose the [Feature request template][res-bug-report]. Please follow the
+choose the [Feature request template][res-feature-request]. Please follow the
 instructions in the template.
 
 You do not need to worry about adding labels or milestones for an issue, the
@@ -53,13 +53,11 @@ testing.
 - Please use a recent version of [Python 3][res-py] (3.7.4+)
 - Please try to conform to the used code, docstring and commenting style within
   a project to maintain consistency
-- Please use [type hints][py-typing] for all function/method signatures
+- Please use type hints for all function/method signatures
   (exception: tests)
 - Please use the following linters (use default settings unless otherwise
   stated):
   - [`flake8`][res-py-flake8]
-  - [`pylint`][res-py-pylint] (use available [configuration][res-py-pylint-conf])
-  - [`mypy`][res-py-mypy] OR [`pyright`][res-py-pyright] to help with type hints
 - Please use the following test suites:
   - [`pytest`][res-py-pytest]
   - [`coverage`][res-py-coverage]
@@ -119,37 +117,32 @@ happen smoothly:
 5. Ensure that your coding style is in line with the
    [guidelines](#code-style-&-testing) described above
 6. Ensure that all tests and linter checks configured in the [Travis
-   CI][travis-docs] [continuous integration][ci-cd] (CI) pipeline pass without
+   CI][res-travis-docs] [continuous integration][res-ci-cd] (CI) pipeline pass without
    issues
 7. If necessary, clean up excessive commits with `git rebase`; cherry-pick and
    merge commits as you see fit; use concise and descriptive commit messages
 8. Push your clean, tested and documented feature branch to the remote; make
-   sure the [Travis CI][travis-docs] [CI][ci-cd] pipeline passes
+   sure the [Travis CI][res-travis-docs] [CI][res-ci-cd] pipeline passes
 9. Issue a pull request against the default branch; follow the instructions in
    the [template][res-pull-request]; importantly, describe your changes in
    detail, yet with concise language, and do not forget to indicate which
    issue(s) the code changes resolve or refer to; assign a project maintainer
    to review your changes
 
-[res-bug-report]: .github/ISSUE_TEMPLATE/bug_report.mdrequest.md
-[res-ci-cd]: <https://en.wikipedia.org/wiki/Continuous_integration>
-[res-conv-commits]: <https://www.conventionalcommits.org/en/v1.0.0-beta.2/#specification>
-[res-conv-commits-blog]: <https://nitayneeman.com/posts/understanding-semantic-commit-messages-using-git-and-angular/>
-[res-conv-commits-lint]: <https://github.com/conventional-changelog/commitlint>
-[res-docs]: README.md
-[res-feature-request]: .github/ISSUE_TEMPLATE/feature_request.md
 [res-git]: <https://git-scm.com/>
-[res-git-flow]: <https://nvie.com/posts/a-successful-git-branching-model/>
 [res-github]: <https://github.com>
-[res-issue-tracker]: <https://github.com/zavolanlab/htsinfer/issues>
-[res-pull-request]: PULL_REQUEST_TEMPLATE.md
+[res-git-flow]: <https://nvie.com/posts/a-successful-git-branching-model/>
+[res-issue-tracker]: <https://github.com/zavolanlab/binding-scanner/issues>
+[res-bug-report]: .github/ISSUE_TEMPLATE/bug_report.md
+[res-feature-request]: .github/ISSUE_TEMPLATE/feature_request.md
 [res-py]: <https://www.python.org/>
 [res-py-flake8]: <https://gitlab.com/pycqa/flake8>
-[res-py-mypy]: <http://mypy-lang.org/>
-[res-py-pylint]: <https://www.pylint.org/>
-[res-py-pylint-conf]: pylint.cfg
-[res-py-pyright]: <https://github.com/microsoft/pyright>
 [res-py-pytest]: <https://docs.pytest.org/en/latest/>
 [res-py-coverage]: <https://pypi.org/project/coverage/>
-[res-py-typing]: <https://docs.python.org/3/library/typing.html>
+[res-conv-commits]: <https://www.conventionalcommits.org/en/v1.0.0-beta.2/#specification>
+[res-conv-commits-lint]: <https://github.com/conventional-changelog/commitlint>
+[res-conv-commits-blog]: <https://nitayneeman.com/posts/understanding-semantic-commit-messages-using-git-and-angular/>
+[res-docs]: README.md
+[res-ci-cd]: <https://en.wikipedia.org/wiki/Continuous_integration>
 [res-travis-docs]: <https://docs.travis-ci.com/>
+[res-pull-request]: PULL_REQUEST_TEMPLATE.md
