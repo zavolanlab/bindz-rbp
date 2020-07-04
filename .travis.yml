@@ -31,6 +31,7 @@ before_script:
   - conda activate binding-scanner && echo $CONDA_DEFAULT_ENV
 
 script:
+  - echo 123
   # Download the ATtRACT db for hsa and mmu
   - bash scripts/download-ATtRACT-motifs.sh -s hsa -o ATtRACT_hsa
   - bash scripts/download-ATtRACT-motifs.sh -s mmu -o ATtRACT_mmu
