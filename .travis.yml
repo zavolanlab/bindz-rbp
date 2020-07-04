@@ -22,6 +22,13 @@ install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
-  
+
+before_script:
+  # Create conda virtual environments
+  - conda env create -f envs/main.yml
+  - conda env create -f envs/dev.yml
+  # Activate the main env
+  - conda activate binding-scanner && echo $CONDA_DEFAULT_ENV
+
 script:
   - echo 123
