@@ -69,4 +69,4 @@ mkdir "${OUTDIR}"
 # download and unzip ATtRACT database
 curl https://attract.cnic.es/attract/static/ATtRACT.zip \
     --output "${OUTDIR}"/ATtRACT.zip
-unzip "${OUTDIR}"/ATtRACT.zip -d "${OUTDIR}"
+#unzip "${OUTDIR}"/ATtRACT.zip -d "${OUTDIR}"

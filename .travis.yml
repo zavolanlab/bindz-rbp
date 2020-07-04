@@ -35,3 +35,4 @@ script:
   # Download the ATtRACT db for hsa and mmu
   - bash scripts/download-ATtRACT-motifs.sh -s hsa -o ATtRACT_hsa
   - bash scripts/download-ATtRACT-motifs.sh -s mmu -o ATtRACT_mmu
+  - ls -al
