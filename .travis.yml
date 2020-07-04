@@ -38,3 +38,7 @@ script:
   - ls -al
   - ls -al ATtRACT_hsa
   - ls -al ATtRACT_mmu
+  - unzip ATtRACT_hsa/ATtRACT.zip -d ATtRACT_hsa
+  - unzip ATtRACT_mmu/ATtRACT.zip -d ATtRACT_mmu
+  - ls -al ATtRACT_hsa
+  - ls -al ATtRACT_mmu
