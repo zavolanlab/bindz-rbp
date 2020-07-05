@@ -1,7 +1,6 @@
 ###############################################################################
 #
-#   Download ATtRACT database and extract PWMs
-#   for a given organism (supported: hsa/mmu).
+#   Download ATtRACT database
 #
 #   AUTHOR: Maciej_Bak
 #   AFFILIATION: University_of_Basel
@@ -9,8 +8,7 @@
 #   CONTACT: maciej.bak@unibas.ch
 #   CREATED: 21-03-2020
 #   LICENSE: Apache_2.0
-#   USAGE:
-#   bash download-ATtRACT-motifs.sh -s {hsa|mmu} -o {}
+#   USAGE: bash download-ATtRACT-motifs.sh -o {}
 #
 ###############################################################################
 
@@ -23,11 +21,6 @@ while [[ $# -gt 0 ]]
 do
     key="$1"
     case $key in
-        -s|--species)
-            SPECIES="$2"
-            shift # past argument
-            shift # past value
-            ;;
         -o|--output-directory)
             OUTDIR="$2"
             shift # past argument
@@ -46,14 +39,8 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 ###############################################################################
 
 # check arguments
-if [ -z "$SPECIES" ] || [ -z "$OUTDIR" ]; then
-    echo "Invalid arguments. Please provide --species and --output-directory"
-    exit 1
-fi
-
-# check species option value
-if [ ! "${SPECIES}" == "hsa" ] && [ ! "${SPECIES}" == "mmu" ]; then
-    echo $"Invalid species option. Currently supported are: 'hsa', 'mmu'"
+if [ -z "$OUTDIR" ]; then
+    echo "Invalid arguments. Please provide --output-directory"
     exit 1
 fi
 

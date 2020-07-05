@@ -32,13 +32,8 @@ before_script:
 
 script:
   - echo 123
-  # Download the ATtRACT db for hsa and mmu
-  - bash scripts/download-ATtRACT-motifs.sh -s hsa -o ATtRACT_hsa
-  - bash scripts/download-ATtRACT-motifs.sh -s mmu -o ATtRACT_mmu
+  # Download the ATtRACT db
+  - bash scripts/download-ATtRACT-motifs.sh -o ATtRACT
   - ls -al
-  - ls -al ATtRACT_hsa
-  - ls -al ATtRACT_mmu
-  - unzip ATtRACT_hsa/ATtRACT.zip -d ATtRACT_hsa
-  - unzip ATtRACT_mmu/ATtRACT.zip -d ATtRACT_mmu
-  - ls -al ATtRACT_hsa
-  - ls -al ATtRACT_mmu
+  - ls -al ATtRACT
+  - unzip ATtRACT/ATtRACT.zip -d ATtRACT
