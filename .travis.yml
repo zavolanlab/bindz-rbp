@@ -32,7 +32,7 @@ script:
     --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt
     --organism Homo_sapiens
     --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
-  - md5sum $(cat tests/unit/format-ATtRACT-motifs/ATtRACT/expected_output_hsa.txt) --check "tests/unit/format-ATtRACT-motifs/ATtRACT/expected_output_hsa.md5"
+  - md5sum $(cat tests/unit/format-ATtRACT-motifs/expected_output_hsa.txt) --check "tests/unit/format-ATtRACT-motifs/expected_output_hsa.md5"
   # Extract motifs for Mus musculus
   - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
   - >
@@ -41,4 +41,4 @@ script:
     --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt
     --organism Mus_musculus
     --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
-    - md5sum $(cat tests/unit/format-ATtRACT-motifs/ATtRACT/expected_output_mmu.txt) --check "tests/unit/format-ATtRACT-motifs/ATtRACT/expected_output_mmu.md5"
+  - md5sum $(cat tests/unit/format-ATtRACT-motifs/expected_output_mmu.txt) --check "tests/unit/format-ATtRACT-motifs/expected_output_mmu.md5"
