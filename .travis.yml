@@ -26,14 +26,20 @@ script:
   # Unzip the backup db
   - mkdir ATtRACT_backup_05072020
   - unzip resources/ATtRACT_backup_05072020.zip -d ATtRACT_backup_05072020
-  # Extract motifs for hsa
-  #- mkdir ATtRACT_hsa
-  #- python scripts/format-ATtRACT-motifs.py \
-  #  --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt \
-  #  --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt \
-  #  --organism hsa \
-  #  --outdir ATtRACT_hsa
+  # Extract motifs for Homo sapiens
+  - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
+  - python scripts/format-ATtRACT-motifs.py \
+    --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt \
+    --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt \
+    --organism Homo_sapiens \
+    --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
   - # check md5
-
-  # mmu
+  # Extract motifs for Mus musculus
+  - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
+  - python scripts/format-ATtRACT-motifs.py \
+    --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt \
+    --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt \
+    --organism Mus_musculus \
+    --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
+  - # check md5
 
