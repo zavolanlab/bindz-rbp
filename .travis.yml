@@ -24,7 +24,6 @@ script:
   - bash scripts/download-ATtRACT-motifs.sh -o ATtRACT
   - ls -al
   - ls -al ATtRACT
-  - unzip ATtRACT/ATtRACT.zip -d ATtRACT
   # Extract motifs for hsa
   #- mkdir ATtRACT_hsa
   #- python scripts/format-ATtRACT-motifs.py \
