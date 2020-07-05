@@ -145,7 +145,7 @@ happen smoothly:
 [res-conv-commits-lint]: <https://github.com/conventional-changelog/commitlint>
 [res-conv-commits-blog]: <https://nitayneeman.com/posts/understanding-semantic-commit-messages-using-git-and-angular/>
 [res-docs]: README.md
-[res-documentation]: documentation.md
+[res-documentation]: workflow/documentation.md
 [res-ci-cd]: <https://en.wikipedia.org/wiki/Continuous_integration>
 [res-travis-docs]: <https://docs.travis-ci.com/>
 [res-pull-request]: PULL_REQUEST_TEMPLATE.md
