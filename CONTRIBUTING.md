@@ -57,6 +57,7 @@ testing.
   (exception: tests)
 - Please use the following linters (use default settings unless otherwise
   stated):
+  - [`shellcheck`][res-sh-shellcheck]
   - [`flake8`][res-py-flake8]
 - Please use the following test suites:
   - [`pytest`][res-py-pytest]
@@ -136,6 +137,7 @@ happen smoothly:
 [res-bug-report]: .github/ISSUE_TEMPLATE/bug_report.md
 [res-feature-request]: .github/ISSUE_TEMPLATE/feature_request.md
 [res-py]: <https://www.python.org/>
+[res-sh-shellcheck]: <https://github.com/koalaman/shellcheck>
 [res-py-flake8]: <https://gitlab.com/pycqa/flake8>
 [res-py-pytest]: <https://docs.pytest.org/en/latest/>
 [res-py-coverage]: <https://pypi.org/project/coverage/>
