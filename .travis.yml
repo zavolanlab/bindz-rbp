@@ -36,12 +36,15 @@ script:
   - bash scripts/download-ATtRACT-motifs.sh -o ATtRACT
   - ls -al
   - ls -al ATtRACT
-  - unzip ATtRACT/ATtRACT.zip -d ATtRACT
+  #- unzip ATtRACT/ATtRACT.zip -d ATtRACT
   # Extract motifs for hsa
-  - mkdir ATtRACT_hsa
-  - python scripts/format-motifs.py \
-    --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt \
-    --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt \
-    --organism hsa \
-    --outdir ATtRACT_hsa
+  #- mkdir ATtRACT_hsa
+  #- python scripts/format-ATtRACT-motifs.py \
+  #  --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt \
+  #  --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt \
+  #  --organism hsa \
+  #  --outdir ATtRACT_hsa
+  - # check md5
+
+  # mmu
 
