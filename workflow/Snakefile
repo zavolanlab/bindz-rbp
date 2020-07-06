@@ -1,0 +1,276 @@
+##############################################################################
+#
+#   Snakemake pipeline:
+#   Create k-mer/PWM sitecount matrices around a set of bed-formatted regions
+#   within a specified range (window-wise resolution).
+#   
+#   AUTHOR: Maciej_Bak
+#   AFFILIATION: University_of_Basel
+#   AFFILIATION: Swiss_Institute_of_Bioinformatics
+#   CONTACT: maciej.bak@unibas.ch
+#   CREATED: 02-07-2020
+#   LICENSE: Apache_2.0
+#
+##############################################################################
+
+# imports
+import sys
+import os
+import glob
+import traceback
+
+# local rules
+localrules: all, create_outdir
+
+def gather_motifs_names(pwm_dir):
+    """
+    Return the list of names of all PWM files in the PWM directory
+    """
+    regex = os.path.join(
+        pwm_dir,
+        "*"
+    )
+    l = [i.split("/")[-1] for i in glob.glob(regex)]
+    return(l)
+
+rule all:
+    """
+    Target rule with final output of the pipeline
+    """
+    input:
+        PWM_input_dir = config["pwm_directory"],
+        DIR_MotEvo_results_pwm = expand(
+            os.path.join(
+                "{outdir}",
+                "motevo",
+                "{pwm_dir}"
+            ),
+            outdir = config["outdir"],
+            pwm_dir = gather_motifs_names(config["pwm_directory"])
+        )
+
+rule create_outdir:
+    """
+    Create directories for the results
+    """
+    output:
+        TEMP_ = temp(
+            os.path.join(
+                "{outdir}",
+                "outdir"
+            )
+        )
+
+    params:
+        DIR_output_dir = "{outdir}",
+        LOG_local_log = os.path.join(
+            "{outdir}",
+            "local_log"
+        )
+
+    shell:
+        """
+        mkdir -p {params.DIR_output_dir}; \
+        mkdir -p {params.LOG_local_log}; \
+        touch {output.TEMP_}
+        """
+
+rule prepare_MotEvo_parameters:
+    """
+    Prepare text file with parameters for MotEvo runs
+    """
+    input:
+        TEMP_ = os.path.join(
+            "{outdir}",
+            "outdir"
+        )
+
+    output:
+        TXT_MotEvo_parameters = os.path.join(
+            "{outdir}",
+            "MotEvo_parameters.txt"
+        )
+
+    params:
+        FLOAT_MotEvo_bg_binding_prior = config["MotEvo_bg_binding_prior"],
+        FLOAT_MotEvo_min_binding_posterior = config["MotEvo_min_binding_posterior"],
+        INT_MotEvo_Markov_chain_order = config["MotEvo_Markov_chain_order"]
+
+    log:
+        LOG_local_stdout = os.path.join(
+            "{outdir}",
+            "local_log",
+            "prepare_MotEvo_parameters.stdout.log"
+        ),
+        LOG_local_stderr = os.path.join(
+            "{outdir}",
+            "local_log",
+            "prepare_MotEvo_parameters.stderr.log"
+        )
+
+    benchmark:
+        os.path.join(
+            "{outdir}",
+            "local_log",
+            "prepare_MotEvo_parameters.benchmark.log"
+        )
+
+    run:
+        with open(output.TXT_MotEvo_parameters, "w") as ofile, open(log.LOG_local_stderr, "w") as logfile:
+            try:
+                # =================================
+                bgprior = params.FLOAT_MotEvo_bg_binding_prior
+                parampath = output.TXT_MotEvo_parameters
+                genome_tag = "MOTEVO"
+                markovorderbg = params.INT_MotEvo_Markov_chain_order
+                bga = 0.25
+                bgt = 0.25
+                bgc = 0.25
+                bgg = 0.25
+                restrictparses = 0
+                printsiteals = 1
+                minposterior = params.FLOAT_MotEvo_min_binding_posterior
+                # =================================
+                tree = str('TREE (' + genome_tag + ':1);')
+                with open(parampath, 'w') as paramfile:
+                    paramfile.write(
+                        'refspecies ' + genome_tag + os.linesep +
+                        tree + os.linesep +
+                        'Mode TFBS' + os.linesep +
+                        'EMprior 0' + os.linesep +
+                        'markovorderBG ' + str(markovorderbg) + os.linesep +
+                        'bgprior ' + str(bgprior) + os.linesep +
+                        'bg A ' + str(bga) + os.linesep +
+                        'bg T ' + str(bgt) + os.linesep +
+                        'bg G ' + str(bgg) + os.linesep +
+                        'bg C ' + str(bgc) + os.linesep +
+                        'restrictparses ' + str(restrictparses) + os.linesep +
+                        'singlestrand 1' + os.linesep +
+                        'sitefile posterior_sites' + os.linesep +
+                        'priorfile posteriors' + os.linesep +
+                        'printsiteals ' + str(printsiteals) + os.linesep +
+                        'minposterior ' + str(minposterior) + os.linesep)
+            except Exception:
+                traceback.print_exc(file = logfile)
+                raise Exception(
+                    "Workflow error at rule: prepare_MotEvo_parameters"
+                )
+
+rule prepare_sequences_for_MotEvo:
+    """
+    Reformat FASTA headers for MotEvo
+    """
+    input:
+        TEMP_ = temp(
+            os.path.join(
+                "{outdir}",
+                "outdir"
+            )
+        )
+
+    output:
+        FASTA_MotEvo_input = os.path.join(
+            "{outdir}",
+            "MotEvo_sequences.fasta"
+        ),
+
+    params:
+        STR_MotEvo_fasta_header_tag = ">>MOTEVO_"
+
+    log:
+        # stdout is used by the sed command
+        LOG_local_stderr = os.path.join(
+            "{outdir}",
+            "local_log",
+            "prepare_sequences_for_MotEvo.stderr.log"
+        )
+
+    benchmark:
+        os.path.join(
+            "{outdir}",
+            "local_log",
+            "prepare_sequences_for_MotEvo.benchmark.log"
+        )
+
+    shell:
+        """
+        sed 's/>/{params.STR_MotEvo_fasta_header_tag}/' \
+        {input.FASTA_genomic_sequence} \
+        1> {output.FASTA_MotEvo_input} \
+        2> {log.LOG_local_stderr};
+        """
+
+rule MotEvo_analysis:
+    """
+    Run MotEvo for a given set of FASTA sequences and a given PWM
+    """
+    input:
+        TXT_MotEvo_parameters = os.path.join(
+            "{outdir}",
+            "MotEvo_parameters.txt"
+        ),
+        DIR_pwm = os.path.join(
+            config["pwm_directory"],
+            "{pwm_dir}",
+        ),
+        FASTA_MotEvo_input = os.path.join(
+            "{outdir}",
+            "MotEvo_sequences.fasta"
+        ),
+
+    output:
+        DIR_MotEvo_results_pwm = directory(os.path.join(
+            "{outdir}",
+            "motevo",
+            "{pwm_dir}"
+        ))
+
+    params:
+        TXT_MotEvo_parameters_abspath = os.path.abspath(
+            os.path.join(
+                "{outdir}",
+                "MotEvo_parameters.txt",
+            )
+        ),
+        FASTA_MotEvo_input_abspath = os.path.abspath(
+            os.path.join(
+                "{outdir}",
+                "MotEvo_sequences.fasta",
+            )
+        )
+
+    log:
+        LOG_local_stdout = os.path.join(
+            "{outdir}",
+            "local_log",
+            "MotEvo_analysis.{pwm_dir}.stdout.log"
+        ),
+        LOG_local_stderr = os.path.join(
+            "{outdir}",
+            "local_log",
+            "MotEvo_analysis.{pwm_dir}.stderr.log"
+        )
+
+    benchmark:
+        os.path.join(
+            "{outdir}",
+            "local_log",
+            "MotEvo_analysis.{pwm_dir}.benchmark.log"
+        )
+
+    conda:
+        "envs/motevo.yml"
+
+    singularity:
+        "docker://zavolab/motevo:1.12_python3.6.8"
+
+    shell:
+        """
+        (mkdir -p {output.DIR_MotEvo_results_pwm} && \
+        cd {output.DIR_MotEvo_results_pwm} && \
+        motevo \
+        {params.FASTA_MotEvo_input_abspath} \
+        {params.TXT_MotEvo_parameters_abspath} \
+        {input.DIR_pwm}) \
+        1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
+        """

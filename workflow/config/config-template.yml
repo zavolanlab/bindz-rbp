@@ -1,0 +1,35 @@
+###############################################################################
+#
+#   Config options for the snakemake pipeline
+#
+#   AUTHOR: Maciej_Bak
+#   AFFILIATION: University_of_Basel
+#   AFFILIATION: Swiss_Institute_of_Bioinformatics
+#   CONTACT: maciej.bak@unibas.ch
+#   CREATED: 09-04-2020
+#   LICENSE: Apache_2.0
+#
+###############################################################################
+---
+
+# path to the directory with all the scripts for this pipeline
+# (relative to the 'execution' directory)
+scripts_dir: "../scripts"
+
+# path for the output directory
+# (relative to the 'execution' directory)
+outdir: "../output"
+
+# paths to the bed-formatted sites
+sequence: "ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCGCGATACG"
+
+# path to the directory with TRANSFAC-formatted PWM files
+pwm_directory: "../tests/integration/input/motifs"
+# ?
+MotEvo_bg_binding_prior: 0.99
+# ?
+MotEvo_min_binding_posterior: 0.01
+# ?
+MotEvo_Markov_chain_order: 1
+
+...
