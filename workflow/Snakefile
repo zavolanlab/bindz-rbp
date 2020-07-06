@@ -175,7 +175,8 @@ rule prepare_sequences_for_MotEvo:
         ),
 
     params:
-        STR_MotEvo_fasta_header_tag = ">>MOTEVO_"
+        STR_sequence = config["sequence"],
+        STR_MotEvo_fasta_header_tag = ">>MOTEVO_123"
 
     log:
         # stdout is used by the sed command
@@ -194,9 +195,8 @@ rule prepare_sequences_for_MotEvo:
 
     shell:
         """
-        sed 's/>/{params.STR_MotEvo_fasta_header_tag}/' \
-        {input.FASTA_genomic_sequence} \
-        1> {output.FASTA_MotEvo_input} \
+        echo "{params.STR_MotEvo_fasta_header_tag}" 1> {output.FASTA_MotEvo_input} && \
+        echo "{params.STR_sequence}" 1>> {output.FASTA_MotEvo_input} \
         2> {log.LOG_local_stderr};
         """
 
@@ -209,10 +209,10 @@ rule MotEvo_analysis:
             "{outdir}",
             "MotEvo_parameters.txt"
         ),
-        DIR_pwm = os.path.join(
+        DIR_pwm = os.path.abspath(os.path.join(
             config["pwm_directory"],
             "{pwm_dir}",
-        ),
+        )),
         FASTA_MotEvo_input = os.path.join(
             "{outdir}",
             "MotEvo_sequences.fasta"

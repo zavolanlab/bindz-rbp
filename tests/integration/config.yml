@@ -21,7 +21,7 @@ scripts_dir: "../scripts"
 outdir: "../output"
 
 # paths to the bed-formatted sites
-sequence: "ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCGCGATACG"
+sequence: "ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG"
 
 # path to the directory with TRANSFAC-formatted PWM files
 pwm_directory: "../pwm"
