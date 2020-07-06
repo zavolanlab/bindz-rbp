@@ -24,7 +24,7 @@ outdir: "../output"
 sequence: "ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCGCGATACG"
 
 # path to the directory with TRANSFAC-formatted PWM files
-pwm_directory: "../input/motifs"
+pwm_directory: "../pwm"
 # ?
 MotEvo_bg_binding_prior: 0.99
 # ?
