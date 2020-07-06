@@ -1,4 +1,44 @@
 language: bash
 
+install:
+  - sudo apt update
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - source "$HOME/miniconda/etc/profile.d/conda.sh"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  # Useful for debugging any issues with conda
+  - conda info -a
+
+before_script:
+  # Create conda virtual environments
+  - conda env create -f envs/main.yml
+  - conda env create -f envs/dev.yml
+  # Activate the main env
+  - conda activate binding-scanner && echo $CONDA_DEFAULT_ENV
+
 script:
-  - echo 123
+  # Download and extract the ATtRACT db
+  #- bash scripts/download-ATtRACT-motifs.sh -o ATtRACT # this curl/wget do not work on Travis machine...
+  # Extract the backup db
+  - mkdir ATtRACT_backup_05072020
+  - unzip resources/ATtRACT_backup_05072020.zip -d ATtRACT_backup_05072020
+  # Extract motifs for Homo sapiens
+  - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
+  - >
+    python scripts/format-ATtRACT-motifs.py
+    --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt
+    --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt
+    --organism Homo_sapiens
+    --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
+  - md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_hsa.md5
+  # Extract motifs for Mus musculus
+  - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
+  - >
+    python scripts/format-ATtRACT-motifs.py
+    --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt
+    --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt
+    --organism Mus_musculus
+    --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
+  - md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_mmu.md5
