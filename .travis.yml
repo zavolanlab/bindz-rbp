@@ -42,3 +42,6 @@ script:
     --organism Mus_musculus
     --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
   - md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_mmu.md5
+  # Test snakemake Rulegraph and DAG
+  - bash tests/integration/execution/snakemake_rulegraph_run.sh
+  - bash tests/integration/execution/snakemake_dag_run.sh
