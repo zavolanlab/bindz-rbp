@@ -6,4 +6,4 @@
 ._*
 
 # snakemake internal directory for tests
-tests/integration/exxecution/.snakemake
+tests/integration/execution/.snakemake/
