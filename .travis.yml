@@ -45,3 +45,6 @@ script:
   # Test snakemake Rulegraph and DAG
   - bash tests/integration/execution/snakemake_rulegraph_run.sh
   - bash tests/integration/execution/snakemake_dag_run.sh
+  # Test pipeline execution: local, conda envs:
+  - bash tests/integration/execution/snakemake_local_run_conda_environments.sh
+  # Add md5 sums on the output
