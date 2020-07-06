@@ -12,12 +12,12 @@
 ###############################################################################
 ---
 
-name: motevo
+  name: motevo
 
-channels:
-  - vng
+  channels:
+    - vng
 
-dependencies:
-  - motevo=1.12
+  dependencies:
+    - motevo=1.12
 
 ...
