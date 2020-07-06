@@ -12,7 +12,7 @@ DESCRIPTION
   - [Installation instructions](#installation-instructions)
     - [Step 1: Download and install Miniconda3](#step-1-download-and-install-miniconda3)
     - [Step 2: Clone the repository](#step-2-clone-the-repository)
-    - [Step 3: Build and activate virtual environment for MAPP](#step-3-build-and-activate-virtual-environment-for-mapp)
+    - [Step 3: Build and activate virtual environment for Binding Scanner](#step-3-build-and-activate-virtual-environment-for-binding-scanner)
   - [Optional: Download and parse PWMs from ATtRACT database](#optional-download-and-parse-pwms-from-attract-database)
   - [Workflow execution](#workflow-execution)
   - [Contributing](#contributing)
@@ -56,7 +56,7 @@ git clone https://github.com/zavolanlab/binding-scanner.git binding_scanner_git
 
 Cloning repositories requires [git] to be installed.
 
-### Step 3: Build and activate virtual environment for MAPP
+### Step 3: Build and activate virtual environment for Binding Scanner
 
 To ease the users in the installation process we have prepared a recipe for a *conda* virtual environment which contains all the software needed in order to run Binding Scanner. This environment might be created by the following script:
 
