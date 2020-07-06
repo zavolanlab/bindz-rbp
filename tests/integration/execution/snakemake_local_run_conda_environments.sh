@@ -1,7 +1,4 @@
-#!/usr/bin/env bash
-
-# Run the pipeline on a local machine
-# with conda environments
+# Run the pipeline on a local machine with conda environments
 
 cleanup () {
     rc=$?
