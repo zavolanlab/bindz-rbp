@@ -67,6 +67,9 @@ rule create_results_directory:
             "local_log"
         )
 
+    conda:
+        "envs/bash.yml"
+
     shell:
         """
         mkdir -p {params.DIR_output_dir}; \
@@ -91,9 +94,12 @@ rule prepare_MotEvo_parameters:
         )
 
     params:
-        FLOAT_MotEvo_bg_binding_prior = config["MotEvo_bg_binding_prior"],
-        FLOAT_MotEvo_min_binding_posterior = config["MotEvo_min_binding_posterior"],
-        INT_MotEvo_Markov_chain_order = config["MotEvo_Markov_chain_order"]
+        FLOAT_MotEvo_bg_binding_prior = \
+            config["MotEvo_bg_binding_prior"],
+        FLOAT_MotEvo_min_binding_posterior = \
+            config["MotEvo_min_binding_posterior"],
+        INT_MotEvo_Markov_chain_order = \
+            config["MotEvo_Markov_chain_order"]
 
     log:
         LOG_local_stdout = os.path.join(
@@ -190,10 +196,15 @@ rule prepare_sequence_for_MotEvo:
             "prepare_sequence_for_MotEvo.benchmark.log"
         )
 
+    conda:
+        "envs/bash.yml"
+
     shell:
         """
-        echo "{params.STR_MotEvo_fasta_header_tag}" 1> {output.FASTA_MotEvo_input} 2> {log.LOG_local_stderr} && \
-        echo "{params.STR_sequence}" 1>> {output.FASTA_MotEvo_input} 2> {log.LOG_local_stderr} \
+        echo "{params.STR_MotEvo_fasta_header_tag}" \
+        1> {output.FASTA_MotEvo_input} 2> {log.LOG_local_stderr} && \
+        echo "{params.STR_sequence}" \
+        1>> {output.FASTA_MotEvo_input} 2> {log.LOG_local_stderr} \
         """
 
 rule run_MotEvo_analysis:
