@@ -22,7 +22,7 @@ DESCRIPTION
 
 Binding Scanner is implemented as a [Snakemake] computational workflow.
 
-[INSERT RULEGRAPH]
+> ![rule_graph][rule-graph]
 
 ## Installation instructions
 
@@ -120,6 +120,7 @@ by email: <zavolab-biozentrum@unibas.ch>
 
 
 [Snakemake]: https://snakemake.readthedocs.io/en/stable/
+[rule-graph]: images/rulegraph.svg
 [Python 3]: https://www.python.org/download/releases/3.0/
 [bioconda]: https://bioconda.github.io/
 [anaconda cloud]: https://anaconda.org/
