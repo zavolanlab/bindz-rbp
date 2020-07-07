@@ -102,6 +102,17 @@ In order to utilise Position Weight Matrices from  [ATtRACT] database of known R
 
 ## Workflow execution
 
+All the input, output and parameters for the pipeline exeuction should be specified in a snakemake configuration file in YAML format. Such a file might be created based on our prepared template located at `workflow/config/config-template.yml`. Assuming that the user created a `config.yml` and saved it in the repository's root directory (and that it is the current working directory) the workflow might be executed on the local machine with:
+```bash
+snakemake \
+    --snakefile="workflow/Snakefile" \
+    --configfile="config.yml" \
+    --use-conda \
+    --cores=1 \
+    --printshellcmds \
+    --verbose
+```
+
 ## Contributing
 
 This project lives off your contributions, be it in the form of bug reports,
