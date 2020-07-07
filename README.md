@@ -2,7 +2,7 @@
 
 # Binding Scanner
 
-DESCRIPTION
+Binding Scanner is a snakemake pipeline that detects binding sites of RNA-binding proteins on a given input RNA sequence.
 
 ## Table of Contents
 
