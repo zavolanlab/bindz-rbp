@@ -5,5 +5,5 @@
 .DS_Store
 ._*
 
-# snakemake directories
-.snakemake
+# snakemake internal directory for tests
+tests/integration/execution/.snakemake/

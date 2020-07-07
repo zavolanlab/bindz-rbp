@@ -2,7 +2,7 @@
 
 # Binding Scanner
 
-DESCRIPTION
+Binding Scanner is a snakemake pipeline that detects binding sites of RNA-binding proteins on a given input RNA sequence.
 
 ## Table of Contents
 
@@ -22,7 +22,7 @@ DESCRIPTION
 
 Binding Scanner is implemented as a [Snakemake] computational workflow.
 
-[INSERT RULEGRAPH]
+> ![rule_graph][rule-graph]
 
 ## Installation instructions
 
@@ -102,6 +102,17 @@ In order to utilise Position Weight Matrices from  [ATtRACT] database of known R
 
 ## Workflow execution
 
+All the input, output and parameters for the pipeline exeuction should be specified in a snakemake configuration file in YAML format. Such a file might be created based on our prepared template located at `workflow/config/config-template.yml`. Assuming that the user created a `config.yml` and saved it in the repository's root directory (and that it is the current working directory) the workflow might be executed on the local machine with:
+```bash
+snakemake \
+    --snakefile="workflow/Snakefile" \
+    --configfile="config.yml" \
+    --use-conda \
+    --cores=1 \
+    --printshellcmds \
+    --verbose
+```
+
 ## Contributing
 
 This project lives off your contributions, be it in the form of bug reports,
@@ -120,6 +131,7 @@ by email: <zavolab-biozentrum@unibas.ch>
 
 
 [Snakemake]: https://snakemake.readthedocs.io/en/stable/
+[rule-graph]: images/rulegraph.svg
 [Python 3]: https://www.python.org/download/releases/3.0/
 [bioconda]: https://bioconda.github.io/
 [anaconda cloud]: https://anaconda.org/
