@@ -12,24 +12,22 @@
 ###############################################################################
 ---
 
-# path to the directory with all the scripts for this pipeline
-# (relative to the 'execution' directory)
-scripts_dir: "../scripts"
-
-# path for the output directory
-# (relative to the 'execution' directory)
-outdir: "../output"
-
-# paths to the bed-formatted sites
+# input sequence from the user
 sequence: "ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG"
 
 # path to the directory with TRANSFAC-formatted PWM files
 pwm_directory: "../pwm"
-# ?
+
+# path for the output directory
+outdir: "../output"
+
+# MotEvo parameter: prior probability for the background binding
 MotEvo_bg_binding_prior: 0.99
-# ?
+
+# MotEvo parameter: prior minimum binding posterior probability
 MotEvo_min_binding_posterior: 0.01
-# ?
+
+# MotEvo parameter: order of the Markov chain
 MotEvo_Markov_chain_order: 1
 
 ...
