@@ -1,8 +1,7 @@
 ##############################################################################
 #
 #   Snakemake pipeline:
-#   Create k-mer/PWM sitecount matrices around a set of bed-formatted regions
-#   within a specified range (window-wise resolution).
+#   Infer RBPs binding sites on a given RNA sequence
 #   
 #   AUTHOR: Maciej_Bak
 #   AFFILIATION: University_of_Basel
@@ -20,7 +19,7 @@ import glob
 import traceback
 
 # local rules
-localrules: all, create_outdir
+localrules: all, create_results_directory
 
 def gather_motifs_names(pwm_dir):
     """
@@ -49,7 +48,7 @@ rule all:
             pwm_dir = gather_motifs_names(config["pwm_directory"])
         )
 
-rule create_outdir:
+rule create_results_directory:
     """
     Create directories for the results
     """
@@ -156,7 +155,7 @@ rule prepare_MotEvo_parameters:
                     "Workflow error at rule: prepare_MotEvo_parameters"
                 )
 
-rule prepare_sequences_for_MotEvo:
+rule prepare_sequence_for_MotEvo:
     """
     Reformat FASTA headers for MotEvo
     """
@@ -183,14 +182,14 @@ rule prepare_sequences_for_MotEvo:
         LOG_local_stderr = os.path.join(
             "{outdir}",
             "local_log",
-            "prepare_sequences_for_MotEvo.stderr.log"
+            "prepare_sequence_for_MotEvo.stderr.log"
         )
 
     benchmark:
         os.path.join(
             "{outdir}",
             "local_log",
-            "prepare_sequences_for_MotEvo.benchmark.log"
+            "prepare_sequence_for_MotEvo.benchmark.log"
         )
 
     shell:
@@ -200,7 +199,7 @@ rule prepare_sequences_for_MotEvo:
         2> {log.LOG_local_stderr};
         """
 
-rule MotEvo_analysis:
+rule run_MotEvo_analysis:
     """
     Run MotEvo for a given set of FASTA sequences and a given PWM
     """
@@ -243,19 +242,19 @@ rule MotEvo_analysis:
         LOG_local_stdout = os.path.join(
             "{outdir}",
             "local_log",
-            "MotEvo_analysis.{pwm_dir}.stdout.log"
+            "run_MotEvo_analysis.{pwm_dir}.stdout.log"
         ),
         LOG_local_stderr = os.path.join(
             "{outdir}",
             "local_log",
-            "MotEvo_analysis.{pwm_dir}.stderr.log"
+            "run_MotEvo_analysis.{pwm_dir}.stderr.log"
         )
 
     benchmark:
         os.path.join(
             "{outdir}",
             "local_log",
-            "MotEvo_analysis.{pwm_dir}.benchmark.log"
+            "run_MotEvo_analysis.{pwm_dir}.benchmark.log"
         )
 
     conda:
