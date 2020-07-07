@@ -157,28 +157,26 @@ rule prepare_MotEvo_parameters:
 
 rule prepare_sequence_for_MotEvo:
     """
-    Reformat FASTA headers for MotEvo
+    Create a FASTA-formatted file with the input sequence
     """
     input:
-        TEMP_ = temp(
-            os.path.join(
-                "{outdir}",
-                "outdir"
-            )
+        TEMP_ = os.path.join(
+            "{outdir}",
+            "outdir"
         )
 
     output:
         FASTA_MotEvo_input = os.path.join(
             "{outdir}",
-            "MotEvo_sequences.fasta"
+            "sequence.fasta"
         ),
 
     params:
         STR_sequence = config["sequence"],
-        STR_MotEvo_fasta_header_tag = ">>MOTEVO_123"
+        STR_MotEvo_fasta_header_tag = ">>MOTEVO_input-sequence"
 
     log:
-        # stdout is used by the sed command
+        # stdout is used by the echo command
         LOG_local_stderr = os.path.join(
             "{outdir}",
             "local_log",
@@ -194,35 +192,38 @@ rule prepare_sequence_for_MotEvo:
 
     shell:
         """
-        echo "{params.STR_MotEvo_fasta_header_tag}" 1> {output.FASTA_MotEvo_input} && \
-        echo "{params.STR_sequence}" 1>> {output.FASTA_MotEvo_input} \
-        2> {log.LOG_local_stderr};
+        echo "{params.STR_MotEvo_fasta_header_tag}" 1> {output.FASTA_MotEvo_input} 2> {log.LOG_local_stderr} && \
+        echo "{params.STR_sequence}" 1>> {output.FASTA_MotEvo_input} 2> {log.LOG_local_stderr} \
         """
 
 rule run_MotEvo_analysis:
     """
-    Run MotEvo for a given set of FASTA sequences and a given PWM
+    Run MotEvo for a given FASTA sequence and a given PWM
     """
     input:
         TXT_MotEvo_parameters = os.path.join(
             "{outdir}",
             "MotEvo_parameters.txt"
         ),
-        DIR_pwm = os.path.abspath(os.path.join(
-            config["pwm_directory"],
-            "{pwm_dir}",
-        )),
+        DIR_pwm = os.path.abspath(
+            os.path.join(
+                config["pwm_directory"],
+                "{pwm_dir}",
+            )
+        ),
         FASTA_MotEvo_input = os.path.join(
             "{outdir}",
-            "MotEvo_sequences.fasta"
-        ),
+            "sequence.fasta"
+        )
 
     output:
-        DIR_MotEvo_results_pwm = directory(os.path.join(
-            "{outdir}",
-            "motevo",
-            "{pwm_dir}"
-        ))
+        DIR_MotEvo_results_pwm = directory(
+            os.path.join(
+                "{outdir}",
+                "motevo",
+                "{pwm_dir}"
+            )
+        )
 
     params:
         TXT_MotEvo_parameters_abspath = os.path.abspath(
@@ -234,7 +235,7 @@ rule run_MotEvo_analysis:
         FASTA_MotEvo_input_abspath = os.path.abspath(
             os.path.join(
                 "{outdir}",
-                "MotEvo_sequences.fasta",
+                "sequence.fasta",
             )
         )
 
@@ -259,9 +260,6 @@ rule run_MotEvo_analysis:
 
     conda:
         "envs/motevo.yml"
-
-    singularity:
-        "docker://zavolab/motevo:1.12_python3.6.8"
 
     shell:
         """
