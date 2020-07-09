@@ -1,0 +1,6 @@
+Building DAG of jobs...
+MissingInputException in line 286 of /home/krish8484/binding-scanner/workflow/Snakefile:
+Missing input files for rule combine_MotEvo_results:
+dev/output/motif1/posterior_sites
+dev/output/motif2/posterior_sites
+dev/output/motif3/posterior_sites

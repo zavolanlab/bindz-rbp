@@ -1,0 +1,10 @@
+strand	binding_position	binding_posterior	pwm_id	binding_region	binding_sequence	binding_energy	fast_record
++	31-41	0.110	motif1	"SEQUENCE_ID
+"	TGATCAGCGTC	2.16	SEQUENCE_ID
++	20-25	0.005	motif2	"SEQUENCE_ID
+"	TGTGCC	2.88	SEQUENCE_ID
++	57-63	0.257	motif3	"SEQUENCE_ID
+"	TCACATG	3.68	"SEQUENCE_ID
+"
++	7-13	0.117	motif3	"SEQUENCE_ID
+"	TCACATC	3.11	SEQUENCE_ID

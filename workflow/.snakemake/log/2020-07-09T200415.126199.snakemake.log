@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /home/krish8484/miniconda3/envs/binding-scanner/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	combine_MotEvo_results
+	1
+
+[Thu Jul  9 20:04:15 2020]
+rule combine_MotEvo_results:
+    input: dev/output/motif1/posterior_sites, dev/output/motif2/posterior_sites, dev/output/motif3/posterior_sites
+    output: combine_MotEvo_results.tsv
+    jobid: 0
+
+[Thu Jul  9 20:04:15 2020]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/krish8484/binding-scanner/workflow/.snakemake/log/2020-07-09T200415.126199.snakemake.log

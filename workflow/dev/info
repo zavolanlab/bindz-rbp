@@ -1,0 +1,8 @@
+Each record of MotEvo results file consist of 2 lines with the format:
+[binding position*] [strand] [binding posterior*] [PWM ID] [binding region]
+[binding sequence] [binding energy] [FASTA record ID]
+
+Binding energy should be positive, if it is not then the posterior is probably very low and the user should increase the min posterior cutoff.
+Such records should not be taken into account.
+Multiple records of a given motif might correspond to one input sequence, if more than one binding site has been found
+BUT if two sites overlap only the one with the higher posterior is reported by MotEvo!
