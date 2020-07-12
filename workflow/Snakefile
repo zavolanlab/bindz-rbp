@@ -37,16 +37,13 @@ rule all:
     Target rule with final output of the pipeline
     """
     input:
-        PWM_input_dir = config["pwm_directory"],
-        DIR_MotEvo_results_pwm = expand(
-            os.path.join(
-                "{outdir}",
-                "motevo",
-                "{pwm_dir}"
-            ),
-            outdir = config["outdir"],
-            pwm_dir = gather_motifs_names(config["pwm_directory"])
+        combined_MotEvo_results = expand(os.path.join(
+            "{outdir}",
+            "combined_MotEvo_results.tsv"
+        ),
+        outdir = config["outdir"]
         )
+        
 
 rule create_results_directory:
     """
@@ -282,3 +279,24 @@ rule run_MotEvo_analysis:
         {input.DIR_pwm}) \
         1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """
+
+rule combine_MotEvo_results:
+    input: 
+        DIR_MotEvo_results_pwm = expand(
+            os.path.join(
+                "{outdir}",
+                "motevo",
+                "{pwm_dir}"
+            ),
+            outdir = config["outdir"],
+            pwm_dir = gather_motifs_names(config["pwm_directory"])
+        )
+    output:
+        combined_MotEvo_results = expand(os.path.join(
+            "{outdir}",
+            "combined_MotEvo_results.tsv"
+        ),
+        outdir = config["outdir"]
+        ),
+    params: "posterior_sites"
+    script: "parse.py"
