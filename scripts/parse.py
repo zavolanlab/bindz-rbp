@@ -1,3 +1,12 @@
+##############################################################################
+#   AUTHOR: Krish Agarwal
+#   AFFILIATION: University_of_Basel
+#   AFFILIATION: Swiss_Institute_of_Bioinformatics
+#   CONTACT: akrish136@gmail.com
+#   CREATED: 14-07-2020
+#   LICENSE: Apache_2.0
+##############################################################################
+
 import os
 import sys
 import pandas as pd
