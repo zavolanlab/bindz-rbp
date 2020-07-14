@@ -1,4 +1,4 @@
-strand	binding_position	binding_posterior	pwm_id	binding_region	binding_sequence	binding_energy	fast_record
+strand	binding_position	binding_posterior	pwm_id	binding_region	binding_sequence	binding_energy	fasta_record
 +	14-18	0.015291	HNRNPF_820	"MOTEVO_input-sequence
 "	GTGGG	2.51049	"MOTEVO_input-sequence
 "

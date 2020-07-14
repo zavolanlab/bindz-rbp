@@ -1,0 +1,55 @@
+letter A val is 0.250000
+letter T val is 0.250000
+letter G val is 0.250000
+letter C val is 0.250000
+Running in TFBS mode
+node 0 name MOTEVO qval 0.367879 parent MOTEVO_
+node 1 name MOTEVO_ qval 0 parent (null)
+//
+NA HNRNPF_822
+PW 0.000000
+PO         A          C          G          T       cons         inf
+00      0.96       0.96      97.11       0.96          G        1.67
+01      0.96       0.96      97.11       0.96          G        1.67
+02      0.96       0.96      97.11       0.96          G        1.67
+03      0.96       0.96      97.11       0.96          G        1.67
+04      0.96       0.96      97.11       0.96          G        1.67
+05      0.96       0.96      97.11       0.96          G        1.67
+06      0.96       0.96      97.11       0.96          G        1.67
+//
+final prior HNRNPF_822 is 0.010000 0.010000
+UFE wm prior 0.000000 0.000000
+bg prior 0.990000 0.990000
+ref species is MOTEVO
+treestring is (MOTEVO:1);
+em_prior is 0
+em_wm is 0
+do_segment is 0
+seglen is 0
+bg[0] = 0.250000
+bg[1] = 0.250000
+bg[2] = 0.250000
+bg[3] = 0.250000
+allocated memory
+read sequences
+parsed sequences
+mybgfile is set to 
+Calculating background frequencies from input sequence
+Calculating background model (markov order = 1) ... 
+AA: 0 = 0.181818
+CA: 1 = 0.100000
+GA: 2 = 0.407407
+TA: 3 = 0.250000
+AC: 4 = 0.136364
+CC: 5 = 0.100000
+GC: 6 = 0.111111
+TC: 7 = 0.200000
+AG: 8 = 0.227273
+CG: 9 = 0.400000
+GG: 10 = 0.296296
+TG: 11 = 0.500000
+AT: 12 = 0.454545
+CT: 13 = 0.400000
+GT: 14 = 0.185185
+TT: 15 = 0.050000
+done
