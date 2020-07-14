@@ -298,5 +298,7 @@ rule combine_MotEvo_results:
         ),
         outdir = config["outdir"]
         ),
-    params: "posterior_sites"
-    script: "parse.py"
+    params:
+        Input_filename = "posterior_sites"
+    shell: 
+        "python parse.py --indir {input.DIR_MotEvo_results_pwm}  --filename {params.Input_filename} --outfile {output.combined_MotEvo_results}"
