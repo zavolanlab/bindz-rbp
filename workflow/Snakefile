@@ -281,6 +281,9 @@ rule run_MotEvo_analysis:
         """
 
 rule combine_MotEvo_results:
+    """
+    Combine all motevo results in one tsv file
+    """
     input: 
         DIR_MotEvo_results_pwm = expand(
             os.path.join(
