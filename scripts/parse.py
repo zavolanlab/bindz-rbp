@@ -51,7 +51,7 @@ tabb['pwm_id'] = []
 tabb['binding_region'] = []
 tabb['binding_sequence'] = []
 tabb['binding_energy'] = []
-tabb['fast_record'] = []
+tabb['fasta_record'] = []
 
 
 filenameparam = str(options.filename)
@@ -84,7 +84,7 @@ for dirr in dirrs:
         else:
             tabb['binding_sequence'] = tabb['binding_sequence'] + [each_word[0]]
             tabb['binding_energy'] = tabb['binding_energy'] + [each_word[1]]
-            tabb['fast_record'] = tabb['fast_record'] + [each_word[2]]
+            tabb['fasta_record'] = tabb['fasta_record'] + [each_word[2]]
         i = i + 1
 
 df = pd.DataFrame({key: pd.Series(value) for key, value in tabb.items()})
