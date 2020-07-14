@@ -42,7 +42,6 @@ if len(sys.argv) == 1:
     parser.print_help()
     sys.exit(1)
 
-print(len(sys.argv))
 
 tabb = dict()
 tabb['strand'] = []
@@ -54,30 +53,22 @@ tabb['binding_sequence'] = []
 tabb['binding_energy'] = []
 tabb['fast_record'] = []
 
-# print(snakemake.input)
-# print(snakemake.params)
 
 filenameparam = str(options.filename)
 
 dirrs = options.indir
-print(dirrs)
 outdir = str(options.outfile)
-print(outdir)
 
 rel_outfile = os.path.relpath(outdir)
-print(rel_outfile)
 rel_outfile_csv = os.path.join(
     os.path.dirname(rel_outfile),
     "combined_MotEvo_results.csv")
 
 ii = -1
 for dirr in dirrs:
-    print(dirr)
     abs_path = os.path.join(dirr, filenameparam)
-    print(abs_path)
 
     filename = os.path.relpath(abs_path)
-    print(filename)
 
     i = 0
     j = 0
@@ -96,7 +87,6 @@ for dirr in dirrs:
             tabb['fast_record'] = tabb['fast_record'] + [each_word[2]]
         i = i + 1
 
-    # print(tabb)
 df = pd.DataFrame({key: pd.Series(value) for key, value in tabb.items()})
 df.to_csv(rel_outfile_csv, index=False)
 
@@ -106,7 +96,7 @@ with open(rel_outfile_csv, 'r') as csvin, open(rel_outfile, 'w') as tsvout:
     tsvout = csv.writer(tsvout, delimiter='\t')
 
     for row in csvin:
-        tsvout.writerow(row) #printing row by row in tsv file
+        tsvout.writerow(row) #printing row by row in tsv
 
 
 
