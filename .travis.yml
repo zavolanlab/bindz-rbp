@@ -45,7 +45,7 @@ script:
   # Test parse.py script
   - >
     python scripts/parse.py
-    --indir tests/unit/combine_results/motif_HNRNPF_820 tests/unit/combine_results/motif_HNRNPF_821 tests/unit/combine_results/motif_HNRNPF_822 tests/unit/combine_results/motif_HNRNPF_823 tests/unit/combine_results/motif_HNRNPF_824
+    --input_directories tests/unit/combine_results/motif_HNRNPF_820 tests/unit/combine_results/motif_HNRNPF_821 tests/unit/combine_results/motif_HNRNPF_822 tests/unit/combine_results/motif_HNRNPF_823 tests/unit/combine_results/motif_HNRNPF_824
     --filename posterior_sites
     --outfile tests/unit/combine_results/combined_MotEvo_results.tsv
   - md5sum --check tests/unit/combine_results/expected_output.md5

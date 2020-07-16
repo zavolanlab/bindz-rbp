@@ -305,6 +305,6 @@ rule combine_MotEvo_results:
         Input_filename = "posterior_sites"
     shell: 
         "python ../../../scripts/parse.py \
-        --indir {input.DIR_MotEvo_results_pwm} \
+        --input_directories {input.DIR_MotEvo_results_pwm} \
         --filename {params.Input_filename} \
         --outfile {output.combined_MotEvo_results}"

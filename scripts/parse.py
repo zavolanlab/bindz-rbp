@@ -17,9 +17,9 @@ parser = ArgumentParser(
     formatter_class=RawTextHelpFormatter)
 
 parser.add_argument(
-    "--indir",
+    "--input_directories",
     nargs='+',
-    dest="indir",
+    dest="input_directories",
     help="input directory for the script to search",
     required=True,
     metavar="DIR",
@@ -28,7 +28,7 @@ parser.add_argument(
 parser.add_argument(
     "--filename",
     dest="filename",
-    help="filename to be searched in indir",
+    help="filename to be searched in input_directories",
     required=True,
     metavar="NAME",
 )
@@ -64,7 +64,7 @@ tabb['fasta_record'] = []
 
 filenameparam = str(options.filename)
 
-dirrs = options.indir
+dirrs = options.input_directories
 dirrs = sorted(dirrs) # sorting so that we dont have any random order
 outdir = str(options.outfile)
 
