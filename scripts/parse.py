@@ -65,6 +65,7 @@ tabb['fasta_record'] = []
 filenameparam = str(options.filename)
 
 dirrs = options.indir
+dirrs = sorted(dirrs)
 outdir = str(options.outfile)
 
 rel_outfile = os.path.relpath(outdir)
@@ -95,16 +96,25 @@ for dirr in dirrs:
             tabb['fasta_record'] = tabb['fasta_record'] + [each_word[2]]
         i = i + 1
 
-df = pd.DataFrame({key: pd.Series(value) for key, value in tabb.items()})
-df.to_csv(rel_outfile_csv, index=False)
+list_items = ['pwm_id', 'binding_position', 'binding_sequence', 'binding_posterior', 'binding_energy'] #these will be the headers in the final tsv file
+
+# df = pd.DataFrame({key: pd.Series(value) for key, value in tabb.items()})
+# df.to_csv(rel_outfile_csv, index=False)
+tempDict1 = {}
+for item in list_items:
+    tempDict = {item : pd.Series(tabb[item])}
+    tempDict1.update(tempDict)
+df = pd.DataFrame(tempDict1)
+print(tempDict1)
+df.to_csv(rel_outfile, index=False, sep='\t', header=list_items) 
 
 
-with open(rel_outfile_csv, 'r') as csvin, open(rel_outfile, 'w') as tsvout:
-    csvin = csv.reader(csvin)
-    tsvout = csv.writer(tsvout, delimiter='\t')
+# with open(rel_outfile_csv, 'r') as csvin, open(rel_outfile, 'w') as tsvout:
+#     csvin = csv.reader(csvin)
+#     tsvout = csv.writer(tsvout, delimiter='\t')
 
-    for row in csvin:
-        tsvout.writerow(row) #printing row by row in tsv
+#     for row in csvin:
+#         tsvout.writerow(row) #printing row by row in tsv
 
 
 
