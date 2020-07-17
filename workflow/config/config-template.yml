@@ -12,6 +12,9 @@
 ###############################################################################
 ---
 
+# absolute path to the pipeline directory
+pipeline_path:
+
 # input sequence from the user
 sequence:
 

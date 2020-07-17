@@ -293,6 +293,12 @@ rule combine_MotEvo_results:
             ),
             outdir = config["outdir"],
             pwm_dir = gather_motifs_names(config["pwm_directory"])
+        ),
+        SCRIPT_ = os.path.join(
+            config["pipeline_path"],
+            "workflow",
+            "scripts",
+            "combine-motevo-results.py"
         )
 
     output:
@@ -312,7 +318,7 @@ rule combine_MotEvo_results:
 
     shell: 
         """
-        python ../../../workflow/scripts/combine-motevo-results.py \
+        python {input.SCRIPT_} \
         --input_directories {input.DIR_MotEvo_results_pwm} \
         --filename {params.STR_binding_sites_filename} \
         --outfile {output.TSV_combined_MotEvo_results}
