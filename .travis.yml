@@ -36,7 +36,7 @@ script:
   # Extract motifs for Mus musculus
   - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
   - >
-    python scripts/format-ATtRACT-motifs.py
+    python worlflow/scripts/format-ATtRACT-motifs.py
     --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt
     --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt
     --organism Mus_musculus
