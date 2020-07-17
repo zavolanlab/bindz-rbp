@@ -304,7 +304,7 @@ rule combine_MotEvo_results:
     params:
         Input_filename = "posterior_sites"
     conda:
-        "envs/parse.yml"
+        "envs/combine-motevo-results.yml"
     shell: 
         "python ../../../workflow/scripts/parse.py \
         --input_directories {input.DIR_MotEvo_results_pwm} \
