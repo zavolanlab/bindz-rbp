@@ -13,7 +13,7 @@
 ---
 
 # absolute path to the pipeline directory
-pipeline_path: "$TRAVIS_BUILD_DIR"
+pipeline_path: "${TRAVIS_BUILD_DIR}"
 
 # input sequence from the user
 sequence: "ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG"
