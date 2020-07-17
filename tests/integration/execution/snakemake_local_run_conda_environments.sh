@@ -23,4 +23,5 @@ snakemake \
     --use-conda \
     --cores=1 \
     --printshellcmds \
-    --verbose
+    --verbose \
+    --force

@@ -20,3 +20,4 @@ fe56b8577bada06fea45bb8835e7d7ee ./tests/integration/output/motevo/motif_HNRNPF_
 faa2f9e3e8f432575e281878d93a85a6 ./tests/integration/output/motevo/motif_HNRNPF_824/posteriors
 c0a4a9155ec7958b00bd3140e97c6dc9 ./tests/integration/output/motevo/motif_HNRNPF_823/posterior_sites
 20e7921795665bbe24e585e741705634 ./tests/integration/output/motevo/motif_HNRNPF_823/posteriors
+30f654697b100a8afa879fb27eaa24cd ./tests/integration/output/combined_MotEvo_results.tsv
