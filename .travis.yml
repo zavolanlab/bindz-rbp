@@ -44,7 +44,7 @@ script:
   - md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_mmu.md5
   # Test parse.py script
   - >
-    python worlflow/scripts/parse.py
+    python workflow/scripts/parse.py
     --input_directories tests/unit/combine_results/motif_HNRNPF_820 tests/unit/combine_results/motif_HNRNPF_821 tests/unit/combine_results/motif_HNRNPF_822 tests/unit/combine_results/motif_HNRNPF_823 tests/unit/combine_results/motif_HNRNPF_824
     --filename posterior_sites
     --outfile tests/unit/combine_results/combined_MotEvo_results.tsv
