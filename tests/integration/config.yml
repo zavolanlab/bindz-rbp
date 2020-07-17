@@ -13,16 +13,16 @@
 ---
 
 # absolute path to the pipeline directory
-pipeline_path: "${TRAVIS_BUILD_DIR}"
+pipeline_path: "."
 
 # input sequence from the user
 sequence: "ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG"
 
 # path to the directory with TRANSFAC-formatted PWM files
-pwm_directory: "../pwm"
+pwm_directory: "tests/integration/pwm"
 
 # path for the output directory
-outdir: "../output"
+outdir: "tests/integration/output"
 
 # MotEvo parameter: prior probability for the background binding
 MotEvo_bg_binding_prior: 0.99
