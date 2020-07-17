@@ -306,7 +306,7 @@ rule combine_MotEvo_results:
     conda:
         "envs/combine-motevo-results.yml"
     shell: 
-        "python ../../../workflow/scripts/parse.py \
+        "python ../../../workflow/scripts/combine-motevo-results.py \
         --input_directories {input.DIR_MotEvo_results_pwm} \
         --filename {params.Input_filename} \
         --outfile {output.combined_MotEvo_results}"
