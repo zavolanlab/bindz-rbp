@@ -24,4 +24,4 @@ snakemake \
     --verbose \
     --dag \
     | dot -Tsvg \
-    > ../../../images/dag.svg
+    > ./images/dag.svg

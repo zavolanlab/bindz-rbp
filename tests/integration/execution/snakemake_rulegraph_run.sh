@@ -24,4 +24,4 @@ snakemake \
     --verbose \
     --rulegraph \
     | dot -Tsvg \
-    > ../../../images/rulegraph.svg
+    > ./images/rulegraph.svg
