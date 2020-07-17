@@ -37,13 +37,13 @@ rule all:
     Target rule with final output of the pipeline
     """
     input:
-        combined_MotEvo_results = expand(os.path.join(
-            "{outdir}",
-            "combined_MotEvo_results.tsv"
-        ),
-        outdir = config["outdir"]
+        TSV_combined_MotEvo_results = expand(
+            os.path.join(
+                "{outdir}",
+                "combined_MotEvo_results.tsv"
+            ),
+            outdir = config["outdir"]
         )
-        
 
 rule create_results_directory:
     """
@@ -282,7 +282,7 @@ rule run_MotEvo_analysis:
 
 rule combine_MotEvo_results:
     """
-    Combine all motevo results in one tsv file
+    Combine all motevo results into one tsv file
     """
     input: 
         DIR_MotEvo_results_pwm = expand(
@@ -294,19 +294,26 @@ rule combine_MotEvo_results:
             outdir = config["outdir"],
             pwm_dir = gather_motifs_names(config["pwm_directory"])
         )
+
     output:
-        combined_MotEvo_results = expand(os.path.join(
-            "{outdir}",
-            "combined_MotEvo_results.tsv"
-        ),
-        outdir = config["outdir"]
-        ),
+        TSV_combined_MotEvo_results = expand(
+            os.path.join(
+                "{outdir}",
+                "combined_MotEvo_results.tsv"
+            ),
+            outdir = config["outdir"]
+        )
+
     params:
-        Input_filename = "posterior_sites"
+        STR_binding_sites_filename = "posterior_sites"
+
     conda:
         "envs/combine-motevo-results.yml"
+
     shell: 
-        "python ../../../workflow/scripts/combine-motevo-results.py \
+        """
+        python ../../../workflow/scripts/combine-motevo-results.py \
         --input_directories {input.DIR_MotEvo_results_pwm} \
-        --filename {params.Input_filename} \
-        --outfile {output.combined_MotEvo_results}"
+        --filename {params.STR_binding_sites_filename} \
+        --outfile {output.TSV_combined_MotEvo_results}
+        """
