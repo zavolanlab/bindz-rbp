@@ -36,7 +36,7 @@ script:
   # Extract motifs for Mus musculus
   - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
   - >
-    python worlflow/scripts/format-ATtRACT-motifs.py
+    python scripts/format-ATtRACT-motifs.py
     --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt
     --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt
     --organism Mus_musculus
@@ -44,7 +44,7 @@ script:
   - md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_mmu.md5
   # Test parse.py script
   - >
-    python scripts/parse.py
+    python worlflow/scripts/parse.py
     --input_directories tests/unit/combine_results/motif_HNRNPF_820 tests/unit/combine_results/motif_HNRNPF_821 tests/unit/combine_results/motif_HNRNPF_822 tests/unit/combine_results/motif_HNRNPF_823 tests/unit/combine_results/motif_HNRNPF_824
     --filename posterior_sites
     --outfile tests/unit/combine_results/combined_MotEvo_results.tsv
