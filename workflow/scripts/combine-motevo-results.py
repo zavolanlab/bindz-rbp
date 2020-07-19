@@ -121,5 +121,6 @@ for item in list_items:
     tempDict1.update(tempDict)  # concating dictionary
 
 df = pd.DataFrame(tempDict1)  # convert dictionary to dataframe
+df = df.sort_values(by=['binding_posterior'], ascending=False) # sort values according to binding posterior in descending
 
 df.to_csv(rel_outfile, index=False, sep="\t", header=list_items)  # creating a tsv file
