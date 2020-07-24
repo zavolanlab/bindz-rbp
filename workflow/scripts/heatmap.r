@@ -5,7 +5,7 @@
 #   AUTHOR: Krish Agarwal
 #   AFFILIATION: University_of_Basel
 #   CONTACT: akrish136@gmail.com
-#   CREATED: 14-07-2020
+#   CREATED: 23-07-2020
 #   LICENSE: Apache_2.0
 ##############################################################################
 
@@ -111,8 +111,9 @@ input_seq = strsplit(input_sequence,"")
 a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= value)) + 
   geom_tile() + 
   scale_x_discrete(breaks=1:nchar(input_sequence),labels=input_seq) + 
-  scale_fill_gradientn(colours=c("yellow","orange","red","dark red"), limits=c(0,1)) + 
-  labs(title="Probability Vs Sequence",x ="Sequence", y = "Probability")
+  scale_fill_gradientn(colours=c("white","orange","red","dark red"), limits=c(0,1)) + 
+  labs(x ="Sequence", y = "") + 
+  theme_classic()
 
 ggsave("tests/unit/ProbabilityVsSequence.pdf", width=12)
 
