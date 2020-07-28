@@ -15,7 +15,7 @@ options(warn = -1)
 # load libraries
 suppressPackageStartupMessages(library("optparse"))
 library(ggplot2)
-
+library('methods')
 
 # list the command-line arguments
 option_list <- list(
@@ -108,12 +108,15 @@ dff <-data.frame(col = rep(colnames(uniform_data), each = nrow(uniform_data)),
 
 input_seq = strsplit(input_sequence,"")
 
+
 a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= value)) + 
-  geom_tile() + 
+  geom_tile(color = "gray") + 
   scale_x_discrete(breaks=1:nchar(input_sequence),labels=input_seq) + 
-  scale_fill_gradientn(colours=c("white","orange","red","dark red"), limits=c(0,1)) + 
+  scale_fill_gradientn(colours=c("white","orange","red","dark red"), limits=c(0,1), na.value="white") + 
   labs(x ="Sequence", y = "") + 
-  theme_classic()
+  theme_classic()+ 
+  coord_equal()#make grid squares
+  #scale_fill_continuous()
 
 ggsave("tests/unit/ProbabilityVsSequence.pdf", width=12)
 
