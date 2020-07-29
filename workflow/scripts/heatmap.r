@@ -103,20 +103,19 @@ rownames(uniform_data) <- y_axis_labels
 
 dff <-data.frame(col = rep(colnames(uniform_data), each = nrow(uniform_data)), 
            row = rep(rownames(uniform_data), ncol(uniform_data)), 
-           value = as.vector(uniform_data))
+           Binding_Probability = as.vector(uniform_data))
 
 
 input_seq = strsplit(input_sequence,"")
 
 
-a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= value)) + 
+a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= Binding_Probability)) + 
   geom_tile(color = "gray") + 
   scale_x_discrete(breaks=1:nchar(input_sequence),labels=input_seq) + 
   scale_fill_gradientn(colours=c("white","orange","red","dark red"), limits=c(0,1), na.value="white") + 
   labs(x ="Sequence", y = "") + 
   theme_classic()+ 
-  coord_equal()#make grid squares
-  #scale_fill_continuous()
+  coord_equal() #make the grid squares and independent of number of motifs analyzed
 
 ggsave("tests/unit/ProbabilityVsSequence.pdf", width=12)
 
