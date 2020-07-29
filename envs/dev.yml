@@ -17,7 +17,6 @@
   channels:
     - bioconda
     - conda-forge
-    - r
       
   dependencies:
     - bash=4.4.18
@@ -34,7 +33,4 @@
     - shellcheck=0.7.0
     - snakemake=5.19.0
     - unzip=6.0
-    - r=3.6
-    - r-ggplot2=3.3.2
-    - r-optparse=1.6.6
 ...
