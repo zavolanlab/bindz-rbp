@@ -15,7 +15,6 @@ options(warn = -1)
 # load libraries
 suppressPackageStartupMessages(library("optparse"))
 library(ggplot2)
-library('methods')
 
 # list the command-line arguments
 option_list <- list(
@@ -30,6 +29,12 @@ option_list <- list(
     dest = "input_sequence",
     type = "character",
     help = "full input_sequence"
+  ),
+  make_option(c("--outfile"),
+    action = "store",
+    dest = "output_tsv",
+    type = "character",
+    help = "location and name of output heatmap"
   )
 )
 
@@ -45,6 +50,7 @@ opt <- parse_args(opt_parser)
 
 input_sequence <- opt$input_sequence
 input_tsv <- opt$input_tsv
+output_tsv <- opt$output_tsv
 
 x_axis_numbers = 1:nchar(input_sequence)
 
@@ -117,5 +123,5 @@ a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= Bin
   theme_classic()+ 
   coord_equal() #make the grid squares and independent of number of motifs analyzed
 
-ggsave("tests/unit/ProbabilityVsSequence.pdf", width=12)
+ggsave(output_tsv, width=12)
 
