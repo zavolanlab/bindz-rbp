@@ -1,1 +1,2 @@
 ./tests/unit/combine_results/combined_MotEvo_results.tsv
+./tests/unit/ProbabilityvsSequences.pdf
