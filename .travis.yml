@@ -10,7 +10,6 @@ install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
-  - sudo apt install r-base
 
 before_script:
   # Create conda virtual environments
