@@ -15,8 +15,8 @@ before_script:
   # Create conda virtual environments
   - conda env create -f envs/main.yml
   - conda env create -f envs/dev.yml
-  - conda env create -f envs/plot_heatmap_of_MotEvo_results.yml
-  - conda env create -f envs/combine-motevo-results.yml
+  - conda env create -f workflow/envs/plot_heatmap_of_MotEvo_results.yml
+  - conda env create -f workflow/envs/combine-motevo-results.yml
   # Activate the main env
   - conda activate binding-scanner && echo $CONDA_DEFAULT_ENV
 
