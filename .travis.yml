@@ -16,7 +16,6 @@ before_script:
   - conda env create -f envs/main.yml
   - conda env create -f envs/dev.yml
   - conda env create -f envs/plot_heatmap_of_MotEvo_results.yml
-  - conda env create -f envs/motevo.yml
   - conda env create -f envs/combine-motevo-results.yml
   # Activate the main env
   - conda activate binding-scanner && echo $CONDA_DEFAULT_ENV
@@ -29,7 +28,6 @@ script:
   - unzip resources/ATtRACT_backup_05072020.zip -d ATtRACT_backup_05072020
   # Extract motifs for Homo sapiens
   - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
-  - conda activate motevo
   - >
     python scripts/format-ATtRACT-motifs.py
     --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt
