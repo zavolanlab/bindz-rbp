@@ -21,4 +21,4 @@
 ./tests/integration/output/motevo/motif_HNRNPF_823/posterior_sites
 ./tests/integration/output/motevo/motif_HNRNPF_823/posteriors
 ./tests/integration/output/combined_MotEvo_results.tsv
-./tests/integration/output/ProbabilityVsSequence.pdf
+./tests/integration/output/ProbabilityVsSequence.svg

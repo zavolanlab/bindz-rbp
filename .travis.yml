@@ -16,6 +16,8 @@ before_script:
   - conda env create -f envs/main.yml
   - conda env create -f envs/dev.yml
   - conda env create -f envs/plot_heatmap_of_MotEvo_results.yml
+  - conda env create -f envs/motevo.yml
+  - conda env create -f envs/combine-motevo-results.yml
   # Activate the main env
   - conda activate binding-scanner && echo $CONDA_DEFAULT_ENV
 
@@ -27,6 +29,7 @@ script:
   - unzip resources/ATtRACT_backup_05072020.zip -d ATtRACT_backup_05072020
   # Extract motifs for Homo sapiens
   - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
+  - conda activate motevo
   - >
     python scripts/format-ATtRACT-motifs.py
     --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt
@@ -44,17 +47,18 @@ script:
     --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
   - md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_mmu.md5
   # Test combine-motevo-results.py script
+  - conda activate combine-motevo-results
   - >
     python workflow/scripts/combine-motevo-results.py
     --input_directories tests/unit/combine_results/motif_HNRNPF_820 tests/unit/combine_results/motif_HNRNPF_821 tests/unit/combine_results/motif_HNRNPF_822 tests/unit/combine_results/motif_HNRNPF_823 tests/unit/combine_results/motif_HNRNPF_824
     --filename posterior_sites
     --outfile tests/unit/combine_results/combined_MotEvo_results.tsv
   - md5sum --check tests/unit/combine_results/expected_output.md5
-  - conda activate plot_heatmap_of_MotEvo_results
   # Test heatmap.r script script
+  - conda activate plot_heatmap_of_MotEvo_results
   - >
     Rscript workflow/scripts/heatmap.r 
-    --input_tsv tests/unit/combine_results/combined_MotEvo_results.tsv 
+    --input_tsv tests/unit/Plot-heatmap-for-motifs/combined_MotEvo_results.tsv 
     --input_sequence ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG
     --outfile tests/unit/Plot-heatmap-for-motifs/ProbabilityvsSequences.pdf
   - md5sum --check tests/unit/Plot-heatmap-for-motifs/expected_output.md5
