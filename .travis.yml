@@ -15,6 +15,7 @@ before_script:
   # Create conda virtual environments
   - conda env create -f envs/main.yml
   - conda env create -f envs/dev.yml
+  - conda env create -f envs/plot_heatmap_of_MotEvo_results.yml
   # Activate the main env
   - conda activate binding-scanner && echo $CONDA_DEFAULT_ENV
 
@@ -49,12 +50,15 @@ script:
     --filename posterior_sites
     --outfile tests/unit/combine_results/combined_MotEvo_results.tsv
   - md5sum --check tests/unit/combine_results/expected_output.md5
+  - conda activate plot_heatmap_of_MotEvo_results
+  # Test heatmap.r script script
   - >
     Rscript workflow/scripts/heatmap.r 
     --input_tsv tests/unit/combine_results/combined_MotEvo_results.tsv 
     --input_sequence ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG
-    --outfile tests/unit/ProbabilityvsSequences.pdf
-  - md5sum --check tests/unit/combine_results/expected_output.md5
+    --outfile tests/unit/Plot-heatmap-for-motifs/ProbabilityvsSequences.pdf
+  - md5sum --check tests/unit/Plot-heatmap-for-motifs/expected_output.md5
+  - conda activate binding-scanner
   # Test snakemake Rulegraph and DAG
   - bash tests/integration/execution/snakemake_rulegraph_run.sh
   - bash tests/integration/execution/snakemake_dag_run.sh
