@@ -33,4 +33,5 @@
     - shellcheck=0.7.0
     - snakemake=5.19.0
     - unzip=6.0
+    
 ...
