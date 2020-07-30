@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#R script to generate a heatmap
+#   R script to generate a heatmap
 #
 #   AUTHOR: Krish Agarwal
 #   AFFILIATION: University_of_Basel

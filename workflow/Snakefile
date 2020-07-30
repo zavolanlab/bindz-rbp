@@ -37,7 +37,7 @@ rule all:
     Target rule with final output of the pipeline
     """
     input:
-        Heatmap_file = expand(
+        PDF_Heatmap_file = expand(
             os.path.join(
                 "{outdir}",
                 "ProbabilityVsSequence.pdf"
@@ -344,7 +344,7 @@ rule plot_heatmap_of_MotEvo_results:
         )
 
     output:
-        Heatmap_file = expand(
+        PDF_Heatmap_file = expand(
             os.path.join(
                 "{outdir}",
                 "ProbabilityVsSequence.pdf"
@@ -353,7 +353,7 @@ rule plot_heatmap_of_MotEvo_results:
         )
 
     params:
-        sequence = config["sequence"]
+        STRING_sequence = config["sequence"]
 
     conda:
         "envs/plot_heatmap_of_MotEvo_results.yml"
@@ -362,6 +362,6 @@ rule plot_heatmap_of_MotEvo_results:
         """
         Rscript {input.SCRIPT_} \
         --input_tsv {input.TSV_combined_MotEvo_results} \
-        --input_sequence {params.sequence} \
-        --outfile {output.Heatmap_file}
+        --input_sequence {params.STRING_sequence} \
+        --outfile {output.PDF_Heatmap_file}
         """
