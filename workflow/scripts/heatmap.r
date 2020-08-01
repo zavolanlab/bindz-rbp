@@ -7,14 +7,15 @@
 #   CONTACT: akrish136@gmail.com
 #   CREATED: 23-07-2020
 #   LICENSE: Apache_2.0
-##############################################################################
+#
+###############################################################################
 
 # by default: suppress warnings
 options(warn = -1)
 
 # load libraries
-suppressPackageStartupMessages(library("optparse"))
-library(ggplot2)
+library("optparse")
+library("ggplot2")
 
 # list the command-line arguments
 option_list <- list(
@@ -103,9 +104,7 @@ dff <-data.frame(col = rep(colnames(uniform_data), each = nrow(uniform_data)),
            row = rep(rownames(uniform_data), ncol(uniform_data)), 
            Binding_Probability = as.vector(uniform_data))
 
-
 input_seq = strsplit(input_sequence,"") 
-
 
 a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= Binding_Probability)) + 
   geom_tile(color = "gray") + 
@@ -116,4 +115,3 @@ a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= Bin
   coord_equal() #make the grid squares and independent of number of motifs analyzed
 
 ggsave(output_tsv, device="png", width=12)
-
