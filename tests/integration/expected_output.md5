@@ -21,4 +21,4 @@ faa2f9e3e8f432575e281878d93a85a6 ./tests/integration/output/motevo/motif_HNRNPF_
 c0a4a9155ec7958b00bd3140e97c6dc9 ./tests/integration/output/motevo/motif_HNRNPF_823/posterior_sites
 20e7921795665bbe24e585e741705634 ./tests/integration/output/motevo/motif_HNRNPF_823/posteriors
 d00f0ca9b1561551a9cfe17a09747251 ./tests/integration/output/combined_MotEvo_results.tsv
-9140a7797b178baad8ab476cc5611181  ./tests/integration/output/ProbabilityVsSequence.svg
+9140a7797b178baad8ab476cc5611181 ./tests/integration/output/ProbabilityVsSequence.svg
