@@ -37,10 +37,10 @@ rule all:
     Target rule with final output of the pipeline
     """
     input:
-        TSV_combined_MotEvo_results = expand(
+        SVG_Heatmap_file = expand(
             os.path.join(
                 "{outdir}",
-                "combined_MotEvo_results.tsv"
+                "ProbabilityVsSequence.svg"
             ),
             outdir = config["outdir"]
         )
@@ -322,4 +322,46 @@ rule combine_MotEvo_results:
         --input_directories {input.DIR_MotEvo_results_pwm} \
         --filename {params.STR_binding_sites_filename} \
         --outfile {output.TSV_combined_MotEvo_results}
+        """
+
+rule plot_heatmap_of_MotEvo_results:
+    """
+    Plot heatmap from the combined_MotEvo_results.tsv file
+    """
+    input:
+        TSV_combined_MotEvo_results = expand(
+            os.path.join(
+                "{outdir}",
+                "combined_MotEvo_results.tsv"
+            ),
+            outdir = config["outdir"]
+        ), 
+        SCRIPT_ = os.path.join(
+            config["pipeline_path"],
+            "workflow",
+            "scripts",
+            "heatmap.r"
+        )
+
+    output:
+        SVG_Heatmap_file = expand(
+            os.path.join(
+                "{outdir}",
+                "ProbabilityVsSequence.svg"
+            ),
+            outdir = config["outdir"]
+        )
+
+    params:
+        STRING_sequence = config["sequence"]
+
+    conda:
+        "envs/plot_heatmap_of_MotEvo_results.yml"
+
+    shell: 
+        """
+        Rscript {input.SCRIPT_} \
+        --input_tsv {input.TSV_combined_MotEvo_results} \
+        --input_sequence {params.STRING_sequence} \
+        --outfile {output.SVG_Heatmap_file}
         """

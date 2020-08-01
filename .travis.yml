@@ -15,6 +15,8 @@ before_script:
   # Create conda virtual environments
   - conda env create -f envs/main.yml
   - conda env create -f envs/dev.yml
+  - conda env create -f workflow/envs/plot_heatmap_of_MotEvo_results.yml
+  - conda env create -f workflow/envs/combine-motevo-results.yml
   # Activate the main env
   - conda activate binding-scanner && echo $CONDA_DEFAULT_ENV
 
@@ -43,12 +45,22 @@ script:
     --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
   - md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_mmu.md5
   # Test combine-motevo-results.py script
+  - conda activate combine-motevo-results
   - >
     python workflow/scripts/combine-motevo-results.py
     --input_directories tests/unit/combine_results/motif_HNRNPF_820 tests/unit/combine_results/motif_HNRNPF_821 tests/unit/combine_results/motif_HNRNPF_822 tests/unit/combine_results/motif_HNRNPF_823 tests/unit/combine_results/motif_HNRNPF_824
     --filename posterior_sites
     --outfile tests/unit/combine_results/combined_MotEvo_results.tsv
   - md5sum --check tests/unit/combine_results/expected_output.md5
+  # Test heatmap.r script
+  - conda activate plot_heatmap_of_MotEvo_results
+  - >
+    Rscript workflow/scripts/heatmap.r 
+    --input_tsv tests/unit/Plot-heatmap-for-motifs/combined_MotEvo_results.tsv 
+    --input_sequence ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG
+    --outfile tests/unit/Plot-heatmap-for-motifs/ProbabilityvsSequences.svg
+  #- md5sum --check tests/unit/Plot-heatmap-for-motifs/expected_output.md5
+  - conda activate binding-scanner
   # Test snakemake Rulegraph and DAG
   - bash tests/integration/execution/snakemake_rulegraph_run.sh
   - bash tests/integration/execution/snakemake_dag_run.sh
