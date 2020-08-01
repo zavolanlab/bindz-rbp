@@ -115,5 +115,5 @@ a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= Bin
   theme_classic()+ 
   coord_equal() #make the grid squares and independent of number of motifs analyzed
 
-ggsave(output_tsv, width=12)
+ggsave(output_tsv, device="png", width=12)
 
