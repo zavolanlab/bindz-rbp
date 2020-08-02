@@ -115,6 +115,15 @@ rule plot_sequence_logos:
             outdir = config["outdir"],
             pwm_dir = gather_motifs_names(config["pwm_directory"])
             )
+
+    params:
+        DIR_sequence_logos = expand( 
+            os.path.join(
+                "{outdir}",
+                "sequence_logos"
+            ),
+            outdir = config["outdir"]
+            )
     
     conda:
         "envs/plot_sequence_logos.yml"
@@ -123,7 +132,7 @@ rule plot_sequence_logos:
         """
         python {input.SCRIPT_} \
         --input_files {input.FILE_pwm} \
-        --output_location tests/integration/output/sequence_logos
+        --output_location {params.DIR_sequence_logos}
         """
 
 rule prepare_MotEvo_parameters:
