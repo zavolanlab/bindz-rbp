@@ -21,3 +21,13 @@ faa2f9e3e8f432575e281878d93a85a6 ./tests/integration/output/motevo/motif_HNRNPF_
 c0a4a9155ec7958b00bd3140e97c6dc9 ./tests/integration/output/motevo/motif_HNRNPF_823/posterior_sites
 20e7921795665bbe24e585e741705634 ./tests/integration/output/motevo/motif_HNRNPF_823/posteriors
 d00f0ca9b1561551a9cfe17a09747251 ./tests/integration/output/combined_MotEvo_results.tsv
+7e84a2e7e960a4443e44890dad59f429 ./tests/integration/output/sequence_logos/motif_HNRNPF_820.png
+ca63d78338876a01e9ab7272cc1290f0 ./tests/integration/output/sequence_logos/motif_HNRNPF_821.png
+ca63d78338876a01e9ab7272cc1290f0 ./tests/integration/output/sequence_logos/motif_HNRNPF_822.png
+740d9edf5e79efbdae270ddff767199a ./tests/integration/output/sequence_logos/motif_HNRNPF_823.png
+96b12226656bb6b1a9edcc0948816c83 ./tests/integration/output/sequence_logos/motif_HNRNPF_824.png
+f55f3876f3d1a578af06b54da7760754 ./tests/integration/output/sequence_logos/motif_HNRNPF_825.png
+c85523f13c1aeb93b33917326f967086 ./tests/integration/output/sequence_logos/motif_HNRNPF_826.png
+6cd349b09e3efc8a271775b5ead384d9 ./tests/integration/output/sequence_logos/motif_HNRNPF_827.png
+a1728f0d76dc627956d11791b95e5c4c ./tests/integration/output/sequence_logos/motif_HNRNPF_828.png
+9bc70d181790592f7cf500b5f36f7c6e ./tests/integration/output/sequence_logos/motif_HNRNPF_829.png
