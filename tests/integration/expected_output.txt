@@ -21,3 +21,14 @@
 ./tests/integration/output/motevo/motif_HNRNPF_823/posterior_sites
 ./tests/integration/output/motevo/motif_HNRNPF_823/posteriors
 ./tests/integration/output/combined_MotEvo_results.tsv
+./tests/integration/output/sequence_logos/motif_HNRNPF_820.png
+./tests/integration/output/sequence_logos/motif_HNRNPF_821.png
+./tests/integration/output/sequence_logos/motif_HNRNPF_822.png
+./tests/integration/output/sequence_logos/motif_HNRNPF_823.png
+./tests/integration/output/sequence_logos/motif_HNRNPF_824.png
+./tests/integration/output/sequence_logos/motif_HNRNPF_825.png
+./tests/integration/output/sequence_logos/motif_HNRNPF_826.png
+./tests/integration/output/sequence_logos/motif_HNRNPF_827.png
+./tests/integration/output/sequence_logos/motif_HNRNPF_828.png
+./tests/integration/output/sequence_logos/motif_HNRNPF_829.png
+
