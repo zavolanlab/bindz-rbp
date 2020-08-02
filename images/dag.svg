@@ -11,262 +11,272 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-400 1766,-400 1766,4 -4,4"/>
 <!-- 0 -->
 <g id="node1" class="node"><title>0</title>
-<path fill="none" stroke="#c6d856" stroke-width="2" d="M896,-36C896,-36 866,-36 866,-36 860,-36 854,-30 854,-24 854,-24 854,-12 854,-12 854,-6 860,-0 866,-0 866,-0 896,-0 896,-0 902,-0 908,-6 908,-12 908,-12 908,-24 908,-24 908,-30 902,-36 896,-36"/>
-<text text-anchor="middle" x="881" y="-15.5" font-family="sans" font-size="10.00">all</text>
+<path fill="none" stroke="#d6d856" stroke-width="2" stroke-dasharray="5,2" d="M979,-36C979,-36 949,-36 949,-36 943,-36 937,-30 937,-24 937,-24 937,-12 937,-12 937,-6 943,-0 949,-0 949,-0 979,-0 979,-0 985,-0 991,-6 991,-12 991,-12 991,-24 991,-24 991,-30 985,-36 979,-36"/>
+<text text-anchor="middle" x="964" y="-15.5" font-family="sans" font-size="10.00">all</text>
 </g>
 <!-- 1 -->
 <g id="node2" class="node"><title>1</title>
-<path fill="none" stroke="#56d8c9" stroke-width="2" d="M958.5,-108C958.5,-108 803.5,-108 803.5,-108 797.5,-108 791.5,-102 791.5,-96 791.5,-96 791.5,-84 791.5,-84 791.5,-78 797.5,-72 803.5,-72 803.5,-72 958.5,-72 958.5,-72 964.5,-72 970.5,-78 970.5,-84 970.5,-84 970.5,-96 970.5,-96 970.5,-102 964.5,-108 958.5,-108"/>
+<path fill="none" stroke="#59d856" stroke-width="2" stroke-dasharray="5,2" d="M958.5,-108C958.5,-108 803.5,-108 803.5,-108 797.5,-108 791.5,-102 791.5,-96 791.5,-96 791.5,-84 791.5,-84 791.5,-78 797.5,-72 803.5,-72 803.5,-72 958.5,-72 958.5,-72 964.5,-72 970.5,-78 970.5,-84 970.5,-84 970.5,-96 970.5,-96 970.5,-102 964.5,-108 958.5,-108"/>
 <text text-anchor="middle" x="881" y="-87.5" font-family="sans" font-size="10.00">plot_heatmap_of_MotEvo_results</text>
 </g>
 <!-- 1&#45;&gt;0 -->
 <g id="edge1" class="edge"><title>1&#45;&gt;0</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M881,-71.6966C881,-63.9827 881,-54.7125 881,-46.1124"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="884.5,-46.1043 881,-36.1043 877.5,-46.1044 884.5,-46.1043"/>
+<path fill="none" stroke="grey" stroke-width="2" d="M901.517,-71.6966C911.869,-62.9655 924.586,-52.2405 935.839,-42.7503"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="938.331,-45.2269 943.719,-36.1043 933.818,-39.8759 938.331,-45.2269"/>
 </g>
 <!-- 2 -->
 <g id="node3" class="node"><title>2</title>
-<path fill="none" stroke="#78d856" stroke-width="2" d="M938,-180C938,-180 824,-180 824,-180 818,-180 812,-174 812,-168 812,-168 812,-156 812,-156 812,-150 818,-144 824,-144 824,-144 938,-144 938,-144 944,-144 950,-150 950,-156 950,-156 950,-168 950,-168 950,-174 944,-180 938,-180"/>
-<text text-anchor="middle" x="881" y="-159.5" font-family="sans" font-size="10.00">combine_MotEvo_results</text>
+<path fill="none" stroke="#d85656" stroke-width="2" stroke-dasharray="5,2" d="M1095.5,-108C1095.5,-108 1000.5,-108 1000.5,-108 994.5,-108 988.5,-102 988.5,-96 988.5,-96 988.5,-84 988.5,-84 988.5,-78 994.5,-72 1000.5,-72 1000.5,-72 1095.5,-72 1095.5,-72 1101.5,-72 1107.5,-78 1107.5,-84 1107.5,-84 1107.5,-96 1107.5,-96 1107.5,-102 1101.5,-108 1095.5,-108"/>
+<text text-anchor="middle" x="1048" y="-87.5" font-family="sans" font-size="10.00">plot_sequence_logos</text>
 </g>
-<!-- 2&#45;&gt;1 -->
-<g id="edge2" class="edge"><title>2&#45;&gt;1</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M881,-143.697C881,-135.983 881,-126.712 881,-118.112"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="884.5,-118.104 881,-108.104 877.5,-118.104 884.5,-118.104"/>
+<!-- 2&#45;&gt;0 -->
+<g id="edge2" class="edge"><title>2&#45;&gt;0</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M1027.24,-71.6966C1016.76,-62.9655 1003.89,-52.2405 992.5,-42.7503"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="994.448,-39.8174 984.525,-36.1043 989.967,-45.195 994.448,-39.8174"/>
 </g>
 <!-- 3 -->
 <g id="node4" class="node"><title>3</title>
-<path fill="none" stroke="#56a2d8" stroke-width="2" d="M860,-252C860,-252 724,-252 724,-252 718,-252 712,-246 712,-240 712,-240 712,-228 712,-228 712,-222 718,-216 724,-216 724,-216 860,-216 860,-216 866,-216 872,-222 872,-228 872,-228 872,-240 872,-240 872,-246 866,-252 860,-252"/>
-<text text-anchor="middle" x="792" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
-<text text-anchor="middle" x="792" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_829</text>
+<path fill="none" stroke="#56d89a" stroke-width="2" stroke-dasharray="5,2" d="M938,-180C938,-180 824,-180 824,-180 818,-180 812,-174 812,-168 812,-168 812,-156 812,-156 812,-150 818,-144 824,-144 824,-144 938,-144 938,-144 944,-144 950,-150 950,-156 950,-156 950,-168 950,-168 950,-174 944,-180 938,-180"/>
+<text text-anchor="middle" x="881" y="-159.5" font-family="sans" font-size="10.00">combine_MotEvo_results</text>
 </g>
-<!-- 3&#45;&gt;2 -->
-<g id="edge3" class="edge"><title>3&#45;&gt;2</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M814,-215.697C825.209,-206.881 839.002,-196.032 851.154,-186.474"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="853.557,-189.038 859.253,-180.104 849.229,-183.535 853.557,-189.038"/>
+<!-- 3&#45;&gt;1 -->
+<g id="edge3" class="edge"><title>3&#45;&gt;1</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M881,-143.697C881,-135.983 881,-126.712 881,-118.112"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="884.5,-118.104 881,-108.104 877.5,-118.104 884.5,-118.104"/>
 </g>
 <!-- 4 -->
 <g id="node5" class="node"><title>4</title>
-<path fill="none" stroke="#56a2d8" stroke-width="2" d="M1038,-252C1038,-252 902,-252 902,-252 896,-252 890,-246 890,-240 890,-240 890,-228 890,-228 890,-222 896,-216 902,-216 902,-216 1038,-216 1038,-216 1044,-216 1050,-222 1050,-228 1050,-228 1050,-240 1050,-240 1050,-246 1044,-252 1038,-252"/>
-<text text-anchor="middle" x="970" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
-<text text-anchor="middle" x="970" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_825</text>
+<path fill="none" stroke="#d89556" stroke-width="2" stroke-dasharray="5,2" d="M860,-252C860,-252 724,-252 724,-252 718,-252 712,-246 712,-240 712,-240 712,-228 712,-228 712,-222 718,-216 724,-216 724,-216 860,-216 860,-216 866,-216 872,-222 872,-228 872,-228 872,-240 872,-240 872,-246 866,-252 860,-252"/>
+<text text-anchor="middle" x="792" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
+<text text-anchor="middle" x="792" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_829</text>
 </g>
-<!-- 4&#45;&gt;2 -->
-<g id="edge4" class="edge"><title>4&#45;&gt;2</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M948,-215.697C936.791,-206.881 922.998,-196.032 910.846,-186.474"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="912.771,-183.535 902.747,-180.104 908.443,-189.038 912.771,-183.535"/>
+<!-- 4&#45;&gt;3 -->
+<g id="edge4" class="edge"><title>4&#45;&gt;3</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M814,-215.697C825.209,-206.881 839.002,-196.032 851.154,-186.474"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="853.557,-189.038 859.253,-180.104 849.229,-183.535 853.557,-189.038"/>
 </g>
 <!-- 5 -->
 <g id="node6" class="node"><title>5</title>
-<path fill="none" stroke="#56a2d8" stroke-width="2" d="M1216,-252C1216,-252 1080,-252 1080,-252 1074,-252 1068,-246 1068,-240 1068,-240 1068,-228 1068,-228 1068,-222 1074,-216 1080,-216 1080,-216 1216,-216 1216,-216 1222,-216 1228,-222 1228,-228 1228,-228 1228,-240 1228,-240 1228,-246 1222,-252 1216,-252"/>
-<text text-anchor="middle" x="1148" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
-<text text-anchor="middle" x="1148" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_821</text>
+<path fill="none" stroke="#d89556" stroke-width="2" stroke-dasharray="5,2" d="M1038,-252C1038,-252 902,-252 902,-252 896,-252 890,-246 890,-240 890,-240 890,-228 890,-228 890,-222 896,-216 902,-216 902,-216 1038,-216 1038,-216 1044,-216 1050,-222 1050,-228 1050,-228 1050,-240 1050,-240 1050,-246 1044,-252 1038,-252"/>
+<text text-anchor="middle" x="970" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
+<text text-anchor="middle" x="970" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_825</text>
 </g>
-<!-- 5&#45;&gt;2 -->
-<g id="edge5" class="edge"><title>5&#45;&gt;2</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M1083.03,-215.966C1044.67,-205.909 995.949,-193.136 955.967,-182.654"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="956.826,-179.261 946.266,-180.111 955.051,-186.032 956.826,-179.261"/>
+<!-- 5&#45;&gt;3 -->
+<g id="edge5" class="edge"><title>5&#45;&gt;3</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M948,-215.697C936.791,-206.881 922.998,-196.032 910.846,-186.474"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="912.771,-183.535 902.747,-180.104 908.443,-189.038 912.771,-183.535"/>
 </g>
 <!-- 6 -->
 <g id="node7" class="node"><title>6</title>
-<path fill="none" stroke="#56a2d8" stroke-width="2" d="M1394,-252C1394,-252 1258,-252 1258,-252 1252,-252 1246,-246 1246,-240 1246,-240 1246,-228 1246,-228 1246,-222 1252,-216 1258,-216 1258,-216 1394,-216 1394,-216 1400,-216 1406,-222 1406,-228 1406,-228 1406,-240 1406,-240 1406,-246 1400,-252 1394,-252"/>
-<text text-anchor="middle" x="1326" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
-<text text-anchor="middle" x="1326" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_827</text>
+<path fill="none" stroke="#d89556" stroke-width="2" stroke-dasharray="5,2" d="M1216,-252C1216,-252 1080,-252 1080,-252 1074,-252 1068,-246 1068,-240 1068,-240 1068,-228 1068,-228 1068,-222 1074,-216 1080,-216 1080,-216 1216,-216 1216,-216 1222,-216 1228,-222 1228,-228 1228,-228 1228,-240 1228,-240 1228,-246 1222,-252 1216,-252"/>
+<text text-anchor="middle" x="1148" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
+<text text-anchor="middle" x="1148" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_821</text>
 </g>
-<!-- 6&#45;&gt;2 -->
-<g id="edge6" class="edge"><title>6&#45;&gt;2</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M1245.97,-217.554C1242.95,-217.02 1239.95,-216.501 1237,-216 1141.98,-199.859 1032.22,-183.928 959.984,-173.813"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="960.433,-170.342 950.045,-172.425 959.465,-177.275 960.433,-170.342"/>
+<!-- 6&#45;&gt;3 -->
+<g id="edge6" class="edge"><title>6&#45;&gt;3</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M1083.03,-215.966C1044.67,-205.909 995.949,-193.136 955.967,-182.654"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="956.826,-179.261 946.266,-180.111 955.051,-186.032 956.826,-179.261"/>
 </g>
 <!-- 7 -->
 <g id="node8" class="node"><title>7</title>
-<path fill="none" stroke="#56a2d8" stroke-width="2" d="M1572,-252C1572,-252 1436,-252 1436,-252 1430,-252 1424,-246 1424,-240 1424,-240 1424,-228 1424,-228 1424,-222 1430,-216 1436,-216 1436,-216 1572,-216 1572,-216 1578,-216 1584,-222 1584,-228 1584,-228 1584,-240 1584,-240 1584,-246 1578,-252 1572,-252"/>
-<text text-anchor="middle" x="1504" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
-<text text-anchor="middle" x="1504" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_820</text>
+<path fill="none" stroke="#d89556" stroke-width="2" stroke-dasharray="5,2" d="M1394,-252C1394,-252 1258,-252 1258,-252 1252,-252 1246,-246 1246,-240 1246,-240 1246,-228 1246,-228 1246,-222 1252,-216 1258,-216 1258,-216 1394,-216 1394,-216 1400,-216 1406,-222 1406,-228 1406,-228 1406,-240 1406,-240 1406,-246 1400,-252 1394,-252"/>
+<text text-anchor="middle" x="1326" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
+<text text-anchor="middle" x="1326" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_827</text>
 </g>
-<!-- 7&#45;&gt;2 -->
-<g id="edge7" class="edge"><title>7&#45;&gt;2</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M1423.52,-217.293C1420.65,-216.839 1417.8,-216.406 1415,-216 1254.39,-192.738 1065.1,-176.593 960.527,-168.651"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="960.601,-165.146 950.366,-167.884 960.075,-172.127 960.601,-165.146"/>
+<!-- 7&#45;&gt;3 -->
+<g id="edge7" class="edge"><title>7&#45;&gt;3</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M1245.97,-217.554C1242.95,-217.02 1239.95,-216.501 1237,-216 1141.98,-199.859 1032.22,-183.928 959.984,-173.813"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="960.433,-170.342 950.045,-172.425 959.465,-177.275 960.433,-170.342"/>
 </g>
 <!-- 8 -->
 <g id="node9" class="node"><title>8</title>
-<path fill="none" stroke="#56a2d8" stroke-width="2" d="M1750,-252C1750,-252 1614,-252 1614,-252 1608,-252 1602,-246 1602,-240 1602,-240 1602,-228 1602,-228 1602,-222 1608,-216 1614,-216 1614,-216 1750,-216 1750,-216 1756,-216 1762,-222 1762,-228 1762,-228 1762,-240 1762,-240 1762,-246 1756,-252 1750,-252"/>
-<text text-anchor="middle" x="1682" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
-<text text-anchor="middle" x="1682" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_822</text>
+<path fill="none" stroke="#d89556" stroke-width="2" stroke-dasharray="5,2" d="M1572,-252C1572,-252 1436,-252 1436,-252 1430,-252 1424,-246 1424,-240 1424,-240 1424,-228 1424,-228 1424,-222 1430,-216 1436,-216 1436,-216 1572,-216 1572,-216 1578,-216 1584,-222 1584,-228 1584,-228 1584,-240 1584,-240 1584,-246 1578,-252 1572,-252"/>
+<text text-anchor="middle" x="1504" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
+<text text-anchor="middle" x="1504" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_820</text>
 </g>
-<!-- 8&#45;&gt;2 -->
-<g id="edge8" class="edge"><title>8&#45;&gt;2</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M1601.54,-217.203C1598.66,-216.774 1595.81,-216.371 1593,-216 1364.25,-185.741 1091.71,-171.464 960.005,-165.926"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="960.138,-162.428 950.002,-165.511 959.848,-169.422 960.138,-162.428"/>
+<!-- 8&#45;&gt;3 -->
+<g id="edge8" class="edge"><title>8&#45;&gt;3</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M1423.52,-217.293C1420.65,-216.839 1417.8,-216.406 1415,-216 1254.39,-192.738 1065.1,-176.593 960.527,-168.651"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="960.601,-165.146 950.366,-167.884 960.075,-172.127 960.601,-165.146"/>
 </g>
 <!-- 9 -->
 <g id="node10" class="node"><title>9</title>
-<path fill="none" stroke="#56a2d8" stroke-width="2" d="M148,-252C148,-252 12,-252 12,-252 6,-252 0,-246 0,-240 0,-240 0,-228 0,-228 0,-222 6,-216 12,-216 12,-216 148,-216 148,-216 154,-216 160,-222 160,-228 160,-228 160,-240 160,-240 160,-246 154,-252 148,-252"/>
-<text text-anchor="middle" x="80" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
-<text text-anchor="middle" x="80" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_824</text>
+<path fill="none" stroke="#d89556" stroke-width="2" stroke-dasharray="5,2" d="M1750,-252C1750,-252 1614,-252 1614,-252 1608,-252 1602,-246 1602,-240 1602,-240 1602,-228 1602,-228 1602,-222 1608,-216 1614,-216 1614,-216 1750,-216 1750,-216 1756,-216 1762,-222 1762,-228 1762,-228 1762,-240 1762,-240 1762,-246 1756,-252 1750,-252"/>
+<text text-anchor="middle" x="1682" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
+<text text-anchor="middle" x="1682" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_822</text>
 </g>
-<!-- 9&#45;&gt;2 -->
-<g id="edge9" class="edge"><title>9&#45;&gt;2</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M160.463,-217.203C163.341,-216.774 166.193,-216.371 169,-216 397.746,-185.741 670.295,-171.464 801.995,-165.926"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="802.152,-169.422 811.998,-165.511 801.862,-162.428 802.152,-169.422"/>
+<!-- 9&#45;&gt;3 -->
+<g id="edge9" class="edge"><title>9&#45;&gt;3</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M1601.54,-217.203C1598.66,-216.774 1595.81,-216.371 1593,-216 1364.25,-185.741 1091.71,-171.464 960.005,-165.926"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="960.138,-162.428 950.002,-165.511 959.848,-169.422 960.138,-162.428"/>
 </g>
 <!-- 10 -->
 <g id="node11" class="node"><title>10</title>
-<path fill="none" stroke="#56a2d8" stroke-width="2" d="M326,-252C326,-252 190,-252 190,-252 184,-252 178,-246 178,-240 178,-240 178,-228 178,-228 178,-222 184,-216 190,-216 190,-216 326,-216 326,-216 332,-216 338,-222 338,-228 338,-228 338,-240 338,-240 338,-246 332,-252 326,-252"/>
-<text text-anchor="middle" x="258" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
-<text text-anchor="middle" x="258" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_826</text>
+<path fill="none" stroke="#d89556" stroke-width="2" stroke-dasharray="5,2" d="M148,-252C148,-252 12,-252 12,-252 6,-252 0,-246 0,-240 0,-240 0,-228 0,-228 0,-222 6,-216 12,-216 12,-216 148,-216 148,-216 154,-216 160,-222 160,-228 160,-228 160,-240 160,-240 160,-246 154,-252 148,-252"/>
+<text text-anchor="middle" x="80" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
+<text text-anchor="middle" x="80" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_824</text>
 </g>
-<!-- 10&#45;&gt;2 -->
-<g id="edge10" class="edge"><title>10&#45;&gt;2</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M338.476,-217.293C341.349,-216.839 344.198,-216.406 347,-216 507.615,-192.738 696.904,-176.593 801.473,-168.651"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="801.925,-172.127 811.634,-167.884 801.399,-165.146 801.925,-172.127"/>
+<!-- 10&#45;&gt;3 -->
+<g id="edge10" class="edge"><title>10&#45;&gt;3</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M160.463,-217.203C163.341,-216.774 166.193,-216.371 169,-216 397.746,-185.741 670.295,-171.464 801.995,-165.926"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="802.152,-169.422 811.998,-165.511 801.862,-162.428 802.152,-169.422"/>
 </g>
 <!-- 11 -->
 <g id="node12" class="node"><title>11</title>
-<path fill="none" stroke="#56a2d8" stroke-width="2" d="M504,-252C504,-252 368,-252 368,-252 362,-252 356,-246 356,-240 356,-240 356,-228 356,-228 356,-222 362,-216 368,-216 368,-216 504,-216 504,-216 510,-216 516,-222 516,-228 516,-228 516,-240 516,-240 516,-246 510,-252 504,-252"/>
-<text text-anchor="middle" x="436" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
-<text text-anchor="middle" x="436" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_823</text>
+<path fill="none" stroke="#d89556" stroke-width="2" stroke-dasharray="5,2" d="M326,-252C326,-252 190,-252 190,-252 184,-252 178,-246 178,-240 178,-240 178,-228 178,-228 178,-222 184,-216 190,-216 190,-216 326,-216 326,-216 332,-216 338,-222 338,-228 338,-228 338,-240 338,-240 338,-246 332,-252 326,-252"/>
+<text text-anchor="middle" x="258" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
+<text text-anchor="middle" x="258" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_826</text>
 </g>
-<!-- 11&#45;&gt;2 -->
-<g id="edge11" class="edge"><title>11&#45;&gt;2</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M516.026,-217.554C519.054,-217.02 522.053,-216.501 525,-216 620.022,-199.859 729.777,-183.928 802.016,-173.813"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="802.535,-177.275 811.955,-172.425 801.567,-170.342 802.535,-177.275"/>
+<!-- 11&#45;&gt;3 -->
+<g id="edge11" class="edge"><title>11&#45;&gt;3</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M338.476,-217.293C341.349,-216.839 344.198,-216.406 347,-216 507.615,-192.738 696.904,-176.593 801.473,-168.651"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="801.925,-172.127 811.634,-167.884 801.399,-165.146 801.925,-172.127"/>
 </g>
 <!-- 12 -->
 <g id="node13" class="node"><title>12</title>
-<path fill="none" stroke="#56a2d8" stroke-width="2" d="M682,-252C682,-252 546,-252 546,-252 540,-252 534,-246 534,-240 534,-240 534,-228 534,-228 534,-222 540,-216 546,-216 546,-216 682,-216 682,-216 688,-216 694,-222 694,-228 694,-228 694,-240 694,-240 694,-246 688,-252 682,-252"/>
-<text text-anchor="middle" x="614" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
-<text text-anchor="middle" x="614" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_828</text>
+<path fill="none" stroke="#d89556" stroke-width="2" stroke-dasharray="5,2" d="M504,-252C504,-252 368,-252 368,-252 362,-252 356,-246 356,-240 356,-240 356,-228 356,-228 356,-222 362,-216 368,-216 368,-216 504,-216 504,-216 510,-216 516,-222 516,-228 516,-228 516,-240 516,-240 516,-246 510,-252 504,-252"/>
+<text text-anchor="middle" x="436" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
+<text text-anchor="middle" x="436" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_823</text>
 </g>
-<!-- 12&#45;&gt;2 -->
-<g id="edge12" class="edge"><title>12&#45;&gt;2</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M678.974,-215.966C717.334,-205.909 766.051,-193.136 806.033,-182.654"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="806.949,-186.032 815.734,-180.111 805.174,-179.261 806.949,-186.032"/>
+<!-- 12&#45;&gt;3 -->
+<g id="edge12" class="edge"><title>12&#45;&gt;3</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M516.026,-217.554C519.054,-217.02 522.053,-216.501 525,-216 620.022,-199.859 729.777,-183.928 802.016,-173.813"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="802.535,-177.275 811.955,-172.425 801.567,-170.342 802.535,-177.275"/>
 </g>
 <!-- 13 -->
 <g id="node14" class="node"><title>13</title>
-<path fill="none" stroke="#d85656" stroke-width="2" d="M857.5,-324C857.5,-324 724.5,-324 724.5,-324 718.5,-324 712.5,-318 712.5,-312 712.5,-312 712.5,-300 712.5,-300 712.5,-294 718.5,-288 724.5,-288 724.5,-288 857.5,-288 857.5,-288 863.5,-288 869.5,-294 869.5,-300 869.5,-300 869.5,-312 869.5,-312 869.5,-318 863.5,-324 857.5,-324"/>
-<text text-anchor="middle" x="791" y="-303.5" font-family="sans" font-size="10.00">prepare_MotEvo_parameters</text>
+<path fill="none" stroke="#d89556" stroke-width="2" stroke-dasharray="5,2" d="M682,-252C682,-252 546,-252 546,-252 540,-252 534,-246 534,-240 534,-240 534,-228 534,-228 534,-222 540,-216 546,-216 546,-216 682,-216 682,-216 688,-216 694,-222 694,-228 694,-228 694,-240 694,-240 694,-246 688,-252 682,-252"/>
+<text text-anchor="middle" x="614" y="-237" font-family="sans" font-size="10.00">run_MotEvo_analysis</text>
+<text text-anchor="middle" x="614" y="-226" font-family="sans" font-size="10.00">pwm_dir: motif_HNRNPF_828</text>
 </g>
 <!-- 13&#45;&gt;3 -->
 <g id="edge13" class="edge"><title>13&#45;&gt;3</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M791.247,-287.697C791.357,-279.983 791.49,-270.712 791.613,-262.112"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="795.112,-262.153 791.756,-252.104 788.113,-262.053 795.112,-262.153"/>
-</g>
-<!-- 13&#45;&gt;4 -->
-<g id="edge15" class="edge"><title>13&#45;&gt;4</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M834.788,-287.876C859.585,-278.179 890.781,-265.98 916.958,-255.743"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="918.315,-258.97 926.354,-252.068 915.766,-252.451 918.315,-258.97"/>
-</g>
-<!-- 13&#45;&gt;5 -->
-<g id="edge17" class="edge"><title>13&#45;&gt;5</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M869.787,-289.552C925.399,-278.647 1000.02,-264.015 1057.99,-252.65"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="1058.73,-256.07 1067.87,-250.712 1057.38,-249.201 1058.73,-256.07"/>
-</g>
-<!-- 13&#45;&gt;6 -->
-<g id="edge19" class="edge"><title>13&#45;&gt;6</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M869.622,-289.446C872.786,-288.936 875.921,-288.451 879,-288 1033.98,-265.286 1077,-274.619 1235.42,-252.156"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="1236.12,-255.591 1245.52,-250.703 1235.13,-248.662 1236.12,-255.591"/>
-</g>
-<!-- 13&#45;&gt;7 -->
-<g id="edge21" class="edge"><title>13&#45;&gt;7</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M869.604,-289.315C872.773,-288.842 875.914,-288.4 879,-288 1112.54,-257.718 1176.45,-281.777 1413.58,-252.089"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="1414.06,-255.556 1423.54,-250.823 1413.18,-248.612 1414.06,-255.556"/>
-</g>
-<!-- 13&#45;&gt;8 -->
-<g id="edge23" class="edge"><title>13&#45;&gt;8</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M869.596,-289.25C872.767,-288.794 875.911,-288.374 879,-288 1191.04,-250.183 1275.72,-289.044 1591.19,-252.114"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="1592.03,-255.539 1601.55,-250.884 1591.2,-248.588 1592.03,-255.539"/>
-</g>
-<!-- 13&#45;&gt;9 -->
-<g id="edge25" class="edge"><title>13&#45;&gt;9</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M712.159,-300.91C595.763,-294.289 370.95,-279.275 170.594,-252.142"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="170.85,-248.645 160.468,-250.758 169.902,-255.58 170.85,-248.645"/>
-</g>
-<!-- 13&#45;&gt;10 -->
-<g id="edge27" class="edge"><title>13&#45;&gt;10</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M712.174,-297.273C625.401,-288.386 481.58,-272.536 348.015,-252.099"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="348.424,-248.621 338.008,-250.556 347.358,-255.539 348.424,-248.621"/>
-</g>
-<!-- 13&#45;&gt;11 -->
-<g id="edge29" class="edge"><title>13&#45;&gt;11</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M712.214,-289.465C657.198,-278.617 583.631,-264.11 526.254,-252.797"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="526.589,-249.295 516.101,-250.795 525.235,-256.163 526.589,-249.295"/>
-</g>
-<!-- 13&#45;&gt;12 -->
-<g id="edge31" class="edge"><title>13&#45;&gt;12</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M747.701,-287.876C723.289,-278.222 692.604,-266.087 666.79,-255.878"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="667.745,-252.491 657.158,-252.068 665.17,-259.001 667.745,-252.491"/>
+<path fill="none" stroke="grey" stroke-width="2" d="M678.974,-215.966C717.334,-205.909 766.051,-193.136 806.033,-182.654"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="806.949,-186.032 815.734,-180.111 805.174,-179.261 806.949,-186.032"/>
 </g>
 <!-- 14 -->
 <g id="node15" class="node"><title>14</title>
-<path fill="none" stroke="#56d87b" stroke-width="2" d="M1042,-324C1042,-324 900,-324 900,-324 894,-324 888,-318 888,-312 888,-312 888,-300 888,-300 888,-294 894,-288 900,-288 900,-288 1042,-288 1042,-288 1048,-288 1054,-294 1054,-300 1054,-300 1054,-312 1054,-312 1054,-318 1048,-324 1042,-324"/>
-<text text-anchor="middle" x="971" y="-303.5" font-family="sans" font-size="10.00">prepare_sequence_for_MotEvo</text>
-</g>
-<!-- 14&#45;&gt;3 -->
-<g id="edge14" class="edge"><title>14&#45;&gt;3</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M927.212,-287.876C902.415,-278.179 871.219,-265.98 845.042,-255.743"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="846.234,-252.451 835.646,-252.068 843.685,-258.97 846.234,-252.451"/>
+<path fill="none" stroke="#97d856" stroke-width="2" stroke-dasharray="5,2" d="M857.5,-324C857.5,-324 724.5,-324 724.5,-324 718.5,-324 712.5,-318 712.5,-312 712.5,-312 712.5,-300 712.5,-300 712.5,-294 718.5,-288 724.5,-288 724.5,-288 857.5,-288 857.5,-288 863.5,-288 869.5,-294 869.5,-300 869.5,-300 869.5,-312 869.5,-312 869.5,-318 863.5,-324 857.5,-324"/>
+<text text-anchor="middle" x="791" y="-303.5" font-family="sans" font-size="10.00">prepare_MotEvo_parameters</text>
 </g>
 <!-- 14&#45;&gt;4 -->
-<g id="edge16" class="edge"><title>14&#45;&gt;4</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M970.753,-287.697C970.643,-279.983 970.51,-270.712 970.387,-262.112"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="973.887,-262.053 970.244,-252.104 966.888,-262.153 973.887,-262.053"/>
+<g id="edge14" class="edge"><title>14&#45;&gt;4</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M791.247,-287.697C791.357,-279.983 791.49,-270.712 791.613,-262.112"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="795.112,-262.153 791.756,-252.104 788.113,-262.053 795.112,-262.153"/>
 </g>
 <!-- 14&#45;&gt;5 -->
-<g id="edge18" class="edge"><title>14&#45;&gt;5</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M1014.3,-287.876C1038.71,-278.222 1069.4,-266.087 1095.21,-255.878"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="1096.83,-259.001 1104.84,-252.068 1094.26,-252.491 1096.83,-259.001"/>
+<g id="edge16" class="edge"><title>14&#45;&gt;5</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M834.788,-287.876C859.585,-278.179 890.781,-265.98 916.958,-255.743"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="918.315,-258.97 926.354,-252.068 915.766,-252.451 918.315,-258.97"/>
 </g>
 <!-- 14&#45;&gt;6 -->
-<g id="edge20" class="edge"><title>14&#45;&gt;6</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M1054.23,-288.588C1108.75,-277.838 1179.98,-263.792 1235.84,-252.777"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="1236.6,-256.196 1245.73,-250.827 1235.24,-249.328 1236.6,-256.196"/>
+<g id="edge18" class="edge"><title>14&#45;&gt;6</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M869.787,-289.552C925.399,-278.647 1000.02,-264.015 1057.99,-252.65"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="1058.73,-256.07 1067.87,-250.712 1057.38,-249.201 1058.73,-256.07"/>
 </g>
 <!-- 14&#45;&gt;7 -->
-<g id="edge22" class="edge"><title>14&#45;&gt;7</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M1054.3,-296.814C1141.43,-287.852 1282.38,-272.23 1413.75,-252.135"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="1414.64,-255.539 1423.99,-250.556 1413.58,-248.62 1414.64,-255.539"/>
+<g id="edge20" class="edge"><title>14&#45;&gt;7</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M869.622,-289.446C872.786,-288.936 875.921,-288.451 879,-288 1033.98,-265.286 1077,-274.619 1235.42,-252.156"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="1236.12,-255.591 1245.52,-250.703 1235.13,-248.662 1236.12,-255.591"/>
 </g>
 <!-- 14&#45;&gt;8 -->
-<g id="edge24" class="edge"><title>14&#45;&gt;8</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M1054.06,-300.669C1171.62,-293.927 1393.43,-278.959 1591.52,-252.127"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="1592.1,-255.581 1601.53,-250.758 1591.15,-248.645 1592.1,-255.581"/>
+<g id="edge22" class="edge"><title>14&#45;&gt;8</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M869.604,-289.315C872.773,-288.842 875.914,-288.4 879,-288 1112.54,-257.718 1176.45,-281.777 1413.58,-252.089"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="1414.06,-255.556 1423.54,-250.823 1413.18,-248.612 1414.06,-255.556"/>
 </g>
 <!-- 14&#45;&gt;9 -->
-<g id="edge26" class="edge"><title>14&#45;&gt;9</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M887.928,-289.262C884.58,-288.803 881.261,-288.379 878,-288 567.961,-251.947 484.054,-288.878 170.741,-252.107"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="170.796,-248.589 160.452,-250.883 169.969,-255.54 170.796,-248.589"/>
+<g id="edge24" class="edge"><title>14&#45;&gt;9</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M869.596,-289.25C872.767,-288.794 875.911,-288.374 879,-288 1191.04,-250.183 1275.72,-289.044 1591.19,-252.114"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="1592.03,-255.539 1601.55,-250.884 1591.2,-248.588 1592.03,-255.539"/>
 </g>
 <!-- 14&#45;&gt;10 -->
-<g id="edge28" class="edge"><title>14&#45;&gt;10</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M887.919,-289.332C884.573,-288.854 881.257,-288.407 878,-288 646.605,-259.101 583.382,-281.589 348.681,-252.123"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="348.822,-248.613 338.46,-250.821 347.938,-255.557 348.822,-248.613"/>
+<g id="edge26" class="edge"><title>14&#45;&gt;10</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M712.159,-300.91C595.763,-294.289 370.95,-279.275 170.594,-252.142"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="170.85,-248.645 160.468,-250.758 169.902,-255.58 170.85,-248.645"/>
 </g>
 <!-- 14&#45;&gt;11 -->
-<g id="edge30" class="edge"><title>14&#45;&gt;11</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M887.9,-289.473C884.56,-288.956 881.25,-288.462 878,-288 725.069,-266.259 682.766,-274.459 526.448,-252.14"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="526.875,-248.666 516.477,-250.697 525.873,-255.593 526.875,-248.666"/>
+<g id="edge28" class="edge"><title>14&#45;&gt;11</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M712.174,-297.273C625.401,-288.386 481.58,-272.536 348.015,-252.099"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="348.424,-248.621 338.008,-250.556 347.358,-255.539 348.424,-248.621"/>
 </g>
 <!-- 14&#45;&gt;12 -->
-<g id="edge32" class="edge"><title>14&#45;&gt;12</title>
-<path fill="none" stroke="grey" stroke-width="2" d="M887.75,-288.676C832.647,-277.872 760.418,-263.709 703.989,-252.645"/>
-<polygon fill="grey" stroke="grey" stroke-width="2" points="704.489,-249.176 694.003,-250.687 703.142,-256.046 704.489,-249.176"/>
+<g id="edge30" class="edge"><title>14&#45;&gt;12</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M712.214,-289.465C657.198,-278.617 583.631,-264.11 526.254,-252.797"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="526.589,-249.295 516.101,-250.795 525.235,-256.163 526.589,-249.295"/>
+</g>
+<!-- 14&#45;&gt;13 -->
+<g id="edge32" class="edge"><title>14&#45;&gt;13</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M747.701,-287.876C723.289,-278.222 692.604,-266.087 666.79,-255.878"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="667.745,-252.491 657.158,-252.068 665.17,-259.001 667.745,-252.491"/>
 </g>
 <!-- 15 -->
 <g id="node16" class="node"><title>15</title>
-<path fill="none" stroke="#d8a456" stroke-width="2" d="M952,-396C952,-396 810,-396 810,-396 804,-396 798,-390 798,-384 798,-384 798,-372 798,-372 798,-366 804,-360 810,-360 810,-360 952,-360 952,-360 958,-360 964,-366 964,-372 964,-372 964,-384 964,-384 964,-390 958,-396 952,-396"/>
-<text text-anchor="middle" x="881" y="-381" font-family="sans" font-size="10.00">create_results_directory</text>
-<text text-anchor="middle" x="881" y="-370" font-family="sans" font-size="10.00">outdir: tests/integration/output</text>
+<path fill="none" stroke="#56d8d8" stroke-width="2" stroke-dasharray="5,2" d="M1042,-324C1042,-324 900,-324 900,-324 894,-324 888,-318 888,-312 888,-312 888,-300 888,-300 888,-294 894,-288 900,-288 900,-288 1042,-288 1042,-288 1048,-288 1054,-294 1054,-300 1054,-300 1054,-312 1054,-312 1054,-318 1048,-324 1042,-324"/>
+<text text-anchor="middle" x="971" y="-303.5" font-family="sans" font-size="10.00">prepare_sequence_for_MotEvo</text>
+</g>
+<!-- 15&#45;&gt;4 -->
+<g id="edge15" class="edge"><title>15&#45;&gt;4</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M927.212,-287.876C902.415,-278.179 871.219,-265.98 845.042,-255.743"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="846.234,-252.451 835.646,-252.068 843.685,-258.97 846.234,-252.451"/>
+</g>
+<!-- 15&#45;&gt;5 -->
+<g id="edge17" class="edge"><title>15&#45;&gt;5</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M970.753,-287.697C970.643,-279.983 970.51,-270.712 970.387,-262.112"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="973.887,-262.053 970.244,-252.104 966.888,-262.153 973.887,-262.053"/>
+</g>
+<!-- 15&#45;&gt;6 -->
+<g id="edge19" class="edge"><title>15&#45;&gt;6</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M1014.3,-287.876C1038.71,-278.222 1069.4,-266.087 1095.21,-255.878"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="1096.83,-259.001 1104.84,-252.068 1094.26,-252.491 1096.83,-259.001"/>
+</g>
+<!-- 15&#45;&gt;7 -->
+<g id="edge21" class="edge"><title>15&#45;&gt;7</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M1054.23,-288.588C1108.75,-277.838 1179.98,-263.792 1235.84,-252.777"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="1236.6,-256.196 1245.73,-250.827 1235.24,-249.328 1236.6,-256.196"/>
+</g>
+<!-- 15&#45;&gt;8 -->
+<g id="edge23" class="edge"><title>15&#45;&gt;8</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M1054.3,-296.814C1141.43,-287.852 1282.38,-272.23 1413.75,-252.135"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="1414.64,-255.539 1423.99,-250.556 1413.58,-248.62 1414.64,-255.539"/>
+</g>
+<!-- 15&#45;&gt;9 -->
+<g id="edge25" class="edge"><title>15&#45;&gt;9</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M1054.06,-300.669C1171.62,-293.927 1393.43,-278.959 1591.52,-252.127"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="1592.1,-255.581 1601.53,-250.758 1591.15,-248.645 1592.1,-255.581"/>
+</g>
+<!-- 15&#45;&gt;10 -->
+<g id="edge27" class="edge"><title>15&#45;&gt;10</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M887.928,-289.262C884.58,-288.803 881.261,-288.379 878,-288 567.961,-251.947 484.054,-288.878 170.741,-252.107"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="170.796,-248.589 160.452,-250.883 169.969,-255.54 170.796,-248.589"/>
+</g>
+<!-- 15&#45;&gt;11 -->
+<g id="edge29" class="edge"><title>15&#45;&gt;11</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M887.919,-289.332C884.573,-288.854 881.257,-288.407 878,-288 646.605,-259.101 583.382,-281.589 348.681,-252.123"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="348.822,-248.613 338.46,-250.821 347.938,-255.557 348.822,-248.613"/>
+</g>
+<!-- 15&#45;&gt;12 -->
+<g id="edge31" class="edge"><title>15&#45;&gt;12</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M887.9,-289.473C884.56,-288.956 881.25,-288.462 878,-288 725.069,-266.259 682.766,-274.459 526.448,-252.14"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="526.875,-248.666 516.477,-250.697 525.873,-255.593 526.875,-248.666"/>
 </g>
 <!-- 15&#45;&gt;13 -->
 <g id="edge33" class="edge"><title>15&#45;&gt;13</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M887.75,-288.676C832.647,-277.872 760.418,-263.709 703.989,-252.645"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="704.489,-249.176 694.003,-250.687 703.142,-256.046 704.489,-249.176"/>
+</g>
+<!-- 16 -->
+<g id="node17" class="node"><title>16</title>
+<path fill="none" stroke="#569ad8" stroke-width="2" stroke-dasharray="5,2" d="M952,-396C952,-396 810,-396 810,-396 804,-396 798,-390 798,-384 798,-384 798,-372 798,-372 798,-366 804,-360 810,-360 810,-360 952,-360 952,-360 958,-360 964,-366 964,-372 964,-372 964,-384 964,-384 964,-390 958,-396 952,-396"/>
+<text text-anchor="middle" x="881" y="-381" font-family="sans" font-size="10.00">create_results_directory</text>
+<text text-anchor="middle" x="881" y="-370" font-family="sans" font-size="10.00">outdir: tests/integration/output</text>
+</g>
+<!-- 16&#45;&gt;14 -->
+<g id="edge34" class="edge"><title>16&#45;&gt;14</title>
 <path fill="none" stroke="grey" stroke-width="2" d="M858.753,-359.697C847.418,-350.881 833.47,-340.032 821.181,-330.474"/>
 <polygon fill="grey" stroke="grey" stroke-width="2" points="823.034,-327.481 812.991,-324.104 818.736,-333.007 823.034,-327.481"/>
 </g>
-<!-- 15&#45;&gt;14 -->
-<g id="edge34" class="edge"><title>15&#45;&gt;14</title>
+<!-- 16&#45;&gt;15 -->
+<g id="edge35" class="edge"><title>16&#45;&gt;15</title>
 <path fill="none" stroke="grey" stroke-width="2" d="M903.247,-359.697C914.582,-350.881 928.53,-340.032 940.819,-330.474"/>
 <polygon fill="grey" stroke="grey" stroke-width="2" points="943.264,-333.007 949.009,-324.104 938.966,-327.481 943.264,-333.007"/>
 </g>
