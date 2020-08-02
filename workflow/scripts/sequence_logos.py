@@ -55,35 +55,43 @@ sorted(input_files)
 for input_file in input_files:
 
     main_file = str(input_file)
-    main_file_temp = main_file + "_temp" # create a temporary file which will store only the required data
+    main_file_temp = (
+        main_file + "_temp"
+    )  # create a temporary file which will store only the required data
 
-    filename = os.path.split(main_file)[-1] # filename of the input file
+    filename = os.path.split(main_file)[-1]  # filename of the input file
 
     #### Calculate total number of lines in the file ####
     j = 0
     with open(main_file) as f:
-	    for line in f:
-		    j = j+1
+        for line in f:
+            j = j + 1
 
-	#### Copy the contents of the file to temp except 1st, 2nd and last line ####
-    i = 0	
+    #### Copy the contents of the file to temp except 1st, 2nd and last line ####
+    i = 0
     with open(main_file) as f:
         with open(main_file_temp, "w") as f1:
-       	    for line in f:
-                if(i != 0 and i != 1 and i != j-1):
-                	f1.write(line)
-                i = i+1
+            for line in f:
+                if i != 0 and i != 1 and i != j - 1:
+                    f1.write(line)
+                i = i + 1
 
-    crp_matrix_df = pd.read_csv(main_file_temp, delim_whitespace=True, index_col=0) # read csv and convert to dataframe
+    crp_matrix_df = pd.read_csv(
+        main_file_temp, delim_whitespace=True, index_col=0
+    )  # read csv and convert to dataframe
     crp_matrix_df.head()
 
-    os.remove(main_file_temp) # delete the temporary file
+    os.remove(main_file_temp)  # delete the temporary file
 
-    prob_mat = logomaker.transform_matrix(crp_matrix_df, from_type='counts', to_type='probability')
-    logo = logomaker.Logo(prob_mat, 
-               	## fade_probabilities=True, ## will fade the smaller probabilities
-               	stack_order='small_on_top')
+    prob_mat = logomaker.transform_matrix(
+        crp_matrix_df, from_type="counts", to_type="probability"
+    )
+    logo = logomaker.Logo(
+        prob_mat,
+        ## fade_probabilities=True, ## will fade the smaller probabilities
+        stack_order="small_on_top",
+    )
 
-    final_png = os.path.join(output_location, filename) # location for saving the file
-    
-    plt.savefig(final_png) #final png saved
+    final_png = os.path.join(output_location, filename)  # location for saving the file
+
+    plt.savefig(final_png)  # final png saved
