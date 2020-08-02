@@ -1,3 +1,15 @@
+###############################################################################
+#
+#   Script to plot sequence logos for motifss
+#
+#   AUTHOR: Krish Agarwal
+#   AFFILIATION: University_of_Basel
+#   CONTACT: akrish136@gmail.com
+#   CREATED: 02-08-2020
+#   LICENSE: Apache_2.0
+#
+###############################################################################
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import sys
@@ -17,6 +29,13 @@ parser.add_argument(
     metavar="FILE",
 )
 
+parser.add_argument(
+    "--output_location",
+    dest="output_location",
+    help="location where the png logos will be saved",
+    required=True,
+    metavar="DIR",
+)
 
 try:
     options = parser.parse_args()
@@ -27,15 +46,18 @@ if len(sys.argv) == 1:
     parser.print_help()
     sys.exit(1)
 
-
+#### Storing commnad line arguments in variables ####
 input_files = options.input_files
+output_location = options.output_location
 
 sorted(input_files)
 
 for input_file in input_files:
 
     main_file = str(input_file)
-    main_file_temp = main_file + "_temp"
+    main_file_temp = main_file + "_temp" # create a temporary file which will store only the required data
+
+    filename = os.path.split(main_file)[-1] # filename of the input file
 
     j = 0
     with open(main_file) as f:
@@ -54,11 +76,13 @@ for input_file in input_files:
     crp_matrix_df.head()
 
     os.remove(main_file_temp)
-    
+
     prob_mat = logomaker.transform_matrix(crp_matrix_df, from_type='counts', to_type='probability')
     logo = logomaker.Logo(prob_mat, 
                	## fade_probabilities=True, ## will fade the smaller probabilities
                	stack_order='small_on_top')
 
-    final_png = main_file + ".png"
+    final_png = os.path.join(output_location, filename)
+    print(filename)
+    print(final_png)
     plt.savefig(final_png)

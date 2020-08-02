@@ -43,7 +43,17 @@ rule all:
                 "ProbabilityVsSequence.svg"
             ),
             outdir = config["outdir"]
-        )
+        ),
+
+        PNG_sequence_logos = expand( 
+            os.path.join(
+                "{outdir}",
+                "sequence_logos",
+                "{pwm_dir}.png"
+            ),
+            outdir = config["outdir"],
+            pwm_dir = gather_motifs_names(config["pwm_directory"])
+            )
 
 rule create_results_directory:
     """
@@ -72,6 +82,48 @@ rule create_results_directory:
         mkdir -p {params.DIR_output_dir}; \
         mkdir -p {params.LOG_local_log}; \
         touch {output.TEMP_}
+        """
+
+rule plot_sequence_logos:
+    """
+    Create directories for the results
+    """
+    input:
+        FILE_pwm = expand(
+                os.path.abspath(
+                os.path.join(
+                    config["pwm_directory"],
+                    "{pwm_dir}"
+                    )
+                ),
+                pwm_dir = gather_motifs_names(config["pwm_directory"])
+            ),
+        SCRIPT_ = os.path.join(
+            config["pipeline_path"],
+            "workflow",
+            "scripts",
+            "sequence_logos.py"
+        )
+            
+    output:
+        PNG_sequence_logos = expand( 
+            os.path.join(
+                "{outdir}",
+                "sequence_logos",
+                "{pwm_dir}.png"
+            ),
+            outdir = config["outdir"],
+            pwm_dir = gather_motifs_names(config["pwm_directory"])
+            )
+    
+    conda:
+        "envs/plot_sequence_logos.yml"
+
+    shell:
+        """
+        python {input.SCRIPT_} \
+        --input_files {input.FILE_pwm} \
+        --output_location tests/integration/output/sequence_logos
         """
 
 rule prepare_MotEvo_parameters:
