@@ -86,14 +86,14 @@ rule create_results_directory:
 
 rule plot_sequence_logos:
     """
-    Create directories for the results
+    Plot sequence logo for the motifs
     """
     input:
         FILE_pwm = expand(
                 os.path.abspath(
-                os.path.join(
-                    config["pwm_directory"],
-                    "{pwm_dir}"
+                    os.path.join(
+                        config["pwm_directory"],
+                        "{pwm_dir}"
                     )
                 ),
                 pwm_dir = gather_motifs_names(config["pwm_directory"])
@@ -103,7 +103,14 @@ rule plot_sequence_logos:
             "workflow",
             "scripts",
             "sequence_logos.py"
-        )
+            ),
+        TEMP_ = expand(
+                os.path.join(
+                    "{outdir}",
+                    "outdir"
+                    ),
+        outdir = config["outdir"]
+            )
             
     output:
         PNG_sequence_logos = expand( 
@@ -363,13 +370,10 @@ rule combine_MotEvo_results:
         )
 
     output:
-        TSV_combined_MotEvo_results = expand(
-            os.path.join(
-                "{outdir}",
-                "combined_MotEvo_results.tsv"
-            ),
-            outdir = config["outdir"]
-        )
+        TSV_combined_MotEvo_results = os.path.join(
+            "{outdir}",
+            "combined_MotEvo_results.tsv"
+            )
 
     params:
         STR_binding_sites_filename = "posterior_sites"
@@ -405,13 +409,10 @@ rule plot_heatmap_of_MotEvo_results:
         )
 
     output:
-        SVG_Heatmap_file = expand(
-            os.path.join(
-                "{outdir}",
-                "ProbabilityVsSequence.svg"
-            ),
-            outdir = config["outdir"]
-        )
+        SVG_Heatmap_file = os.path.join(
+            "{outdir}",
+            "ProbabilityVsSequence.svg"
+            )
 
     params:
         STRING_sequence = config["sequence"]
