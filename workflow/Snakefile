@@ -53,7 +53,7 @@ rule all:
             ),
             outdir = config["outdir"],
             pwm_dir = gather_motifs_names(config["pwm_directory"])
-            )
+        )
 
 rule create_results_directory:
     """

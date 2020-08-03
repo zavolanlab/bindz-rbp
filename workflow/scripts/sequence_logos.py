@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#   Script to plot sequence logos for motifss
+#   Script to plot sequence logos for motifs
 #
 #   AUTHOR: Krish Agarwal
 #   AFFILIATION: University_of_Basel
@@ -50,7 +50,7 @@ if len(sys.argv) == 1:
 input_files = options.input_files
 output_location = options.output_location
 
-sorted(input_files)
+input_files = sorted(input_files)
 
 for input_file in input_files:
 

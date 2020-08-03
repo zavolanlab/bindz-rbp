@@ -18,7 +18,6 @@
     - bioconda
 
   dependencies:
-    - bash=4.4.18
     - python=3.7.4
     - logomaker=0.8
     - matplotlib=3.3.0
