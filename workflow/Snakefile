@@ -120,6 +120,13 @@ rule plot_sequence_logos:
             "{outdir}",
             "sequence_logos"
         )
+
+    benchmark:
+        os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_sequence_logos.{pwm_dir}.benchmark.log"
+        )
     
     conda:
         "envs/plot_sequence_logos.yml"
@@ -367,6 +374,13 @@ rule combine_MotEvo_results:
     params:
         STR_binding_sites_filename = "posterior_sites"
 
+    benchmark:
+        os.path.join(
+            "{outdir}",
+            "local_log",
+            "combine_MotEvo_results.benchmark.log"
+        )
+
     conda:
         "envs/combine-motevo-results.yml"
 
@@ -402,6 +416,13 @@ rule plot_heatmap_of_MotEvo_results:
 
     params:
         STRING_sequence = config["sequence"]
+
+    benchmark:
+        os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_heatmap_of_MotEvo_results.benchmark.log"
+        )
 
     conda:
         "envs/plot_heatmap_of_MotEvo_results.yml"
