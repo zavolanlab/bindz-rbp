@@ -84,7 +84,7 @@ for input_file in input_files:
     os.remove(main_file_temp)  # delete the temporary file
 
     prob_mat = logomaker.transform_matrix(
-        crp_matrix_df, from_type="counts", to_type="probability"
+        crp_matrix_df, from_type="probability", to_type="weight"
     )
     logo = logomaker.Logo(
         prob_mat,
@@ -93,5 +93,12 @@ for input_file in input_files:
     )
 
     final_png = os.path.join(output_location, filename)  # location for saving the file
+
+    axes = plt.gca() # get current axes of the plots
+    axes.set_ylim([0, 2]) # set the y-axis limits from 0 to 2
+
+    #### Hide the top and the right axes of the plot ####
+    axes.spines['right'].set_color('none') 
+    axes.spines['top'].set_color('none')
 
     plt.savefig(final_png)  # final png saved
