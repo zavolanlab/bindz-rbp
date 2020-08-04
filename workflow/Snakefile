@@ -103,12 +103,9 @@ rule plot_sequence_logos:
             "scripts",
             "sequence_logos.py"
         ),
-        TEMP_ = expand(
-            os.path.join(
-                "{outdir}",
-                "outdir"
-            ),
-            outdir = config["outdir"]
+        TEMP_ = os.path.join(
+            "{outdir}",
+            "outdir"
         )
             
     output:
@@ -386,12 +383,9 @@ rule plot_heatmap_of_MotEvo_results:
     Plot heatmap from the combined_MotEvo_results.tsv file
     """
     input:
-        TSV_combined_MotEvo_results = expand(
-            os.path.join(
-                "{outdir}",
-                "combined_MotEvo_results.tsv"
-            ),
-            outdir = config["outdir"]
+        TSV_combined_MotEvo_results = os.path.join(
+            "{outdir}",
+            "combined_MotEvo_results.tsv"
         ), 
         SCRIPT_ = os.path.join(
             config["pipeline_path"],
