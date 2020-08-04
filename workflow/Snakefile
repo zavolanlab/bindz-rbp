@@ -43,6 +43,15 @@ rule all:
                 "ProbabilityVsSequence.svg"
             ),
             outdir = config["outdir"]
+        ),
+        PNG_sequence_logos = expand( 
+            os.path.join(
+                "{outdir}",
+                "sequence_logos",
+                "{pwm_dir}.png"
+            ),
+            outdir = config["outdir"],
+            pwm_dir = gather_motifs_names(config["pwm_directory"])
         )
 
 rule create_results_directory:
@@ -72,6 +81,74 @@ rule create_results_directory:
         mkdir -p {params.DIR_output_dir}; \
         mkdir -p {params.LOG_local_log}; \
         touch {output.TEMP_}
+        """
+
+rule plot_sequence_logos:
+    """
+    Plot sequence logo for the motifs
+    """
+    input:
+        FILE_pwm = expand(
+            os.path.abspath(
+                os.path.join(
+                    config["pwm_directory"],
+                    "{pwm_dir}"
+                )
+            ),
+            pwm_dir = gather_motifs_names(config["pwm_directory"])
+        ),
+        SCRIPT_ = os.path.join(
+            config["pipeline_path"],
+            "workflow",
+            "scripts",
+            "sequence_logos.py"
+        ),
+        TEMP_ = os.path.join(
+            "{outdir}",
+            "outdir"
+        )
+            
+    output:
+        PNG_sequence_logos = os.path.join(
+            "{outdir}",
+            "sequence_logos",
+            "{pwm_dir}.png"
+        )
+
+    params:
+        DIR_sequence_logos = os.path.join(
+            "{outdir}",
+            "sequence_logos"
+        )
+
+    log:
+        LOG_local_stdout = os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_sequence_logos.{pwm_dir}.stdout.log"
+        ),
+        LOG_local_stderr = os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_sequence_logos.{pwm_dir}.stderr.log"
+        )
+
+    benchmark:
+        os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_sequence_logos.{pwm_dir}.benchmark.log"
+        )
+    
+    conda:
+        "envs/plot_sequence_logos.yml"
+
+    shell:
+        """
+        python {input.SCRIPT_} \
+        --input_files {input.FILE_pwm} \
+        --output_location {params.DIR_sequence_logos} \
+        1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """
 
 rule prepare_MotEvo_parameters:
@@ -302,16 +379,32 @@ rule combine_MotEvo_results:
         )
 
     output:
-        TSV_combined_MotEvo_results = expand(
-            os.path.join(
-                "{outdir}",
-                "combined_MotEvo_results.tsv"
-            ),
-            outdir = config["outdir"]
+        TSV_combined_MotEvo_results = os.path.join(
+            "{outdir}",
+            "combined_MotEvo_results.tsv"
         )
 
     params:
         STR_binding_sites_filename = "posterior_sites"
+
+    log:
+        LOG_local_stdout = os.path.join(
+            "{outdir}",
+            "local_log",
+            "combine_MotEvo_results.stdout.log"
+        ),
+        LOG_local_stderr = os.path.join(
+            "{outdir}",
+            "local_log",
+            "combine_MotEvo_results.stderr.log"
+        )
+
+    benchmark:
+        os.path.join(
+            "{outdir}",
+            "local_log",
+            "combine_MotEvo_results.benchmark.log"
+        )
 
     conda:
         "envs/combine-motevo-results.yml"
@@ -321,7 +414,8 @@ rule combine_MotEvo_results:
         python {input.SCRIPT_} \
         --input_directories {input.DIR_MotEvo_results_pwm} \
         --filename {params.STR_binding_sites_filename} \
-        --outfile {output.TSV_combined_MotEvo_results}
+        --outfile {output.TSV_combined_MotEvo_results} \
+        1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """
 
 rule plot_heatmap_of_MotEvo_results:
@@ -329,12 +423,9 @@ rule plot_heatmap_of_MotEvo_results:
     Plot heatmap from the combined_MotEvo_results.tsv file
     """
     input:
-        TSV_combined_MotEvo_results = expand(
-            os.path.join(
-                "{outdir}",
-                "combined_MotEvo_results.tsv"
-            ),
-            outdir = config["outdir"]
+        TSV_combined_MotEvo_results = os.path.join(
+            "{outdir}",
+            "combined_MotEvo_results.tsv"
         ), 
         SCRIPT_ = os.path.join(
             config["pipeline_path"],
@@ -344,16 +435,32 @@ rule plot_heatmap_of_MotEvo_results:
         )
 
     output:
-        SVG_Heatmap_file = expand(
-            os.path.join(
-                "{outdir}",
-                "ProbabilityVsSequence.svg"
-            ),
-            outdir = config["outdir"]
+        SVG_Heatmap_file = os.path.join(
+            "{outdir}",
+            "ProbabilityVsSequence.svg"
         )
 
     params:
         STRING_sequence = config["sequence"]
+
+    log:
+        LOG_local_stdout = os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_heatmap_of_MotEvo_results.stdout.log"
+        ),
+        LOG_local_stderr = os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_heatmap_of_MotEvo_results.stderr.log"
+        )
+
+    benchmark:
+        os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_heatmap_of_MotEvo_results.benchmark.log"
+        )
 
     conda:
         "envs/plot_heatmap_of_MotEvo_results.yml"
@@ -363,5 +470,6 @@ rule plot_heatmap_of_MotEvo_results:
         Rscript {input.SCRIPT_} \
         --input_tsv {input.TSV_combined_MotEvo_results} \
         --input_sequence {params.STRING_sequence} \
-        --outfile {output.SVG_Heatmap_file}
+        --outfile {output.SVG_Heatmap_file} \
+        1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """

@@ -15,7 +15,7 @@ options(warn = -1)
 
 # load libraries
 library("optparse")
-library("ggplot2")
+library(ggplot2)
 
 # list the command-line arguments
 option_list <- list(
@@ -114,4 +114,4 @@ a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= Bin
   theme_classic()+ 
   coord_equal() #make the grid squares and independent of number of motifs analyzed
 
-ggsave(output_tsv, device="png", width=12)
+ggsave(output_tsv, width=12)

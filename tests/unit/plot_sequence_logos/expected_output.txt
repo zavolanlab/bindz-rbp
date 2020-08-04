@@ -1,0 +1,6 @@
+./tests/unit/plot_sequence_logos/motif_HNRNPF_820.png
+./tests/unit/plot_sequence_logos/motif_HNRNPF_821.png
+./tests/unit/plot_sequence_logos/motif_HNRNPF_822.png
+./tests/unit/plot_sequence_logos/motif_HNRNPF_823.png
+./tests/unit/plot_sequence_logos/motif_HNRNPF_824.png
+

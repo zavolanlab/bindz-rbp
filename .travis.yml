@@ -17,6 +17,7 @@ before_script:
   - conda env create -f envs/dev.yml
   - conda env create -f workflow/envs/plot_heatmap_of_MotEvo_results.yml
   - conda env create -f workflow/envs/combine-motevo-results.yml
+  - conda env create -f workflow/envs/plot_sequence_logos.yml
   # Activate the main env
   - conda activate binding-scanner && echo $CONDA_DEFAULT_ENV
 
@@ -44,6 +45,13 @@ script:
     --organism Mus_musculus
     --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
   - md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_mmu.md5
+  # Test sequence_logos.py script
+  - conda activate plot_sequence_logos
+  - >
+    python workflow/scripts/sequence_logos.py
+    --input_files tests/unit/plot_sequence_logos/motif_HNRNPF_820 tests/unit/plot_sequence_logos/motif_HNRNPF_821 tests/unit/plot_sequence_logos/motif_HNRNPF_822 tests/unit/plot_sequence_logos/motif_HNRNPF_823 tests/unit/plot_sequence_logos/motif_HNRNPF_824
+    --output_location tests/unit/plot_sequence_logos
+  - md5sum --check tests/unit/plot_sequence_logos/expected_output.md5
   # Test combine-motevo-results.py script
   - conda activate combine-motevo-results
   - >
