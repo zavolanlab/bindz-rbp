@@ -58,6 +58,9 @@ for input_file in input_files:
     main_file_temp = (
         main_file + "_temp"
     )  # create a temporary file which will store only the required data
+    main_file_temp2 = (
+        main_file + "_temp2"
+    )
 
     filename = os.path.split(main_file)[-1]  # filename of the input file
 
@@ -76,15 +79,27 @@ for input_file in input_files:
                     f1.write(line)
                 i = i + 1
 
+    #### Logic to replace T with U in temp file ####            
+    fin = open(main_file_temp, "rt")
+    fout = open(main_file_temp2, "wt")
+
+    for line in fin:
+        fout.write(line.replace('T', 'U'))
+	
+    fin.close()
+    fout.close()
+
     crp_matrix_df = pd.read_csv(
-        main_file_temp, delim_whitespace=True, index_col=0
+        main_file_temp2, delim_whitespace=True, index_col=0
     )  # read csv and convert to dataframe
     crp_matrix_df.head()
 
-    os.remove(main_file_temp)  # delete the temporary file
+    #### Delete the temporary files ####
+    os.remove(main_file_temp)  
+    os.remove(main_file_temp2)
 
     prob_mat = logomaker.transform_matrix(
-        crp_matrix_df, from_type="probability", to_type="weight"
+        crp_matrix_df, from_type="probability", to_type="information"
     )
     logo = logomaker.Logo(
         prob_mat,
