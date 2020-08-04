@@ -108,8 +108,8 @@ rule plot_sequence_logos:
                 os.path.join(
                     "{outdir}",
                     "outdir"
-                    ),
-        outdir = config["outdir"]
+                ),
+                outdir = config["outdir"]
             )
             
     output:
@@ -405,7 +405,7 @@ rule plot_heatmap_of_MotEvo_results:
         SVG_Heatmap_file = os.path.join(
             "{outdir}",
             "ProbabilityVsSequence.svg"
-            )
+        )
 
     params:
         STRING_sequence = config["sequence"]
