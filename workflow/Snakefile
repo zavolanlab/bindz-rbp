@@ -99,11 +99,11 @@ rule plot_sequence_logos:
                 pwm_dir = gather_motifs_names(config["pwm_directory"])
             ),
         SCRIPT_ = os.path.join(
-            config["pipeline_path"],
-            "workflow",
-            "scripts",
-            "sequence_logos.py"
-            ),
+                config["pipeline_path"],
+                "workflow",
+                "scripts",
+                "sequence_logos.py"
+                ),
         TEMP_ = expand(
                 os.path.join(
                     "{outdir}",
@@ -113,23 +113,16 @@ rule plot_sequence_logos:
             )
             
     output:
-        PNG_sequence_logos = expand( 
-            os.path.join(
+        PNG_sequence_logos = os.path.join(
                 "{outdir}",
                 "sequence_logos",
                 "{pwm_dir}.png"
-            ),
-            outdir = config["outdir"],
-            pwm_dir = gather_motifs_names(config["pwm_directory"])
             )
 
     params:
-        DIR_sequence_logos = expand( 
-            os.path.join(
+        DIR_sequence_logos = os.path.join(
                 "{outdir}",
                 "sequence_logos"
-            ),
-            outdir = config["outdir"]
             )
     
     conda:
