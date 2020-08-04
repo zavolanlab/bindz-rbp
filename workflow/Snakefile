@@ -44,7 +44,6 @@ rule all:
             ),
             outdir = config["outdir"]
         ),
-
         PNG_sequence_logos = expand( 
             os.path.join(
                 "{outdir}",
@@ -90,40 +89,40 @@ rule plot_sequence_logos:
     """
     input:
         FILE_pwm = expand(
-                os.path.abspath(
-                    os.path.join(
-                        config["pwm_directory"],
-                        "{pwm_dir}"
-                    )
-                ),
-                pwm_dir = gather_motifs_names(config["pwm_directory"])
-            ),
-        SCRIPT_ = os.path.join(
-                config["pipeline_path"],
-                "workflow",
-                "scripts",
-                "sequence_logos.py"
-                ),
-        TEMP_ = expand(
+            os.path.abspath(
                 os.path.join(
-                    "{outdir}",
-                    "outdir"
-                ),
-                outdir = config["outdir"]
-            )
+                    config["pwm_directory"],
+                    "{pwm_dir}"
+                )
+            ),
+            pwm_dir = gather_motifs_names(config["pwm_directory"])
+        ),
+        SCRIPT_ = os.path.join(
+            config["pipeline_path"],
+            "workflow",
+            "scripts",
+            "sequence_logos.py"
+        ),
+        TEMP_ = expand(
+            os.path.join(
+                "{outdir}",
+                "outdir"
+            ),
+            outdir = config["outdir"]
+        )
             
     output:
         PNG_sequence_logos = os.path.join(
-                "{outdir}",
-                "sequence_logos",
-                "{pwm_dir}.png"
-            )
+            "{outdir}",
+            "sequence_logos",
+            "{pwm_dir}.png"
+        )
 
     params:
         DIR_sequence_logos = os.path.join(
-                "{outdir}",
-                "sequence_logos"
-            )
+            "{outdir}",
+            "sequence_logos"
+        )
     
     conda:
         "envs/plot_sequence_logos.yml"
@@ -366,7 +365,7 @@ rule combine_MotEvo_results:
         TSV_combined_MotEvo_results = os.path.join(
             "{outdir}",
             "combined_MotEvo_results.tsv"
-            )
+        )
 
     params:
         STR_binding_sites_filename = "posterior_sites"
