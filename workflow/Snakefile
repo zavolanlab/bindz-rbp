@@ -121,6 +121,18 @@ rule plot_sequence_logos:
             "sequence_logos"
         )
 
+    log:
+        LOG_local_stdout = os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_sequence_logos.{pwm_dir}.stdout.log"
+        ),
+        LOG_local_stderr = os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_sequence_logos.{pwm_dir}.stderr.log"
+        )
+
     benchmark:
         os.path.join(
             "{outdir}",
@@ -135,7 +147,8 @@ rule plot_sequence_logos:
         """
         python {input.SCRIPT_} \
         --input_files {input.FILE_pwm} \
-        --output_location {params.DIR_sequence_logos}
+        --output_location {params.DIR_sequence_logos} \
+        1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """
 
 rule prepare_MotEvo_parameters:
@@ -374,6 +387,18 @@ rule combine_MotEvo_results:
     params:
         STR_binding_sites_filename = "posterior_sites"
 
+    log:
+        LOG_local_stdout = os.path.join(
+            "{outdir}",
+            "local_log",
+            "combine_MotEvo_results.stdout.log"
+        ),
+        LOG_local_stderr = os.path.join(
+            "{outdir}",
+            "local_log",
+            "combine_MotEvo_results.stderr.log"
+        )
+
     benchmark:
         os.path.join(
             "{outdir}",
@@ -389,7 +414,8 @@ rule combine_MotEvo_results:
         python {input.SCRIPT_} \
         --input_directories {input.DIR_MotEvo_results_pwm} \
         --filename {params.STR_binding_sites_filename} \
-        --outfile {output.TSV_combined_MotEvo_results}
+        --outfile {output.TSV_combined_MotEvo_results} \
+        1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """
 
 rule plot_heatmap_of_MotEvo_results:
@@ -417,6 +443,18 @@ rule plot_heatmap_of_MotEvo_results:
     params:
         STRING_sequence = config["sequence"]
 
+    log:
+        LOG_local_stdout = os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_heatmap_of_MotEvo_results.stdout.log"
+        ),
+        LOG_local_stderr = os.path.join(
+            "{outdir}",
+            "local_log",
+            "plot_heatmap_of_MotEvo_results.stderr.log"
+        )
+
     benchmark:
         os.path.join(
             "{outdir}",
@@ -432,5 +470,6 @@ rule plot_heatmap_of_MotEvo_results:
         Rscript {input.SCRIPT_} \
         --input_tsv {input.TSV_combined_MotEvo_results} \
         --input_sequence {params.STRING_sequence} \
-        --outfile {output.SVG_Heatmap_file}
+        --outfile {output.SVG_Heatmap_file} \
+        1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """
