@@ -39,12 +39,12 @@ option_list <- list(
     type = "character",
     help = "location and name of output heatmap"
   ),
-  make_option(c("--include_sequence_logos"),
-    action = "store_true",
-    dest = "include_sequence_logos",
-    type = "logical",
+  make_option(c("--sequence_logos_directory"),
+    action = "store",
+    dest = "sequence_logos_directory",
+    type = "character",
     default=FALSE,
-    help = "location and name of output heatmap"
+    help = "location of directory of sequence logos"
   )
 )
 # parse command-line arguments
@@ -60,7 +60,7 @@ opt <- parse_args(opt_parser)
 input_sequence <- opt$input_sequence 
 input_tsv <- opt$input_tsv
 output_tsv <- opt$output_tsv
-include_sequence_logos <- opt$include_sequence_logos
+sequence_logos_directory <- opt$sequence_logos_directory
 
 # This will be the hidden column names for the graph
 x_axis_numbers = 1:nchar(input_sequence)
@@ -117,13 +117,17 @@ input_seq = strsplit(input_sequence,"")
 
 labels = c()
 
-for (label in y_axis_labels) 
+if(sequence_logos_directory != FALSE)
 {
-	labels[label] = paste("<img src='./tests/integration/output/sequence_logos/motif_", label, ".png'
-    width='100' height='18' /><br><b>", label, "<b>", sep = "")
+	for (label in y_axis_labels) 
+	{
+		labels[label] = paste("<img src='", sequence_logos_directory, "/motif_", label, ".png'
+    	width='100' height='18' /><br><b>", label, "<b>", sep = "")
+	}	
 }
 
-if(include_sequence_logos)
+
+if(sequence_logos_directory != FALSE)
 {
 	a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= Binding_Probability)) + 
   geom_tile(color = "gray") + 
