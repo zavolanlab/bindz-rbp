@@ -71,6 +71,10 @@ rule create_results_directory:
         LOG_local_log = os.path.join(
             "{outdir}",
             "local_log"
+        ),
+        LOG_cluster_log = os.path.join(
+            "{outdir}",
+            "cluster_log"
         )
 
     conda:
@@ -80,6 +84,7 @@ rule create_results_directory:
         """
         mkdir -p {params.DIR_output_dir}; \
         mkdir -p {params.LOG_local_log}; \
+        mkdir -p {params.LOG_cluster_log}; \
         touch {output.TEMP_}
         """
 
@@ -119,6 +124,11 @@ rule plot_sequence_logos:
         DIR_sequence_logos = os.path.join(
             "{outdir}",
             "sequence_logos"
+        ),
+        LOG_cluster_log = os.path.join(
+            "{outdir}",
+            "cluster_log",
+            "plot_sequence_logos.{pwm_dir}.log"
         )
 
     log:
@@ -173,7 +183,12 @@ rule prepare_MotEvo_parameters:
         FLOAT_MotEvo_min_binding_posterior = \
             config["MotEvo_min_binding_posterior"],
         INT_MotEvo_Markov_chain_order = \
-            config["MotEvo_Markov_chain_order"]
+            config["MotEvo_Markov_chain_order"],
+        LOG_cluster_log = os.path.join(
+            "{outdir}",
+            "cluster_log",
+            "prepare_MotEvo_parameters.log"
+        )
 
     log:
         LOG_local_stdout = os.path.join(
@@ -253,7 +268,12 @@ rule prepare_sequence_for_MotEvo:
 
     params:
         STR_sequence = config["sequence"],
-        STR_MotEvo_fasta_header_tag = ">>MOTEVO_input-sequence"
+        STR_MotEvo_fasta_header_tag = ">>MOTEVO_input-sequence",
+        LOG_cluster_log = os.path.join(
+            "{outdir}",
+            "cluster_log",
+            "prepare_sequence_for_MotEvo.log"
+        )
 
     log:
         # stdout is used by the echo command
@@ -322,6 +342,11 @@ rule run_MotEvo_analysis:
                 "{outdir}",
                 "sequence.fasta",
             )
+        ),
+        LOG_cluster_log = os.path.join(
+            "{outdir}",
+            "cluster_log",
+            "run_MotEvo_analysis.{pwm_dir}.log"
         )
 
     log:
@@ -385,7 +410,12 @@ rule combine_MotEvo_results:
         )
 
     params:
-        STR_binding_sites_filename = "posterior_sites"
+        STR_binding_sites_filename = "posterior_sites",
+        LOG_cluster_log = os.path.join(
+            "{outdir}",
+            "cluster_log",
+            "combine_MotEvo_results.log"
+        )
 
     log:
         LOG_local_stdout = os.path.join(
@@ -445,6 +475,11 @@ rule plot_heatmap_of_MotEvo_results:
         DIR_sequence_logos = os.path.join(
             "{outdir}",
             "sequence_logos"
+        ),
+        LOG_cluster_log = os.path.join(
+            "{outdir}",
+            "cluster_log",
+            "plot_heatmap_of_MotEvo_results.log"
         )
 
     log:
