@@ -37,10 +37,10 @@ rule all:
     Target rule with final output of the pipeline
     """
     input:
-        SVG_Heatmap_file = expand(
+        PDF_Heatmap_file = expand(
             os.path.join(
                 "{outdir}",
-                "ProbabilityVsSequence.svg"
+                "ProbabilityVsSequence.pdf"
             ),
             outdir = config["outdir"]
         ),
@@ -435,9 +435,9 @@ rule plot_heatmap_of_MotEvo_results:
         )
 
     output:
-        SVG_Heatmap_file = os.path.join(
+        PDF_Heatmap_file = os.path.join(
             "{outdir}",
-            "ProbabilityVsSequence.svg"
+            "ProbabilityVsSequence.pdf"
         )
 
     params:
@@ -474,7 +474,7 @@ rule plot_heatmap_of_MotEvo_results:
         Rscript {input.SCRIPT_} \
         --input_tsv {input.TSV_combined_MotEvo_results} \
         --input_sequence {params.STRING_sequence} \
-        --outfile {output.SVG_Heatmap_file} \
+        --outfile {output.PDF_Heatmap_file} \
         --sequence_logos_directory {params.DIR_sequence_logos} \
         1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """
