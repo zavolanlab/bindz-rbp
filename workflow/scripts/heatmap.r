@@ -156,4 +156,11 @@ if(sequence_logos_directory != FALSE)
   #coord_equal() #make the grid squares and independent of number of motifs analyzed
 }
 
-ggsave(output_tsv, width=12, height = length(y_axis_labels)*2)
+if(length(y_axis_labels)<=10)
+{
+	ggsave(output_tsv, width=12, height = 12, limitsize = FALSE)
+} else
+{
+	ggsave(output_tsv, width=ceiling(length(input_sequence)/15)+10, height = ceiling(length(y_axis_labels)/3)+10, limitsize = FALSE)
+}
+
