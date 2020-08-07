@@ -119,6 +119,7 @@ input_seq = strsplit(input_sequence,"")
 
 labels = c()
 
+#### Add the sequence logo pngs to the dictionary ####
 if(sequence_logos_directory != FALSE)
 {
 	for (label in y_axis_labels) 
