@@ -442,7 +442,6 @@ rule plot_heatmap_of_MotEvo_results:
 
     params:
         STRING_sequence = config["sequence"],
-
         DIR_sequence_logos = os.path.join(
             "{outdir}",
             "sequence_logos"
