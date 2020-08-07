@@ -103,7 +103,7 @@ for input_file in input_files:
     )
     logo = logomaker.Logo(
         prob_mat,
-        ## fade_probabilities=True, ## will fade the smaller probabilities
+        fade_probabilities=True, ## will fade the smaller probabilities
         stack_order="small_on_top",
     )
 
@@ -115,5 +115,6 @@ for input_file in input_files:
     #### Hide the top and the right axes of the plot ####
     axes.spines['right'].set_color('none') 
     axes.spines['top'].set_color('none')
+    axes.spines['left'].set_color('none')
 
     plt.savefig(final_png)  # final png saved

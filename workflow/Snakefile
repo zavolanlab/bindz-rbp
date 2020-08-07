@@ -441,7 +441,11 @@ rule plot_heatmap_of_MotEvo_results:
         )
 
     params:
-        STRING_sequence = config["sequence"]
+        STRING_sequence = config["sequence"],
+        DIR_sequence_logos = os.path.join(
+            "{outdir}",
+            "sequence_logos"
+        )
 
     log:
         LOG_local_stdout = os.path.join(
@@ -471,5 +475,6 @@ rule plot_heatmap_of_MotEvo_results:
         --input_tsv {input.TSV_combined_MotEvo_results} \
         --input_sequence {params.STRING_sequence} \
         --outfile {output.SVG_Heatmap_file} \
+        --sequence_logos_directory {params.DIR_sequence_logos} \
         1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """

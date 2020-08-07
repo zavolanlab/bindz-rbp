@@ -16,6 +16,8 @@ options(warn = -1)
 # load libraries
 library("optparse")
 library(ggplot2)
+library(ggtext)
+
 
 # list the command-line arguments
 option_list <- list(
@@ -36,9 +38,15 @@ option_list <- list(
     dest = "output_tsv",
     type = "character",
     help = "location and name of output heatmap"
+  ),
+  make_option(c("--sequence_logos_directory"),
+    action = "store",
+    dest = "sequence_logos_directory",
+    type = "character",
+    default=FALSE,
+    help = "location of directory of sequence logos"
   )
 )
-
 # parse command-line arguments
 opt_parser <- OptionParser(
   usage = "Usage: %prog [OPTIONS] --message [STRING]",
@@ -52,6 +60,9 @@ opt <- parse_args(opt_parser)
 input_sequence <- opt$input_sequence 
 input_tsv <- opt$input_tsv
 output_tsv <- opt$output_tsv
+sequence_logos_directory <- opt$sequence_logos_directory
+
+input_sequence <- gsub("T", "U", input_sequence) # Replace all T with U in input sequence
 
 # This will be the hidden column names for the graph
 x_axis_numbers = 1:nchar(input_sequence)
@@ -106,12 +117,43 @@ dff <-data.frame(col = rep(colnames(uniform_data), each = nrow(uniform_data)),
 
 input_seq = strsplit(input_sequence,"") 
 
-a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= Binding_Probability)) + 
+labels = c()
+
+#### Add the sequence logo pngs to the dictionary ####
+if(sequence_logos_directory != FALSE)
+{
+	for (label in y_axis_labels) 
+	{
+		labels[label] = paste("<img src='", sequence_logos_directory, "/motif_", label, ".png'
+    	width='100' height='18' /><br><b>", label, "<b>", sep = "")
+	}	
+}
+
+
+if(sequence_logos_directory != FALSE)
+{
+	a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= Binding_Probability)) + 
+  geom_tile(color = "gray") + 
+  scale_x_discrete(breaks=1:nchar(input_sequence),labels=input_seq) + 
+  scale_y_discrete(name = NULL, labels=labels) + 
+  scale_fill_gradientn(colours=c("white","orange","red","dark red"), limits=c(0,1), na.value="white") + # Sets default NA colour and scale
+  labs(x ="Sequence", y = "") + # Name of the x and y axis
+  theme_classic()+
+  theme(
+    axis.text.y = element_markdown(color = "black", size = 11)
+  )+
+  coord_fixed(3)
+  #coord_equal() #make the grid squares and independent of number of motifs analyzed
+} else
+{
+    a <- ggplot(dff, aes(x = reorder(col, sort(as.numeric(col))), y = row, fill= Binding_Probability)) + 
   geom_tile(color = "gray") + 
   scale_x_discrete(breaks=1:nchar(input_sequence),labels=input_seq) + 
   scale_fill_gradientn(colours=c("white","orange","red","dark red"), limits=c(0,1), na.value="white") + # Sets default NA colour and scale
   labs(x ="Sequence", y = "") + # Name of the x and y axis
-  theme_classic()+ 
-  coord_equal() #make the grid squares and independent of number of motifs analyzed
+  theme_classic()+
+  coord_fixed(3)
+  #coord_equal() #make the grid squares and independent of number of motifs analyzed
+}
 
-ggsave(output_tsv, width=12)
+ggsave(output_tsv, width=12, height = length(y_axis_labels)*2)

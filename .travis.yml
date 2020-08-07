@@ -67,6 +67,7 @@ script:
     --input_tsv tests/unit/Plot-heatmap-for-motifs/combined_MotEvo_results.tsv 
     --input_sequence ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG
     --outfile tests/unit/Plot-heatmap-for-motifs/ProbabilityvsSequences.svg
+    --sequence_logos_directory tests/unit/Plot-heatmap-for-motifs/sequence_logos
   #- md5sum --check tests/unit/Plot-heatmap-for-motifs/expected_output.md5
   - conda activate binding-scanner
   # Test snakemake Rulegraph and DAG
