@@ -62,6 +62,8 @@ input_tsv <- opt$input_tsv
 output_tsv <- opt$output_tsv
 sequence_logos_directory <- opt$sequence_logos_directory
 
+input_sequence <- gsub("T", "U", input_sequence) # Replace all T with U in input sequence
+
 # This will be the hidden column names for the graph
 x_axis_numbers = 1:nchar(input_sequence)
 
