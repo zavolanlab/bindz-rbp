@@ -51,15 +51,19 @@ script:
     python workflow/scripts/sequence_logos.py 
     --input_file /home/krish8484/binding-scanner/tests/integration/pwm/motif_HNRNPF_820
     --output_location tests/integration/output/sequence_logos
+  - >
     python workflow/scripts/sequence_logos.py 
     --input_file /home/krish8484/binding-scanner/tests/integration/pwm/motif_HNRNPF_821
     --output_location tests/integration/output/sequence_logos
+  - >
     python workflow/scripts/sequence_logos.py 
     --input_file /home/krish8484/binding-scanner/tests/integration/pwm/motif_HNRNPF_822
     --output_location tests/integration/output/sequence_logos
+  - >
     python workflow/scripts/sequence_logos.py 
     --input_file /home/krish8484/binding-scanner/tests/integration/pwm/motif_HNRNPF_823
     --output_location tests/integration/output/sequence_logos
+  - >
     python workflow/scripts/sequence_logos.py 
     --input_file /home/krish8484/binding-scanner/tests/integration/pwm/motif_HNRNPF_824
     --output_location tests/integration/output/sequence_logos
