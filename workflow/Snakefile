@@ -43,15 +43,6 @@ rule all:
                 "ProbabilityVsSequence.pdf"
             ),
             outdir = config["outdir"]
-        ),
-        PNG_sequence_logos = expand( 
-            os.path.join(
-                "{outdir}",
-                "sequence_logos",
-                "{pwm_dir}.png"
-            ),
-            outdir = config["outdir"],
-            pwm_dir = gather_motifs_names(config["pwm_directory"])
         )
 
 rule create_results_directory:
@@ -153,7 +144,7 @@ rule plot_sequence_logos:
     shell:
         """
         python {input.SCRIPT_} \
-        --input_files {input.FILE_pwm} \
+        --input_file {input.FILE_pwm} \
         --output_location {params.DIR_sequence_logos} \
         1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """
@@ -459,8 +450,16 @@ rule plot_heatmap_of_MotEvo_results:
             "workflow",
             "scripts",
             "heatmap.r"
+        ),
+        PNG_sequence_logos = expand(
+            os.path.join(
+                "{outdir}",
+                "sequence_logos",
+                "{pwm_dir}.png"
+            ),
+            pwm_dir = gather_motifs_names(config["pwm_directory"]),
+            outdir = config["outdir"]
         )
-
     output:
         PDF_Heatmap_file = os.path.join(
             "{outdir}",
