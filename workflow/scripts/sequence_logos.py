@@ -21,9 +21,8 @@ from argparse import ArgumentParser, RawTextHelpFormatter
 parser = ArgumentParser(description=__doc__, formatter_class=RawTextHelpFormatter)
 
 parser.add_argument(
-    "--input_files",
-    nargs="+",
-    dest="input_files",
+    "--input_file",
+    dest="input_file",
     help="input files for sequence logos",
     required=True,
     metavar="FILE",
@@ -47,74 +46,71 @@ if len(sys.argv) == 1:
     sys.exit(1)
 
 #### Storing commnad line arguments in variables ####
-input_files = options.input_files
+input_file = options.input_file
 output_location = options.output_location
 
-input_files = sorted(input_files)
 
-for input_file in input_files:
+main_file = str(input_file)
+main_file_temp = (
+    main_file + "_temp"
+)  # create a temporary file which will store only the required data
+main_file_temp2 = (
+    main_file + "_temp2"
+)
 
-    main_file = str(input_file)
-    main_file_temp = (
-        main_file + "_temp"
-    )  # create a temporary file which will store only the required data
-    main_file_temp2 = (
-        main_file + "_temp2"
-    )
+filename = os.path.split(main_file)[-1]  # filename of the input file
 
-    filename = os.path.split(main_file)[-1]  # filename of the input file
+#### Calculate total number of lines in the file ####
+j = 0
+with open(main_file) as f:
+    for line in f:
+        j = j + 1
 
-    #### Calculate total number of lines in the file ####
-    j = 0
-    with open(main_file) as f:
+#### Copy the contents of the file to temp except 1st, 2nd and last line ####
+i = 0
+with open(main_file) as f:
+    with open(main_file_temp, "w") as f1:
         for line in f:
-            j = j + 1
+            if i != 0 and i != 1 and i != j - 1:
+                f1.write(line)
+            i = i + 1
 
-    #### Copy the contents of the file to temp except 1st, 2nd and last line ####
-    i = 0
-    with open(main_file) as f:
-        with open(main_file_temp, "w") as f1:
-            for line in f:
-                if i != 0 and i != 1 and i != j - 1:
-                    f1.write(line)
-                i = i + 1
+#### Logic to replace T with U in temp file ####            
+fin = open(main_file_temp, "rt")
+fout = open(main_file_temp2, "wt")
 
-    #### Logic to replace T with U in temp file ####            
-    fin = open(main_file_temp, "rt")
-    fout = open(main_file_temp2, "wt")
+for line in fin:
+    fout.write(line.replace('T', 'U'))
 
-    for line in fin:
-        fout.write(line.replace('T', 'U'))
-	
-    fin.close()
-    fout.close()
+fin.close()
+fout.close()
 
-    crp_matrix_df = pd.read_csv(
-        main_file_temp2, delim_whitespace=True, index_col=0
-    )  # read csv and convert to dataframe
-    crp_matrix_df.head()
+crp_matrix_df = pd.read_csv(
+    main_file_temp2, delim_whitespace=True, index_col=0
+)  # read csv and convert to dataframe
+crp_matrix_df.head()
 
-    #### Delete the temporary files ####
-    os.remove(main_file_temp)  
-    os.remove(main_file_temp2)
+#### Delete the temporary files ####
+os.remove(main_file_temp)  
+os.remove(main_file_temp2)
 
-    prob_mat = logomaker.transform_matrix(
-        crp_matrix_df, from_type="probability", to_type="information"
-    )
-    logo = logomaker.Logo(
-        prob_mat,
-        fade_probabilities=True, ## will fade the smaller probabilities
-        stack_order="small_on_top",
-    )
+prob_mat = logomaker.transform_matrix(
+    crp_matrix_df, from_type="probability", to_type="information"
+)
+logo = logomaker.Logo(
+    prob_mat,
+    fade_probabilities=True, ## will fade the smaller probabilities
+    stack_order="small_on_top",
+)
 
-    final_png = os.path.join(output_location, filename)  # location for saving the file
+final_png = os.path.join(output_location, filename)  # location for saving the file
 
-    axes = plt.gca() # get current axes of the plots
-    axes.set_ylim([0, 2]) # set the y-axis limits from 0 to 2
+axes = plt.gca() # get current axes of the plots
+axes.set_ylim([0, 2]) # set the y-axis limits from 0 to 2
 
-    #### Hide the top and the right axes of the plot ####
-    axes.spines['right'].set_color('none') 
-    axes.spines['top'].set_color('none')
-    axes.spines['left'].set_color('none')
+#### Hide the top and the right axes of the plot ####
+axes.spines['right'].set_color('none') 
+axes.spines['top'].set_color('none')
+axes.spines['left'].set_color('none')
 
-    plt.savefig(final_png)  # final png saved
+plt.savefig(final_png)  # final png saved

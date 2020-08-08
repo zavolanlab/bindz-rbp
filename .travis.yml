@@ -48,8 +48,24 @@ script:
   # Test sequence_logos.py script
   - conda activate plot_sequence_logos
   - >
-    python workflow/scripts/sequence_logos.py
-    --input_files tests/unit/plot_sequence_logos/motif_HNRNPF_820 tests/unit/plot_sequence_logos/motif_HNRNPF_821 tests/unit/plot_sequence_logos/motif_HNRNPF_822 tests/unit/plot_sequence_logos/motif_HNRNPF_823 tests/unit/plot_sequence_logos/motif_HNRNPF_824
+    python workflow/scripts/sequence_logos.py 
+    --input_file tests/unit/plot_sequence_logos/motif_HNRNPF_820
+    --output_location tests/unit/plot_sequence_logos
+  - >
+    python workflow/scripts/sequence_logos.py 
+    --input_file tests/unit/plot_sequence_logos/motif_HNRNPF_821
+    --output_location tests/unit/plot_sequence_logos
+  - >
+    python workflow/scripts/sequence_logos.py 
+    --input_file tests/unit/plot_sequence_logos/motif_HNRNPF_822
+    --output_location tests/unit/plot_sequence_logos
+  - >
+    python workflow/scripts/sequence_logos.py 
+    --input_file tests/unit/plot_sequence_logos/motif_HNRNPF_823
+    --output_location tests/unit/plot_sequence_logos
+  - >
+    python workflow/scripts/sequence_logos.py 
+    --input_file tests/unit/plot_sequence_logos/motif_HNRNPF_824
     --output_location tests/unit/plot_sequence_logos
   - md5sum --check tests/unit/plot_sequence_logos/expected_output.md5
   # Test combine-motevo-results.py script
