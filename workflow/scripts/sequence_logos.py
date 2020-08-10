@@ -79,8 +79,13 @@ with open(main_file) as f:
 fin = open(main_file_temp, "rt")
 fout = open(main_file_temp2, "wt")
 
+i=0
 for line in fin:
+    words = line.split()
+    if(i!=0 and words[1] == words[4] == words[2] == words[3] == "25.0"):
+            line = words[0] + "\t25.0\t25.0\t25.01\t24.99\n"
     fout.write(line.replace('T', 'U'))
+    i = i+1
 
 fin.close()
 fout.close()
@@ -104,6 +109,7 @@ logo = logomaker.Logo(
 )
 
 final_png = os.path.join(output_location, filename)  # location for saving the file
+final_png = final_png + ".png"
 
 axes = plt.gca() # get current axes of the plots
 axes.set_ylim([0, 2]) # set the y-axis limits from 0 to 2
