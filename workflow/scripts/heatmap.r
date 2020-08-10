@@ -124,8 +124,8 @@ if(sequence_logos_directory != FALSE)
 {
 	for (label in y_axis_labels) 
 	{
-		labels[label] = paste("<img src='", sequence_logos_directory, "/motif_", label, ".png'
-    	width='100' height='18' /><br><b>", label, "<b>", sep = "")
+		labels[label] = paste("<b>", label, "<b><img src='", sequence_logos_directory, "/motif_", label, ".png'
+    	width='100' height='18'>", sep = "")
 	}	
 }
 
@@ -156,11 +156,4 @@ if(sequence_logos_directory != FALSE)
   #coord_equal() #make the grid squares and independent of number of motifs analyzed
 }
 
-if(length(y_axis_labels)<=10)
-{
-	ggsave(output_tsv, width=12, height = 12, limitsize = FALSE)
-} else
-{
-	ggsave(output_tsv, width=ceiling(length(input_sequence)/15)+10, height = ceiling(length(y_axis_labels)/3)+10, limitsize = FALSE)
-}
-
+ggsave(output_tsv, width=ceiling(nchar(input_sequence)/4)+10, height = ceiling(length(y_axis_labels))+10, limitsize = FALSE)
