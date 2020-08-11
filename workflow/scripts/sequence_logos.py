@@ -82,7 +82,7 @@ fout = open(main_file_temp2, "wt")
 i=0
 for line in fin:
     words = line.split()
-    if(i!=0 and words[1] == words[4] == words[2] == words[3] == "25.0"):
+    if(i!=0 and float(words[1]) == float(words[4]) == float(words[2]) == float(words[3]) == 25.0):
             line = words[0] + "\t25.0\t25.0\t25.01\t24.99\n"
     fout.write(line.replace('T', 'U'))
     i = i+1
