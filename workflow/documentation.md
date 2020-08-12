@@ -150,7 +150,7 @@ Target rule with final output of the pipeline
 
 - **Input**
   - A TSV file containing information of every analysed PWM directory generated from rule [**combine_MotEvo_results**](#combine_MotEvo_results)
-  - Script that will plot the heatmap with sequence logos as y axis ticks [`sequence_logos.py`](../workflow/scripts/sequence_logos.py)
+  - Script that will plot the heatmap with sequence logos as y axis ticks [`heatmap.r`](../workflow/scripts/heatmap.r)
   - Sequence logo generated for each motif from the rule [**plot_sequence_logos**](#plot_sequence_logos)
 
 - **Parameters**
