@@ -20,14 +20,6 @@ on installation and usage please see [here](../README.md).
 
 ## Description of workflow steps
 
-> The workflow consists of one Snakemake file:
-> It contains general steps for the creation of indices and
-> other required files derived from the annotations, steps that are applicable
-> to both sequencing modes, and steps that deal with gathering, summarizing or
-> combining results. Individual steps of the workflow are described briefly. 
-> Parameters that can be modified by the user (via the config file) are 
-> also described.
-
 ### Rule graph
 
 ![rule_graph][rule-graph]
@@ -41,7 +33,7 @@ Visual representation of workflow. Automatically prepared with
 
 ##### Requirements
 
-- a config file as in [`config.yml`](../tests/integration/config.yml)
+- a config file as in [`config.yml`](config/config-template.yml)
 - a pwm directory containing files with binding probabilities matrices of various motifs.
 
 Parameter name | Description | Data type(s)
@@ -49,7 +41,7 @@ Parameter name | Description | Data type(s)
 pipeline_path | Absolute path to the pipeline directory | `str`
 sequence | Input Sequence | `str`
 pwm_directory | Path to the directory with TRANSFAC-formatted PWM files | `str`
-outdir | Path for the output directory | `str`
+outdir | Path to the output directory | `str`
 MotEvo_bg_binding_prior | MotEvo parameter: prior probability for the background binding | `float`
 MotEvo_min_binding_posterior | MotEvo parameter: prior minimum binding posterior probability | `float`
 MotEvo_Markov_chain_order | MotEvo parameter: order of the Markov chain | `float`
@@ -170,3 +162,4 @@ Target rule with final output of the pipeline
     - A heatmap depicting all the motifs with their sequence logos and names as y-axis tick-labels; input sequence as x-axis; and each cell representing the probability of corresponding motif and the part of the sequence.
 
 [rule-graph]: ../images/rulegraph.svg
+[docs-snakemake]: <https://snakemake.readthedocs.io/en/stable/>
