@@ -71,6 +71,9 @@ rule create_results_directory:
     conda:
         "envs/bash.yml"
 
+    singularity:
+        "docker://bash:4.4.18"   
+
     shell:
         """
         mkdir -p {params.DIR_output_dir}; \
@@ -140,6 +143,9 @@ rule plot_sequence_logos:
     
     conda:
         "envs/plot_sequence_logos.yml"
+
+    singularity:
+        "docker://zavolab/pythonlogomaker:0.8"  
 
     shell:
         """
@@ -281,6 +287,9 @@ rule prepare_sequence_for_MotEvo:
     conda:
         "envs/bash.yml"
 
+    singularity:
+        "docker://bash:4.4.18"
+
     shell:
         """
         echo "{params.STR_MotEvo_fasta_header_tag}" \
@@ -359,6 +368,9 @@ rule run_MotEvo_analysis:
     conda:
         "envs/motevo.yml"
 
+    singularity:
+        "docker://zavolab/motevo:1.12"
+
     shell:
         """
         (mkdir -p {output.DIR_MotEvo_results_pwm} && \
@@ -426,6 +438,9 @@ rule combine_MotEvo_results:
 
     conda:
         "envs/combine-motevo-results.yml"
+
+    singularity:
+        "docker://amancevice/pandas:1.0.1"
 
     shell: 
         """
@@ -499,6 +514,9 @@ rule plot_heatmap_of_MotEvo_results:
 
     conda:
         "envs/plot_heatmap_of_MotEvo_results.yml"
+
+    singularity:
+        "docker://zavolab/r-zavolab:4.0.0"     
 
     shell: 
         """
