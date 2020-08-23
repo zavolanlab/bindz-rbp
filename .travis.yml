@@ -28,7 +28,7 @@ install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y cryptsetup-bin; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then eval "$(gimme 1.13.1)"; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then go version; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export VERSION=3.5.2 # adjust this as necessary; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export VERSION=3.5.2; fi # adjust this as necessary
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then tar -xzf singularity-${VERSION}.tar.gz; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd singularity; fi
