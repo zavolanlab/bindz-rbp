@@ -16,6 +16,27 @@ install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
+  # Install singularity
+  - sudo apt-get update
+  - sudo apt-get install -y build-essential
+  - sudo apt-get install -y uuid-dev 
+  - sudo apt-get install -y squashfs-tools
+  - sudo apt-get install -y libseccomp-dev
+  - sudo apt-get install -y wget
+  - sudo apt-get install -y pkg-config
+  - sudo apt-get install -y git
+  - sudo apt-get install -y cryptsetup-bin
+  - eval "$(gimme 1.13.1)"
+  - go version
+  - export VERSION=3.5.2 # adjust this as necessary
+  - wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz
+  - tar -xzf singularity-${VERSION}.tar.gz
+  - cd singularity
+  - ./mconfig
+  - make -C ./builddir
+  - sudo make -C ./builddir install
+  - singularity --version
+  - cd ..
 
 before_script:
   # Create conda virtual environments
