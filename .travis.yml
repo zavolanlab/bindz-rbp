@@ -119,4 +119,4 @@ script:
   # Test pipeline execution: local, conda envs:
   - bash tests/integration/execution/snakemake_local_run_conda_environments.sh
   - md5sum --check tests/integration/expected_output.md5
-  
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then bash tests/integration/execution/snakemake_local_run_singularity_environments.sh; fi
