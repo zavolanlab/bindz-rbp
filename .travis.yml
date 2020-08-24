@@ -17,6 +17,7 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
   # Install singularity
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y build-essential; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y uuid-dev ; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y squashfs-tools; fi
@@ -118,4 +119,4 @@ script:
   - md5sum --check tests/integration/expected_output.md5
   - rm -rf tests/integration/output/
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then bash tests/integration/execution/snakemake_local_run_singularity_environments.sh; fi
-  - md5sum --check tests/integration/expected_output.md5
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then md5sum --check tests/integration/expected_output.md5; fi
