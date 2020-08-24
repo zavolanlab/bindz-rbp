@@ -17,14 +17,11 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
   # Install singularity
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y build-essential; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y uuid-dev ; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y squashfs-tools; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y libseccomp-dev; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y wget; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y pkg-config; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y git; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y cryptsetup-bin; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then eval "$(gimme 1.13.1)"; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then go version; fi
@@ -119,4 +116,6 @@ script:
   # Test pipeline execution: local, conda envs:
   - bash tests/integration/execution/snakemake_local_run_conda_environments.sh
   - md5sum --check tests/integration/expected_output.md5
+  - rm -rf tests/integration/output/
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then bash tests/integration/execution/snakemake_local_run_singularity_environments.sh; fi
+  - md5sum --check tests/integration/expected_output.md5
