@@ -16,6 +16,25 @@ install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
+  # Install singularity
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y wget; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y build-essential; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y uuid-dev ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y squashfs-tools; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y libseccomp-dev; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y pkg-config; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y cryptsetup-bin; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then eval "$(gimme 1.13.1)"; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then go version; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export VERSION=3.5.2; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then tar -xzf singularity-${VERSION}.tar.gz; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd singularity; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then ./mconfig; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then make -C ./builddir; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo make -C ./builddir install; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then singularity --version; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd ..; fi
 
 before_script:
   # Create conda virtual environments
@@ -98,4 +117,8 @@ script:
   # Test pipeline execution: local, conda envs:
   - bash tests/integration/execution/snakemake_local_run_conda_environments.sh
   - md5sum --check tests/integration/expected_output.md5
-  
+  - rm -rf tests/integration/output/
+  # On Linux: Test pipeline execution: local, singularity containers:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then bash tests/integration/execution/snakemake_local_run_singularity_environments.sh; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then md5sum --check tests/integration/expected_output_singularity.md5; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then rm -rf tests/integration/output/; fi
