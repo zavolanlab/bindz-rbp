@@ -26,7 +26,7 @@ install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y cryptsetup-bin; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then eval "$(gimme 1.13.1)"; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then go version; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export VERSION=3.5.2; fi # adjust this as necessary
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export VERSION=3.5.2; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then tar -xzf singularity-${VERSION}.tar.gz; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd singularity; fi
@@ -120,3 +120,4 @@ script:
   - rm -rf tests/integration/output/
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then bash tests/integration/execution/snakemake_local_run_singularity_environments.sh; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then md5sum --check tests/integration/expected_output_singularity.md5; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; rm -rf tests/integration/output/
