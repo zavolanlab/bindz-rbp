@@ -119,4 +119,4 @@ script:
   - md5sum --check tests/integration/expected_output.md5
   - rm -rf tests/integration/output/
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then bash tests/integration/execution/snakemake_local_run_singularity_environments.sh; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then md5sum --check tests/integration/expected_output.md5; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then md5sum --check tests/integration/expected_output_singularity.md5; fi
