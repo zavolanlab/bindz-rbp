@@ -26,7 +26,7 @@
     - pandas=1.0.1
     - python=3.7.4
     - pyyaml=3.12
-    - snakemake=5.19.0
+    - snakemake=5.23.0
     - unzip=6.0
 
 ...
