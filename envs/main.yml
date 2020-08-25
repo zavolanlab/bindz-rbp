@@ -24,6 +24,7 @@
     - graphviz=2.38.0
     - jinja2=2.10
     - pandas=1.0.1
+    - pulp=1.6.8
     - python=3.7.4
     - pyyaml=3.12
     - snakemake=5.23.0
