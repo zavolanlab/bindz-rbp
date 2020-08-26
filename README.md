@@ -76,13 +76,17 @@ conda activate binding-scanner
 
 ## Optional: Download and parse PWMs from ATtRACT database
 
+Inside this repository we have included a snapshot of a database of Position Weight Matrices for distinct RNA binding proteins ([ATtRACT]: 26-08-2020). We suggest to use the pre-formatted files which we have already prepared: `resources/ATtRACT_hsa` and `resources/ATtRACT_mmu` for *Homo sapiens* and *Mus musculus*, respectively.
+
+However, if the user would like to download the and parse a new version of matrices from ATtRACT we describe the procedure below:
+
 Please change directory to the pipeline's root directory:
 
 ```bash
 cd binding_scanner_git
 ```
 
-In order to utilise Position Weight Matrices from  [ATtRACT] database of known RBPs' binding motifs we provide two scripts:
+In order to utilise Position Weight Matrices from  ATtRACT database of known RBPs' binding motifs we provide two scripts:
 
 1. Download and extract the database into a directory `ATtRACT` under `resources`:
    ```bash
@@ -112,7 +116,13 @@ In order to utilise Position Weight Matrices from  [ATtRACT] database of known R
 
 ## Workflow execution
 
-All the input, output and parameters for the pipeline exeuction should be specified in a snakemake configuration file in YAML format. Such a file might be created based on our prepared template located at `workflow/config/config-template.yml`. Assuming that the user created a `config.yml` and saved it in the repository's root directory (and that it is the current working directory) the workflow might be executed on the local machine with:
+Please change directory to the pipeline's root directory:
+
+```bash
+cd binding_scanner_git
+```
+
+All the input, output and parameters for the pipeline exeuction should be specified in a snakemake configuration file in YAML format. Such a file might be created based on our prepared template located at `workflow/config/config-template.yml`. Assuming that the user created a `config.yml` and **saved it in the repository's root directory** the workflow might be executed on the local machine with:
 ```bash
 snakemake \
     --snakefile="workflow/Snakefile" \
@@ -121,6 +131,12 @@ snakemake \
     --cores=1 \
     --printshellcmds \
     --verbose
+```
+
+We also provide a integration test for the pipeline on a small input dataset to examine if the installation was successful:
+
+```bash
+bash tests/integration/execution/snakemake_local_run_conda_environments.sh
 ```
 
 ## Contributing
