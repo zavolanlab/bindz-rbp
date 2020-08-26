@@ -48,13 +48,17 @@ source .bashrc
 
 ### Step 2: Clone the repository
 
+Cloning repositories requires [git] to be installed (available via `conda`): 
+
+```bash
+conda install git
+```
+
 Please clone this git repository into a desired location (here: binding_scanner_git) with the following command:
 
 ```bash
 git clone https://github.com/zavolanlab/binding-scanner.git binding_scanner_git
 ```
-
-Cloning repositories requires [git] to be installed.
 
 ### Step 3: Build and activate virtual environment for Binding Scanner
 
