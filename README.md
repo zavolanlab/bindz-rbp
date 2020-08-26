@@ -76,32 +76,38 @@ conda activate binding-scanner
 
 ## Optional: Download and parse PWMs from ATtRACT database
 
+Please change directory to the pipeline's root directory:
+
+```bash
+cd binding_scanner_git
+```
+
 In order to utilise Position Weight Matrices from  [ATtRACT] database of known RBPs' binding motifs we provide two scripts:
 
-1. Download and extract the database into a directory `ATtRACT`:
+1. Download and extract the database into a directory `ATtRACT` under `resources`:
    ```bash
-   bash scripts/download-ATtRACT-motifs.sh -o ATtRACT
+   bash scripts/download-ATtRACT-motifs.sh -o resources/ATtRACT
    ```
 2. Parse the database and reformat the PWMs into a TRANSFAC format (currently supported species are *Homo_sapiens* or *Mus_musculus*):
    
    *Homo sapiens*
    ```bash
-    mkdir ATtRACT/ATtRACT_hsa
+    mkdir resources/ATtRACT/ATtRACT_hsa
     python scripts/format-ATtRACT-motifs.py \
-    --pwms ATtRACT/pwm.txt \
-    --names ATtRACT/ATtRACT_db.txt \
+    --pwms resources/ATtRACT/pwm.txt \
+    --names resources/ATtRACT/ATtRACT_db.txt \
     --organism Homo_sapiens \
-    --outdir ATtRACT/ATtRACT_hsa
+    --outdir resources/ATtRACT/ATtRACT_hsa
    ```
 
    *Mus musculus*
    ```bash
-    mkdir ATtRACT/ATtRACT_mmu
+    mkdir resources/ATtRACT/ATtRACT_mmu
     python scripts/format-ATtRACT-motifs.py \
-    --pwms ATtRACT/pwm.txt \
-    --names ATtRACT/ATtRACT_db.txt \
+    --pwms resources/ATtRACT/pwm.txt \
+    --names resources/ATtRACT/ATtRACT_db.txt \
     --organism Mus_musculus \
-    --outdir ATtRACT/ATtRACT_mmu
+    --outdir resources/ATtRACT/ATtRACT_mmu
    ```
 
 ## Workflow execution
