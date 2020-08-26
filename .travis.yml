@@ -50,8 +50,8 @@ script:
   # Download and extract the ATtRACT db
   #- bash scripts/download-ATtRACT-motifs.sh -o ATtRACT # this curl/wget do not work on Travis machine...
   # Extract the backup db
-  - mkdir ATtRACT_backup_05072020
-  - unzip resources/ATtRACT_backup_05072020.zip -d ATtRACT_backup_05072020
+  - mkdir ATtRACT_backup_26082020
+  - unzip resources/ATtRACT_backup_26082020.zip -d ATtRACT_backup_26082020
   # Extract motifs for Homo sapiens
   - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
   - >
