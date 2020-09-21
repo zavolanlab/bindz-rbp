@@ -20,7 +20,7 @@ BindingScanner is a tool for predicting binding sites of RNA-binding proteins in
 
 ## General information
 
-BindingScanner infers binding sites of distinct regulators by calculating their binding probabilities with [Motevo].
+BindingScanner infers binding sites of distinct regulators by calculating their binding probabilities with [MotEvo].
 
 The tool is implemented as a [Snakemake] computational workflow.
 
@@ -166,7 +166,7 @@ by email: <zavolab-biozentrum@unibas.ch>
 
 (c) 2020 [Zavolan lab, Biozentrum, University of Basel][res-zavolab]
 
-[Motevo]: https://academic.oup.com/bioinformatics/article/28/4/487/212418
+[MotEvo]: https://academic.oup.com/bioinformatics/article/28/4/487/212418
 [Snakemake]: https://snakemake.readthedocs.io/en/stable/
 [rule-graph]: images/rulegraph.svg
 [Python 3]: https://www.python.org/download/releases/3.0/
