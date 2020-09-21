@@ -30,7 +30,7 @@ def main():
     parser.add_argument(
         "--pwms",
         dest="pwms",
-        help="motifs provided by attract",
+        help="ATtRACT db file: pwm's of motifs",
         required=True,
         metavar="FILE",
     )
@@ -38,7 +38,7 @@ def main():
     parser.add_argument(
         "--names",
         dest="names",
-        help="names used by attract",
+        help="ATtRACT db file: list of records",
         required=True,
         metavar="FILE",
     )
@@ -46,7 +46,7 @@ def main():
     parser.add_argument(
         "--organism",
         dest="organism",
-        help="names used by attract",
+        help="Organism field in the ATtRACT record list",
         required=False,
         default="0",
     )
@@ -54,7 +54,7 @@ def main():
     parser.add_argument(
         "--outdir",
         dest="outdir",
-        help="output directory for motifs",
+        help="Output directory for the motifs",
         required=True,
         default="0",
     )
