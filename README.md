@@ -33,7 +33,7 @@ Snakemake is a workflow management system that helps to create and execute data 
 ### Step 1: Download and install Miniconda3
 
 To install the latest version of [miniconda] please execute:  
-  
+
 [Linux]:
 
 ```bash
