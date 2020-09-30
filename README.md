@@ -82,7 +82,7 @@ conda activate binding-scanner
 
 Inside this repository we have included a snapshot of a database of Position Weight Matrices for distinct RNA binding proteins ([ATtRACT]: 26-08-2020). We suggest to use the pre-formatted files which we have already prepared: `resources/ATtRACT_hsa` and `resources/ATtRACT_mmu` for *Homo sapiens* and *Mus musculus*, respectively.
 
-However, if the user would like to download the and parse a new version of matrices from ATtRACT we describe the procedure below:
+However, if the user would like to download and parse a new version of matrices from ATtRACT we describe the procedure below:
 
 Please change directory to the pipeline's root directory:
 
