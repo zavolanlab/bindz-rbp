@@ -26,6 +26,8 @@ The tool is implemented as a [Snakemake] workflow.
 
 > ![rule_graph][rule-graph]
 
+The main output of the pipeline are: a tab-separated file (`combined_MotEvo_results.tsv`) and a PDF-formatted image (`ProbabilityVsSequence.pdf`). The former collects all predicted binding sites of all analyzed motifs into one table and reports: binding positions (relative to the input sequence start), binding posterior probability, bound subsequence as well as binding energy. The latter is a visualisation of these binding probabilities in a form of a heatmap.
+
 ## Installation instructions
 
 Snakemake is a workflow management system that helps to create and execute data processing pipelines. It requires [Python 3] and can be most easily installed via the [bioconda] channel from the [anaconda cloud] service.
