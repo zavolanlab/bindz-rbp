@@ -1,0 +1,10 @@
+# all backup emacs and vim files
+*~
+
+# mac files
+.DS_Store
+._*
+
+# snakemake internal directories for tests
+tests/integration/execution/.snakemake/
+.snakemake/

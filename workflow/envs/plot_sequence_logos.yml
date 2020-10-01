@@ -1,0 +1,24 @@
+###############################################################################
+#
+#   Software to be installed in the environment
+#
+#   AUTHOR: Krish Agarwal
+#   AFFILIATION: University_of_Basel
+#   CONTACT: akrish136@gmail.com
+#   CREATED: 02-08-2020
+#   LICENSE: Apache_2.0
+#
+###############################################################################
+---
+
+  name: plot_sequence_logos
+
+  channels:
+    - conda-forge
+    - bioconda
+
+  dependencies:
+    - python=3.7.4
+    - logomaker=0.8
+    - matplotlib=3.3.0
+...
