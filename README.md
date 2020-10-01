@@ -20,9 +20,9 @@ BindingScanner is a tool for predicting binding sites of RNA-binding proteins in
 
 ## General information
 
-BindingScanner infers binding sites of distinct regulators by calculating their binding probabilities with [MotEvo].
+BindingScanner infers binding sites of distinct regulators by calculating posterior probabilities with [MotEvo], given the sequence specificity of regulators, represented as position-specific weight matrices.
 
-The tool is implemented as a [Snakemake] computational workflow.
+The tool is implemented as a [Snakemake] workflow.
 
 > ![rule_graph][rule-graph]
 
@@ -58,7 +58,7 @@ Cloning repositories requires [git] to be installed (available via `conda`):
 conda install git
 ```
 
-Clone this git repository into a desired location (here: binding_scanner_git) with the following command:
+Clone this git repository into a desired location (here: binding_scanner_git in the current working directory ) with the following command:
 
 ```bash
 git clone https://github.com/zavolanlab/binding-scanner.git binding_scanner_git
@@ -90,7 +90,7 @@ Please change directory to the pipeline's root directory:
 cd binding_scanner_git
 ```
 
-To utilise Position Weight Matrices from the ATtRACT database of known RBPs' binding motifs we provide two scripts:
+To utilize position-specific weight matrices from the ATtRACT database of known RBPs' binding motifs we provide two scripts:
 
 1. Download and extract the database into a directory `ATtRACT` under `resources`:
    ```bash
