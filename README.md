@@ -20,7 +20,7 @@ BindingScanner is a tool for predicting binding sites of RNA-binding proteins in
 
 ## General information
 
-BindingScanner infers binding sites of distinct regulators by calculating posterior probabilities with [MotEvo], given the sequence specificity of regulators, represented as position-specific weight matrices.
+BindingScanner is a tool for predicting binding sites of distinct regulators in an RNA sequence by calculating posterior probabilities with [MotEvo], given the sequence specificity of regulators, represented as position-specific weight matrices. It is intended to help in the analysis of individual reporter sequences, by predicting regulatory that may act on the sequence as well as how the binding may be affected by specific mutations introduced in the reporter sequences. The tools scans the input sequence with a set of position-specific weight matrices (PWMs) representing the binding specificity of individual RNA-binding proteins. The run time scales linearly with both the sequence length and with the number of PWMs, so please make sure to test it on your architecture before running it on batches of sequences.
 
 The tool is implemented as a [Snakemake] workflow.
 
