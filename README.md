@@ -2,6 +2,10 @@
 
 # BindingScanner
 
+[![Build Status](https://travis-ci.org/zavolanlab/binding-scanner.svg?branch=dev)](https://travis-ci.org/zavolanlab/binding-scanner)
+[![GitHub license](https://img.shields.io/github/license/zavolanlab/binding-scanner)](https://github.com/zavolanlab/binding-scanner/blob/dev/LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4063595.svg)](https://doi.org/10.5281/zenodo.4063595)
+
 BindingScanner is a tool for predicting binding sites of RNA-binding proteins in a given input RNA sequence, implemented in a snakemake pipeline.
 
 ## Table of Contents
