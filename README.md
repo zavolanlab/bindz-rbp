@@ -1,22 +1,22 @@
 <img align="right" width="50" height="50" src="images/logo.128px.png">
 
-# BindingScanner
+# bindz
 
-[![Build Status](https://travis-ci.org/zavolanlab/binding-scanner.svg?branch=dev)](https://travis-ci.org/zavolanlab/binding-scanner)
-[![GitHub license](https://img.shields.io/github/license/zavolanlab/binding-scanner)](https://github.com/zavolanlab/binding-scanner/blob/dev/LICENSE)
+[![Build Status](https://travis-ci.org/zavolanlab/bindz.svg?branch=dev)](https://travis-ci.org/zavolanlab/bindz)
+[![GitHub license](https://img.shields.io/github/license/zavolanlab/bindz)](https://github.com/zavolanlab/bindz/blob/dev/LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4063595.svg)](https://doi.org/10.5281/zenodo.4063595)
 
-BindingScanner is a tool for predicting binding sites of RNA-binding proteins in a given input RNA sequence, implemented in a snakemake pipeline.
+bindz is a tool for predicting binding sites of RNA-binding proteins in a given input RNA sequence, implemented in a snakemake pipeline.
 
 ## Table of Contents
 
-- [BindingScanner](#bindingscanner)
+- [bindz](#bindz)
   - [Table of Contents](#table-of-contents)
   - [General information](#general-information)
   - [Installation instructions](#installation-instructions)
     - [Step 1: Download and install Miniconda3](#step-1-download-and-install-miniconda3)
     - [Step 2: Clone the repository](#step-2-clone-the-repository)
-    - [Step 3: Build and activate virtual environment for BindingScanner](#step-3-build-and-activate-virtual-environment-for-bindingscanner)
+    - [Step 3: Build and activate virtual environment for bindz](#step-3-build-and-activate-virtual-environment-for-bindz)
   - [Optional: Download and parse PWMs from ATtRACT database](#optional-download-and-parse-pwms-from-attract-database)
   - [Workflow execution](#workflow-execution)
   - [Contributing](#contributing)
@@ -24,7 +24,7 @@ BindingScanner is a tool for predicting binding sites of RNA-binding proteins in
 
 ## General information
 
-BindingScanner is a tool for predicting binding sites of distinct regulators in an RNA sequence by calculating posterior probabilities with [MotEvo], given the sequence specificity of regulators, represented as position-specific weight matrices. It is intended to help in the analysis of individual reporter sequences, by predicting regulatory that may act on the sequence as well as how the binding may be affected by specific mutations introduced in the reporter sequences. The tools scans the input sequence with a set of position-specific weight matrices (PWMs) representing the binding specificity of individual RNA-binding proteins. The run time scales linearly with both the sequence length and with the number of PWMs, so please make sure to test it on your architecture before running it on batches of sequences.
+bindz is a tool for predicting binding sites of distinct regulators in an RNA sequence by calculating posterior probabilities with [MotEvo], given the sequence specificity of regulators, represented as position-specific weight matrices. It is intended to help in the analysis of individual reporter sequences, by predicting regulatory that may act on the sequence as well as how the binding may be affected by specific mutations introduced in the reporter sequences. The tools scans the input sequence with a set of position-specific weight matrices (PWMs) representing the binding specificity of individual RNA-binding proteins. The run time scales linearly with both the sequence length and with the number of PWMs, so please make sure to test it on your architecture before running it on batches of sequences.
 
 The tool is implemented as a [Snakemake] workflow.
 
@@ -64,24 +64,25 @@ Cloning repositories requires [git] to be installed (available via `conda`):
 conda install git
 ```
 
-Clone this git repository into a desired location (here: binding_scanner_git in the current working directory ) with the following command:
+Clone this git repository into a desired location (here: bindz in the current working directory ) with the following command:
 
 ```bash
-git clone https://github.com/zavolanlab/binding-scanner.git binding_scanner_git
+git clone https://github.com/zavolanlab/bindz
+.git bindz
 ```
 
-### Step 3: Build and activate virtual environment for BindingScanner
+### Step 3: Build and activate virtual environment for bindz
 
-To help the users in the installation process we have prepared a recipe for a *conda* virtual environment that contains all the software needed to run BindingScanner. This environment can be created by the following script:
+To help the users in the installation process we have prepared a recipe for a *conda* virtual environment that contains all the software needed to run bindz. This environment can be created by the following script:
 
 ```bash
-bash binding_scanner_git/scripts/create-conda-environment-main.sh
+bash bindz/scripts/create-conda-environment-main.sh
 ```
 
 The built *conda* environment may then be activated with:
 
 ```bash
-conda activate binding-scanner
+conda activate bindz
 ```
 
 ## Optional: Download and parse PWMs from ATtRACT database
@@ -93,7 +94,7 @@ However, if the user would like to download and parse a new version of matrices 
 Please change directory to the pipeline's root directory:
 
 ```bash
-cd binding_scanner_git
+cd bindz
 ```
 
 To utilize position-specific weight matrices from the ATtRACT database of known RBPs' binding motifs we provide two scripts:
@@ -135,7 +136,7 @@ To utilize position-specific weight matrices from the ATtRACT database of known 
 Please change directory to the pipeline's root directory:
 
 ```bash
-cd binding_scanner_git
+cd bindz
 ```
 
 All the input, output and parameters for the pipeline execution should be specified in a snakemake configuration file in YAML format. Such a file can be created based on our prepared template located at `workflow/config/config-template.yml`. Assuming that the user created a `config.yml` and saved it in the repository's root directory (and that it is the current working directory) the workflow can be executed on the local machine with:
@@ -181,5 +182,5 @@ by email: <zavolab-biozentrum@unibas.ch>
 [miniconda]: https://docs.conda.io/en/latest/miniconda.html
 [git]: https://git-scm.com/
 [ATtRACT]: https://attract.cnic.es/index
-[res-issue-tracker]: <https://github.com/zavolanlab/binding-scanner/issues>
+[res-issue-tracker]: <https://github.com/zavolanlab/bindz/issues>
 [res-zavolab]: <https://zavolan.biozentrum.unibas.ch/>
