@@ -12,7 +12,7 @@
 ###############################################################################
 ---
 
-  name: binding-scanner-dev
+  name: bindz-dev
       
   channels:
     - bioconda

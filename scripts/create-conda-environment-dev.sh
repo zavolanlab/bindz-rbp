@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#   Create conda virtual environment for the Binding Scanner (dev)
+#   Create conda virtual environment for bindz (dev)
 #
 #   AUTHOR: Maciej_Bak
 #   AFFILIATION: University_of_Basel
