@@ -3,7 +3,7 @@ name: ci
 on: push
 
 jobs:
-  GitHub:
+  setup-env:
     runs-on: ubuntu-20.04
 
     steps:
@@ -11,5 +11,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Display R version
-        run: R --version
+      - name: Setup miniconda & zarp root env
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.7.4
+          miniconda-version: 4.7.12
+          auto-update-conda: false
+          environment-file: envs/main.yml
+          activate-environment: bindz
+          auto-activate-base: false
+
+      - name: Display all miniconda & env info
+        shell: bash -l {0}
+        run: |
+          conda info -a
+          conda list
