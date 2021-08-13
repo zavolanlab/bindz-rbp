@@ -1,6 +1,6 @@
 <img align="right" width="50" height="50" src="images/logo.128px.png">
 
-# bindz
+# _bindz_
 
 [![ci](https://github.com/zavolanlab/bindz/workflows/ci/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz/actions?query=workflow%3Aci)
 [![CodeFactor](https://www.codefactor.io/repository/github/zavolanlab/bindz/badge)](https://www.codefactor.io/repository/github/zavolanlab/bindz)
@@ -12,7 +12,7 @@ bindz is a tool for predicting binding sites of RNA-binding proteins in a given 
 
 ## Table of Contents
 
-- [bindz](#bindz)
+- [_bindz_](#bindz)
   - [Table of Contents](#table-of-contents)
   - [General information](#general-information)
   - [Installation instructions](#installation-instructions)
