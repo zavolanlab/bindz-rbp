@@ -33,7 +33,10 @@ jobs:
 
   tests-scripts-prepare-input-table:
     needs: setup-env
-    runs-on: [ubuntu-20.04, macOS-10.15]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-10.15, ubuntu-20.04]
 
     steps:
 
