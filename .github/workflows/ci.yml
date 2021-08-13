@@ -1,0 +1,15 @@
+name: ci
+
+on: push
+
+jobs:
+  GitHub:
+    runs-on: ubuntu-20.04
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Display R version
+        run: R --version
