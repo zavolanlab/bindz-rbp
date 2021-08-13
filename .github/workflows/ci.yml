@@ -5,7 +5,10 @@ on: push
 jobs:
 
   setup-env:
-    runs-on: [ubuntu-20.04, macOS-10.15]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-10.15, ubuntu-20.04]
 
     steps:
 
@@ -28,4 +31,15 @@ jobs:
           conda info -a
           conda list
 
+  tests-scripts-prepare-input-table:
+    needs: setup-env
+    runs-on: [ubuntu-20.04, macOS-10.15]
 
+    steps:
+
+      #- name: Checkout bindz repository
+      #  uses: actions/checkout@v2
+
+      - name: Run test script
+        shell: bash -l {0}
+        run: echo ABC
