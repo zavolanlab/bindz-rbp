@@ -15,6 +15,9 @@
 # absolute path to the pipeline root directory
 pipeline_path:
 
+# name of the user's sequence
+# Please do not use spaces
+seq_name:
 # input sequence from the user
 sequence:
 
