@@ -4,7 +4,7 @@ on: push
 
 jobs:
 
-  dummytest:
+  ATtRACT-db-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -14,3 +14,20 @@ jobs:
 
       - name: Checkout Repository
         uses: actions/checkout@v2
+
+      - name: Extract db backup
+        run: |
+          mkdir ATtRACT_backup_26082020
+          unzip resources/ATtRACT_backup_26082020.zip -d ATtRACT_backup_26082020
+
+      - name: Extract hsa motifs
+        run: |
+          mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
+          python scripts/format-ATtRACT-motifs.py --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt --organism Homo_sapiens --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
+          md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_hsa.md5
+
+      - name: Extract mmu motifs
+        run: |
+          mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
+          python scripts/format-ATtRACT-motifs.py --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt --organism Mus_musculus --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
+          md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_mmu.md5

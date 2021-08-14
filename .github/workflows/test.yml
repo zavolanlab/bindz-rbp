@@ -58,6 +58,14 @@ jobs:
           conda info -a
           conda list
 
+      - name: Set md5sum alias for macOS
+        shell: bash -l {0}
+        if: matrix.os == 'macos-10.15'
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            alias md5sum='md5 -r'
+          fi
+
       - name: Run script tests
         shell: bash -l {0}
         run: |
