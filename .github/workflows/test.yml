@@ -61,7 +61,9 @@ jobs:
       - name: Set md5sum alias for macOS
         shell: bash -l {0}
         if: matrix.os == 'macos-10.15'
-        run: alias md5sum='md5 -r'
+        run: |
+          alias md5sum='md5 -r'
+          md5sum --verbose
 
       - name: Run script tests
         shell: bash -l {0}
