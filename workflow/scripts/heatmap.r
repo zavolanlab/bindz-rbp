@@ -21,25 +21,25 @@ library(ggtext)
 
 # list the command-line arguments
 option_list <- list(
-  make_option(c("--input_tsv"),
+  make_option("--input_tsv",
     action = "store",
     dest = "input_tsv",
     type = "character",
     help = "location and name of the tsv file"
   ),
-  make_option(c("--input_sequence"),
+  make_option("--input_sequence",
     action = "store",
     dest = "input_sequence",
     type = "character",
     help = "full input_sequence"
   ),
-  make_option(c("--outfile"),
+  make_option("--outfile",
     action = "store",
     dest = "output_tsv",
     type = "character",
     help = "location and name of output heatmap"
   ),
-  make_option(c("--sequence_logos_directory"),
+  make_option("--sequence_logos_directory",
     action = "store",
     dest = "sequence_logos_directory",
     type = "character",
