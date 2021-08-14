@@ -2,7 +2,7 @@
 
 # _bindz_
 
-[![ci](https://github.com/zavolanlab/bindz/workflows/ci/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz/actions?query=workflow%3Aci)
+[![ci](https://github.com/zavolanlab/bindz/workflows/test/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz/actions?query=workflow%3Atest)
 [![CodeFactor](https://www.codefactor.io/repository/github/zavolanlab/bindz/badge)](https://www.codefactor.io/repository/github/zavolanlab/bindz)
 [![GitHub issues](https://img.shields.io/github/issues/zavolanlab/bindz)](https://github.com/zavolanlab/bindz/issues)
 [![GitHub license](https://img.shields.io/github/license/zavolanlab/bindz)](https://github.com/zavolanlab/bindz/blob/dev/LICENSE)
