@@ -33,9 +33,9 @@ def gather_motifs_names(pwm_dir):
     return(l)
 
 onstart:
-    shell("mkdir -p {outdir}")
-    shell("mkdir -p {outdir}/local_log")
-    shell("mkdir -p {outdir}/cluster_log")
+    shell("mkdir -p " + config["outdir"])
+    shell("mkdir -p " + config["outdir"] + "/local_log")
+    shell("mkdir -p " + config["outdir"] + "/cluster_log")
 
 rule all:
     """
