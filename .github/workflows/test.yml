@@ -76,8 +76,52 @@ jobs:
         shell: bash -l {0}
         run: md5sum --check tests/unit/plot_sequence_logos/expected_output.md5
 
+
+
+
+
+  combine-MotEvo-results:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-10.15, ubuntu-20.04]
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup miniconda & conda env
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.7.4
+          miniconda-version: 4.7.12
+          auto-update-conda: false
+          environment-file: workflow/envs/combine-MotEvo-results.yml
+          activate-environment: bindz-combine-motevo-results
+          auto-activate-base: false
+
+      - name: Display all miniconda & env info
+        shell: bash -l {0}
+        run: |
+          conda info -a
+          conda list
+
+      - name: Install md5sum with brew
+        shell: bash -l {0}
+        if: matrix.os == 'macos-10.15'
+        run: brew install md5sha1sum
+
+      - name: Run script tests
+        shell: bash -l {0}
+        run: python workflow/scripts/combine-motevo-results.py --input_directories tests/unit/combine_results/motif_HNRNPF_820 tests/unit/combine_results/motif_HNRNPF_821 tests/unit/combine_results/motif_HNRNPF_822 tests/unit/combine_results/motif_HNRNPF_823 tests/unit/combine_results/motif_HNRNPF_824 --filename posterior_sites --outfile tests/unit/combine_results/combined_MotEvo_results.tsv
+
+      - name: MD5SUM check
+        shell: bash -l {0}
+        run: md5sum --check tests/unit/combine_results/expected_output.md5
+
   pipeline-exec:
-    needs: plot-seq-logos
+    needs: [plot-seq-logos, combine-MotEvo-results]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -121,14 +165,9 @@ jobs:
 
 
 
-  ## Test combine-motevo-results.py script
-  #- conda activate combine-motevo-results
-  #- >
-  #  python workflow/scripts/combine-motevo-results.py
-  #  --input_directories tests/unit/combine_results/motif_HNRNPF_820 tests/unit/combine_results/motif_HNRNPF_821 tests/unit/combine_results/motif_HNRNPF_822 tests/unit/combine_results/motif_HNRNPF_823 tests/unit/combine_results/motif_HNRNPF_824
-  #  --filename posterior_sites
-  #  --outfile tests/unit/combine_results/combined_MotEvo_results.tsv
-  #- md5sum --check tests/unit/combine_results/expected_output.md5
+
+
+
   ## Test heatmap.r script
   #- conda activate plot_heatmap_of_MotEvo_results
   #- >
