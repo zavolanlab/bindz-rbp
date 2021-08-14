@@ -69,7 +69,7 @@ x_axis_numbers = 1:nchar(input_sequence)
 
 file = file(input_tsv, "r")
 
-y_axis_labels = c()
+y_axis_labels = vector()
 
 while (length(line <- readLines(file, n = 1)) > 0) # Read the file line by line
 {
@@ -117,7 +117,7 @@ dff <-data.frame(col = rep(colnames(uniform_data), each = nrow(uniform_data)),
 
 input_seq = strsplit(input_sequence,"") 
 
-labels = c()
+labels = vector()
 
 #### Add the sequence logo pngs to the dictionary ####
 if(sequence_logos_directory != FALSE)
