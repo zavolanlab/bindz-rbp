@@ -15,14 +15,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Setup miniconda & bindz root env
+      - name: Setup miniconda & conda env
         uses: conda-incubator/setup-miniconda@v2
         with:
           python-version: 3.7.4
           miniconda-version: 4.7.12
           auto-update-conda: false
-          environment-file: envs/main.yml
-          activate-environment: bindz
+          environment-file: workflow/envs/plot_sequence_logos.yml
+          activate-environment: bindz-plot-sequence-logos
           auto-activate-base: false
 
       - name: Display all miniconda & env info
@@ -40,9 +40,21 @@ jobs:
 
     steps:
 
-      - name: Checkout bindz repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Run test script
+      - name: Setup miniconda & conda env
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.7.4
+          miniconda-version: 4.7.12
+          auto-update-conda: false
+          environment-file: envs/main.yml
+          activate-environment: bindz
+          auto-activate-base: false
+
+      - name: Display all miniconda & env info
         shell: bash -l {0}
-        run: echo ABC
+        run: |
+          conda info -a
+          conda list
