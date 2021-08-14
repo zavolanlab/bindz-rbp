@@ -1,6 +1,6 @@
-d0b39f0197807ab8fdfb9f8294b2bc16 ./tests/integration/output/sequence.fasta
+9e4e01e58a8df52814a71b5cca26cc40 ./tests/integration/output/sequence.fasta
 281a3ab4be432577381e6b64a628c154 ./tests/integration/output/MotEvo_parameters.txt
-b1eb281f0f5b41516b7847b4398220dc ./tests/integration/output/motevo/motif_HNRNPF_826/posterior_sites
+01cda68d6f5846d025b4eab37555af0b ./tests/integration/output/motevo/motif_HNRNPF_826/posterior_sites
 1eb4365fcfc54bea454dc296863a9cad ./tests/integration/output/motevo/motif_HNRNPF_826/posteriors
 d41d8cd98f00b204e9800998ecf8427e ./tests/integration/output/motevo/motif_HNRNPF_821/posterior_sites
 2f0bbba5237c73859cd212fec4dc3418 ./tests/integration/output/motevo/motif_HNRNPF_821/posteriors
@@ -31,3 +31,4 @@ b9c855c85a7777f8fb12806aed9fd6b9 ./tests/integration/output/sequence_logos/motif
 d1b324f46221514588b00148bac38e5c ./tests/integration/output/sequence_logos/motif_HNRNPF_827.png
 0dc19411798fda72ffcd8000b38d9dc9 ./tests/integration/output/sequence_logos/motif_HNRNPF_828.png
 2b68e5759d8f598d39f4ab90ccb3da67 ./tests/integration/output/sequence_logos/motif_HNRNPF_829.png
+0a2feaa1fbc4916ae0bd10c23e91892f ./tests/integration/output/binding_sites.bed
