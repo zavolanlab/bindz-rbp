@@ -98,3 +98,38 @@ jobs:
         run: |
           conda info -a
           conda list
+
+      - name: Snakemake Rulegraph
+        shell: bash -l {0}
+        run: bash tests/integration/execution/snakemake_rulegraph_run.sh
+
+      - name: Snakemake DAG
+        shell: bash -l {0}
+        run: bash tests/integration/execution/snakemake_dag_run.sh
+
+      - name: Snakemake local run w/ conda envs
+        shell: bash -l {0}
+        run: |
+          bash tests/integration/execution/snakemake_local_run_conda_environments.sh
+          md5sum --check tests/integration/expected_output.md5
+
+
+
+
+  ## Test combine-motevo-results.py script
+  #- conda activate combine-motevo-results
+  #- >
+  #  python workflow/scripts/combine-motevo-results.py
+  #  --input_directories tests/unit/combine_results/motif_HNRNPF_820 tests/unit/combine_results/motif_HNRNPF_821 tests/unit/combine_results/motif_HNRNPF_822 tests/unit/combine_results/motif_HNRNPF_823 tests/unit/combine_results/motif_HNRNPF_824
+  #  --filename posterior_sites
+  #  --outfile tests/unit/combine_results/combined_MotEvo_results.tsv
+  #- md5sum --check tests/unit/combine_results/expected_output.md5
+  ## Test heatmap.r script
+  #- conda activate plot_heatmap_of_MotEvo_results
+  #- >
+  #  Rscript workflow/scripts/heatmap.r 
+  #  --input_tsv tests/unit/Plot-heatmap-for-motifs/combined_MotEvo_results.tsv 
+  #  --input_sequence ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG
+  #  --outfile tests/unit/Plot-heatmap-for-motifs/ProbabilityvsSequences.pdf
+  #  --sequence_logos_directory tests/unit/Plot-heatmap-for-motifs/sequence_logos
+  ##- md5sum --check tests/unit/Plot-heatmap-for-motifs/expected_output.md5
