@@ -58,12 +58,10 @@ jobs:
           conda info -a
           conda list
 
-      - name: Set md5sum alias for macOS
+      - name: Install md5sum with brew
         shell: bash -l {0}
         if: matrix.os == 'macos-10.15'
-        run: |
-          alias md5sum='md5 -r'
-          md5sum --verbose
+        run: brew install md5sha1sum
 
       - name: Run script tests
         shell: bash -l {0}
