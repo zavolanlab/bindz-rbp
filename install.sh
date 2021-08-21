@@ -11,8 +11,18 @@
 #
 ###############################################################################
 
-CWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-echo $CWD
+cleanup () {
+    rc=$?
+    conda env remove --name bindz
+    echo "Exit status: $rc"
+}
+trap cleanup SIGINT
+
+set -eo pipefail  # ensures that script exits at first command that exits with non-zero status
+set -u  # ensures that script exits when unset variables are used
+
+REPODIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+echo $REPODIR
 
 # remove git repository
 echo "[0/7]: Removing .git internal directory..."
@@ -20,13 +30,23 @@ rm -rf .git
 
 # create and activate main bindz conda env
 echo "[1/7]: Creating main conda env for bindz..."
-conda env create --file envs/main.yml
+conda env create --file envs/main.yml --quiet
 SHELLNAME=$(echo $SHELL | rev | cut -d '/' -f1 | rev)
-conda init $SHELLNAME
+echo $SHELLNAME
+export PS1=
+if [ $SHELLNAME=="zsh" ]
+then
+  eval "$(conda shell.zsh hook)"
+fi
+if [ $SHELLNAME=="bash" ]
+then
+  eval "$(conda shell.bash hook)"
+fi
 conda activate bindz
-conda list
 
 echo "[2/7]: Building all workflow-specific conda envs..."
+snakemake --configfile tests/integration/config.yml --use-conda --create-envs-only
+conda env list
 
 echo "[3/7]: Parsing ATtRACT db..."
 
@@ -42,6 +62,5 @@ echo "[6/7]: Adjusting \$PATH..."
 echo "[7/7]: Testing installation..."
 bindz
 
+conda deactivate
 echo "SUCCESS!"
-
-# print error msg on error!
