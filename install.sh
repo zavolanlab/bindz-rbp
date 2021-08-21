@@ -22,7 +22,6 @@ set -eo pipefail  # ensures that script exits at first command that exits with n
 set -u  # ensures that script exits when unset variables are used
 
 REPODIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-echo $REPODIR
 
 # remove git repository
 echo "[0/7]: Removing .git internal directory..."
@@ -45,7 +44,7 @@ fi
 conda activate bindz
 
 echo "[2/7]: Building all workflow-specific conda envs..."
-snakemake --configfile tests/integration/config.yml --use-conda --create-envs-only
+snakemake --configfile tests/integration/config.yml --use-conda --conda-create-envs-only
 conda env list
 
 echo "[3/7]: Parsing ATtRACT db..."
