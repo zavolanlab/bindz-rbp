@@ -12,9 +12,9 @@
 ###############################################################################
 
 cleanup () {
-    rc=$?
-    conda env remove --name bindz
-    echo "Exit status: $rc"
+  rc=$?
+  conda env remove --name bindz
+  echo "Exit status: $rc"
 }
 trap cleanup SIGINT
 
@@ -48,8 +48,17 @@ snakemake --configfile tests/integration/config.yml --cores 1 --use-conda --cond
 conda env list
 
 echo "[3/7]: Parsing ATtRACT db..."
+unzip resources/ATtRACT_backup_26082020.zip -d resources/ATtRACT_backup_26082020
+# extract hsa motifs
+mkdir resources/ATtRACT_hsa
+python scripts/format-ATtRACT-motifs.py \
+  --pwms resources/ATtRACT_backup_26082020/pwm.txt \
+  --names resources/ATtRACT_backup_26082020/ATtRACT_db.txt \
+  --organism Homo_sapiens \
+  --outdir resources/ATtRACT_hsa
 
 echo "[4/7]: Generating sequence logos..."
+# R command
 
 echo "[5/7]: Adjusting config template..."
 # sed?
