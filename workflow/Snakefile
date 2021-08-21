@@ -19,7 +19,7 @@ import glob
 import traceback
 
 # local rules
-localrules: all, create_results_directory
+localrules: all
 
 def gather_motifs_names(pwm_dir):
     """
