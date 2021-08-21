@@ -21,7 +21,7 @@ rm -rf .git
 # create and activate main bindz conda env
 echo "[1/7]: Creating main conda env for bindz..."
 conda env create --file envs/main.yml
-SHELLNAME=$(echo $0 | sed 's|-||g')
+SHELLNAME=$(echo $SHELL | rev | cut -d '/' -f1 | rev)
 conda init $SHELLNAME
 conda activate bindz
 conda list
