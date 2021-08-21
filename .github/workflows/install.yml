@@ -4,6 +4,36 @@ on: push
 
 jobs:
 
+  install-script:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-10.15, ubuntu-20.04]
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.7.4
+          miniconda-version: 4.7.12
+          auto-update-conda: false
+          activate-environment: ""
+          auto-activate-base: true
+
+      - name: Display all miniconda & env info
+        shell: bash -l {0}
+        run: |
+          conda info -a
+          conda list
+
+      - name: Execute install script
+        shell: bash -l {0}
+        run: bash install.sh
+
   ATtRACT-db-test:
     runs-on: ${{ matrix.os }}
     strategy:
