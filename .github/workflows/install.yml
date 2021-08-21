@@ -21,7 +21,6 @@ jobs:
           python-version: 3.7.4
           miniconda-version: 4.7.12
           auto-update-conda: false
-          activate-environment: true
           auto-activate-base: true
 
       - name: Display all miniconda & env info
