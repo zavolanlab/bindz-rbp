@@ -36,7 +36,7 @@ cd $REPODIR
 SHELLNAME=$(echo $SHELL | rev | cut -d '/' -f1 | rev)
 
 echo "[0/7]: Removing .git internal directory..."
-#rm -rf .git
+rm -rf .git
 
 echo "[1/7]: Creating main conda env for bindz..."
 conda env create --file envs/main.yml --quiet
@@ -85,7 +85,9 @@ done
 conda deactivate
 
 echo "[5/7]: Adjusting config template..."
-# sed?
+sed -i -e "16 s+:+: \"$REPODIR\"+" workflow/config/config-template.yml
+sed -i -e "23 s+:+: \"$REPODIR/resources/ATtRACT_hsa_pwms\"+" workflow/config/config-template.yml
+sed -i -e "24 s+:+: \"$REPODIR/resources/ATtRACT_hsa_seqlogos\"+" workflow/config/config-template.yml
 
 echo "[6/7]: Adjusting \$PATH..."
 export PATH=\$PATH:$REPODIR/bin
