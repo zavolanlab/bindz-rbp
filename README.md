@@ -37,6 +37,15 @@ The main output of the pipeline are: a tab-separated file (`combined_MotEvo_resu
 
 ## Installation instructions
 
+// TODO
+prerequisite - conda
+cd $HOME
+git clone
+bash bindz/install.sh
+use:
+use conda activate bindz
+bindz --config
+
 Snakemake is a workflow management system that helps to create and execute data processing pipelines. It requires [Python 3] and can be most easily installed via the [bioconda] channel from the [anaconda cloud] service.
 
 ### Step 1: Download and install Miniconda3
