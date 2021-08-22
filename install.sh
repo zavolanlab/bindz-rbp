@@ -28,8 +28,8 @@ set -eo pipefail
 set -u
 
 REPODIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+cd $REPODIR
 SHELLNAME=$(echo $SHELL | rev | cut -d '/' -f1 | rev)
-echo $SHELLNAME
 
 # remove git repository
 echo "[0/7]: Removing .git internal directory..."
@@ -60,7 +60,7 @@ echo "[3/7]: Parsing ATtRACT db..."
 unzip \
   resources/ATtRACT_backup_26082020.zip \
   -d resources/ATtRACT_backup_26082020
- extract hsa motifs
+# extract hsa motifs
 mkdir resources/ATtRACT_hsa_pwms
 python scripts/format-ATtRACT-motifs.py \
   --pwms resources/ATtRACT_backup_26082020/pwm.txt \
