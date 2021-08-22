@@ -11,4 +11,9 @@
 #
 ###############################################################################
 
+if [ $# -eq 0 ]; then
+    echo "bindz | Copyright: Zavolan Lab, 2021"
+    exit 0
+fi
+
 echo "YESSSS!"

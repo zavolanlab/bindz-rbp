@@ -29,8 +29,11 @@ jobs:
 
       - name: Execute install script
         shell: bash -l {0}
-        run: source install.sh
+        run: bash install.sh
 
       - name: Test bindz command
         shell: bash -l {0}
-        run: bindz
+        run: |
+          cat $HOME/.bashrc
+          source $HOME/.bashrc
+          bindz
