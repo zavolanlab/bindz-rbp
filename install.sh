@@ -72,8 +72,11 @@ mkdir resources/ATtRACT_hsa_seqlogos
 for filename in resources/ATtRACT_hsa_pwms/*; do
 python scripts/plot-sequence-logos.py \
   --input_file "$filename" \
-  --output_location resources/ATtRACT_hsa_seqlogos
+  --output_location resources/ATtRACT_hsa_seqlogos \
+  2> /dev/null
 done
+# MotEvo asks for PWMs with %, the script above - with fractions;
+# disable stderr logs about re-normalizing
 
 conda deactivate
 

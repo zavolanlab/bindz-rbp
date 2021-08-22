@@ -134,10 +134,30 @@ def get_motifs(names, pwm, outdir, organism, experiments):
         else:
             line = line.strip("\n")
             values = line.split("\t")
-            each_motif.loc[count, "A"] = float(values[0]) * 100
-            each_motif.loc[count, "C"] = float(values[1]) * 100
-            each_motif.loc[count, "G"] = float(values[2]) * 100
-            each_motif.loc[count, "T"] = float(values[3]) * 100
+            values = [float(v) for v in values]
+            # test that the values add up to 1.0
+            # if not (big deviation): print a warning message to stderr
+            # normalize so that they add up to exatly 1.0
+            # (there might be numerical issues so round(x,10) for the test)
+            # This normalization takes care of the inaccuracies in the databse.
+            # Remember that we later round % values to 3 decimal places too.
+            sumvalues = sum(values)
+            if sumvalues > 1.01 or sumvalues < 0.99:
+                sys.stderr.write(
+                    "### [INFO] Record: "
+                    + info
+                    + ". Columns add up to: "
+                    + str(sumvalues)
+                    + ". Normalizing anyway."
+                    + os.linesep
+                )
+            values = [v / sumvalues for v in values]
+            assert round(sum(values), 10) == 1.0
+            # save in % form in the df
+            each_motif.loc[count, "A"] = values[0] * 100
+            each_motif.loc[count, "C"] = values[1] * 100
+            each_motif.loc[count, "G"] = values[2] * 100
+            each_motif.loc[count, "T"] = values[3] * 100
             count += 1
     each_motif.index = each_motif.index.map("{:02}".format)
     outfile = os.path.join(outdir, str(info))
