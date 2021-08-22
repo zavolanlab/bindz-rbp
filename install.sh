@@ -81,16 +81,16 @@ echo "[5/7]: Adjusting config template..."
 # sed?
 
 echo "[6/7]: Adjusting \$PATH..."
+PATH=\$PATH:$REPODIR/bin
 if [ $SHELLNAME = "zsh" ]
 then
-  echo "\nbindz exec path:" >> $HOME/.zshrc
-  PATH=\$PATH:$REPODIR/bin/bindz
-  echo "PATH=\$PATH:$REPODIR/bin/bindz" >> $HOME/.zshrc
-
+  echo "bindz exec path:" >> $HOME/.zshrc
+  echo "PATH=\$PATH:$REPODIR/bin" >> $HOME/.zshrc
 fi
 if [ $SHELLNAME = "bash" ]
 then
-  echo 456
+  echo "bindz exec path:" >> $HOME/.bashrc
+  echo "PATH=\$PATH:$REPODIR/bin" >> $HOME/.bashrc
 fi
 
 echo "[7/7]: Testing installation..."
