@@ -12,17 +12,18 @@
 ###############################################################################
 ---
 
-# absolute path to the pipeline directory
+# absolute path to the pipeline root directory
 pipeline_path: ""
 
 # input sequence from the user
 sequence: "ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG"
 
-# path to the directory with TRANSFAC-formatted PWM files
+# absolute paths to the directory with TRANSFAC-formatted PWM files
+# and corresponding sequence logos directory
 pwm_directory: "tests/integration/pwm"
 seqlogos_directory: "tests/integration/seqlogos"
 
-# path for the output directory
+# absolute path for the output directory
 outdir: "tests/integration/output"
 
 # MotEvo parameter: prior probability for the background binding

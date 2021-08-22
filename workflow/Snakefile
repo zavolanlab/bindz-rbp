@@ -141,7 +141,7 @@ rule prepare_sequence_for_MotEvo:
         FASTA_MotEvo_input = os.path.join(
             "{outdir}",
             "sequence.fasta"
-        ),
+        )
 
     params:
         STR_sequence = config["sequence"],
@@ -350,6 +350,7 @@ rule plot_heatmap_of_MotEvo_results:
             "scripts",
             "heatmap.r"
         )
+
     output:
         PDF_Heatmap_file = os.path.join(
             "{outdir}",
