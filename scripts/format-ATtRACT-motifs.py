@@ -93,7 +93,7 @@ def get_motifs(names, pwm, outdir, organism):
             if counter_motif >= 1:
                 each_motif = each_motif.round(3)
                 each_motif.index = each_motif.index.map("{:02}".format)
-                outfile = os.path.join(outdir, "motif_" + str(info))
+                outfile = os.path.join(outdir, str(info))
                 template = """//\nNA """ + str(info) + """\n{}//"""
                 with open(outfile, "w") as fp:
                     fp.write(
@@ -129,7 +129,7 @@ def get_motifs(names, pwm, outdir, organism):
             each_motif.loc[count, "T"] = float(values[3]) * 100
             count += 1
     each_motif.index = each_motif.index.map("{:02}".format)
-    outfile = os.path.join(outdir, "motif_" + str(info))
+    outfile = os.path.join(outdir, str(info))
     template = """//\nNA """ + str(info) + """\n{}//"""
     with open(outfile, "w") as fp:
         fp.write(template.format(each_motif.to_csv(sep="\t", index=True, header=True)))

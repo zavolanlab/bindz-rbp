@@ -15,6 +15,9 @@ cleanup () {
   rc=$?
   conda env remove --name bindz
   # rm -rf "$REPODIR"/ ?
+  rm -rf resources/ATtRACT_backup_26082020
+  rm -rf resources/ATtRACT_hsa_pwms
+  rm -rf resources/ATtRACT_hsa_seqlogos
   echo "Exit status: $rc"
 }
 trap cleanup SIGINT
@@ -28,7 +31,7 @@ REPODIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 # remove git repository
 echo "[0/7]: Removing .git internal directory..."
-rm -rf .git
+#rm -rf .git
 
 # create and activate main bindz conda env
 echo "[1/7]: Creating main conda env for bindz..."
@@ -68,7 +71,7 @@ python scripts/format-ATtRACT-motifs.py \
 echo "[4/7]: Generating sequence logos..."
 mkdir resources/ATtRACT_hsa_seqlogos
 for filename in resources/ATtRACT_hsa_pwms/*; do
-python workflow/scripts/sequence_logos.py \
+python scripts/plot-sequence-logos.py \
   --input_file "$filename" \
   --output_location resources/ATtRACT_hsa_seqlogos
 done
