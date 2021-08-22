@@ -37,7 +37,7 @@ echo "[0/7]: Removing .git internal directory..."
 
 # create and activate main bindz conda env
 echo "[1/7]: Creating main conda env for bindz..."
-#conda env create --file envs/main.yml --quiet
+conda env create --file envs/main.yml --quiet
 export PS1=
 if [ $SHELLNAME = "zsh" ]
 then
@@ -50,32 +50,32 @@ fi
 conda activate bindz
 
 echo "[2/7]: Building all workflow-specific conda envs..."
-#snakemake \
-#  --configfile tests/integration/config.yml \
-#  --cores 1 \
-#  --use-conda \
-#  --conda-create-envs-only
+snakemake \
+  --configfile tests/integration/config.yml \
+  --cores 1 \
+  --use-conda \
+  --conda-create-envs-only
 
 echo "[3/7]: Parsing ATtRACT db..."
-#unzip \
-#  resources/ATtRACT_backup_26082020.zip \
-#  -d resources/ATtRACT_backup_26082020
-# extract hsa motifs
-#mkdir resources/ATtRACT_hsa_pwms
-#python scripts/format-ATtRACT-motifs.py \
-#  --pwms resources/ATtRACT_backup_26082020/pwm.txt \
-#  --names resources/ATtRACT_backup_26082020/ATtRACT_db.txt \
-#  --organism Homo_sapiens \
-#  --experiments SELEX,RNAcompete \
-#  --outdir resources/ATtRACT_hsa_pwms
+unzip \
+  resources/ATtRACT_backup_26082020.zip \
+  -d resources/ATtRACT_backup_26082020
+ extract hsa motifs
+mkdir resources/ATtRACT_hsa_pwms
+python scripts/format-ATtRACT-motifs.py \
+  --pwms resources/ATtRACT_backup_26082020/pwm.txt \
+  --names resources/ATtRACT_backup_26082020/ATtRACT_db.txt \
+  --organism Homo_sapiens \
+  --experiments SELEX,RNAcompete \
+  --outdir resources/ATtRACT_hsa_pwms
 
 echo "[4/7]: Generating sequence logos..."
-#mkdir resources/ATtRACT_hsa_seqlogos
-#for filename in resources/ATtRACT_hsa_pwms/*; do
-#python scripts/plot-sequence-logos.py \
-#  --input_file "$filename" \
-#  --output_location resources/ATtRACT_hsa_seqlogos
-#done
+mkdir resources/ATtRACT_hsa_seqlogos
+for filename in resources/ATtRACT_hsa_pwms/*; do
+python scripts/plot-sequence-logos.py \
+  --input_file "$filename" \
+  --output_location resources/ATtRACT_hsa_seqlogos
+done
 
 conda deactivate
 
@@ -97,6 +97,5 @@ fi
 
 echo "[7/7]: Testing installation..."
 bindz
-# will that be visible outside?
 
 echo "SUCCESS!"

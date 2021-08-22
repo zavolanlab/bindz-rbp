@@ -30,3 +30,7 @@ jobs:
       - name: Execute install script
         shell: bash -l {0}
         run: bash install.sh
+
+      - name: Test bindz command
+        shell: bash -l {0}
+        run: bindz
