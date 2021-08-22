@@ -42,6 +42,7 @@ prerequisite - conda
 cd $HOME
 git clone
 bash bindz/install.sh
+source rc
 use:
 use conda activate bindz
 bindz --config

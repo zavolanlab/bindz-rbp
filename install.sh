@@ -14,7 +14,7 @@
 cleanup () {
   rc=$?
   conda env remove --name bindz
-  # rm -rf "$REPODIR"/ ?
+  rm -rf "$REPODIR"/.snakemake
   rm -rf resources/ATtRACT_backup_26082020
   rm -rf resources/ATtRACT_hsa_pwms
   rm -rf resources/ATtRACT_hsa_seqlogos
@@ -31,11 +31,9 @@ REPODIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 cd $REPODIR
 SHELLNAME=$(echo $SHELL | rev | cut -d '/' -f1 | rev)
 
-# remove git repository
 echo "[0/7]: Removing .git internal directory..."
 #rm -rf .git
 
-# create and activate main bindz conda env
 echo "[1/7]: Creating main conda env for bindz..."
 conda env create --file envs/main.yml --quiet
 export PS1=
