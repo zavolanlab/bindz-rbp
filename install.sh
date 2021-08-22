@@ -13,6 +13,10 @@
 
 cleanup () {
   rc=$?
+  if [ $CONDA_DEFAULT_ENV = "bindz" ]
+  then
+    conda deactivate
+  fi
   conda env remove --name bindz
   rm -rf "$REPODIR"/.snakemake
   rm -rf resources/ATtRACT_backup_26082020

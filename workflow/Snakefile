@@ -50,75 +50,6 @@ rule all:
             outdir = config["outdir"]
         )
 
-rule plot_sequence_logos:
-    """
-    Plot sequence logo for the motifs
-    """
-    input:
-        FILE_pwm = os.path.abspath(
-            os.path.join(
-                config["pwm_directory"],
-                "{pwm_dir}"
-            )
-        ),
-        SCRIPT_ = os.path.join(
-            config["pipeline_path"],
-            "workflow",
-            "scripts",
-            "sequence_logos.py"
-        )
-            
-    output:
-        PNG_sequence_logos = os.path.join(
-            "{outdir}",
-            "sequence_logos",
-            "{pwm_dir}.png"
-        )
-
-    params:
-        DIR_sequence_logos = os.path.join(
-            "{outdir}",
-            "sequence_logos"
-        ),
-        LOG_cluster_log = os.path.join(
-            "{outdir}",
-            "cluster_log",
-            "plot_sequence_logos.{pwm_dir}.log"
-        )
-
-    log:
-        LOG_local_stdout = os.path.join(
-            "{outdir}",
-            "local_log",
-            "plot_sequence_logos.{pwm_dir}.stdout.log"
-        ),
-        LOG_local_stderr = os.path.join(
-            "{outdir}",
-            "local_log",
-            "plot_sequence_logos.{pwm_dir}.stderr.log"
-        )
-
-    benchmark:
-        os.path.join(
-            "{outdir}",
-            "local_log",
-            "plot_sequence_logos.{pwm_dir}.benchmark.log"
-        )
-    
-    conda:
-        "envs/plot_sequence_logos.yml"
-
-    singularity:
-        "docker://zavolab/pythonlogomaker:0.8"  
-
-    shell:
-        """
-        python {input.SCRIPT_} \
-        --input_file {input.FILE_pwm} \
-        --output_location {params.DIR_sequence_logos} \
-        1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
-        """
-
 rule prepare_MotEvo_parameters:
     """
     Prepare text file with parameters for MotEvo runs
@@ -412,20 +343,12 @@ rule plot_heatmap_of_MotEvo_results:
             "{outdir}",
             "combined_MotEvo_results.tsv"
         ), 
+        DIR_sequence_logos = config["seqlogos_directory"],
         SCRIPT_ = os.path.join(
             config["pipeline_path"],
             "workflow",
             "scripts",
             "heatmap.r"
-        ),
-        PNG_sequence_logos = expand(
-            os.path.join(
-                "{outdir}",
-                "sequence_logos",
-                "{pwm_dir}.png"
-            ),
-            pwm_dir = gather_motifs_names(config["pwm_directory"]),
-            outdir = config["outdir"]
         )
     output:
         PDF_Heatmap_file = os.path.join(
@@ -435,10 +358,6 @@ rule plot_heatmap_of_MotEvo_results:
 
     params:
         STRING_sequence = config["sequence"],
-        DIR_sequence_logos = os.path.join(
-            "{outdir}",
-            "sequence_logos"
-        ),
         LOG_cluster_log = os.path.join(
             "{outdir}",
             "cluster_log",
@@ -476,6 +395,6 @@ rule plot_heatmap_of_MotEvo_results:
         --input_tsv {input.TSV_combined_MotEvo_results} \
         --input_sequence {params.STRING_sequence} \
         --outfile {output.PDF_Heatmap_file} \
-        --sequence_logos_directory {params.DIR_sequence_logos} \
+        --sequence_logos_directory {input.DIR_sequence_logos} \
         1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """

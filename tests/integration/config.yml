@@ -20,6 +20,7 @@ sequence: "ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG"
 
 # path to the directory with TRANSFAC-formatted PWM files
 pwm_directory: "tests/integration/pwm"
+seqlogos_directory: "tests/integration/seqlogos"
 
 # path for the output directory
 outdir: "tests/integration/output"

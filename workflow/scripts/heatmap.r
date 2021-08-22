@@ -124,7 +124,7 @@ if(sequence_logos_directory != FALSE)
 {
 	for (label in y_axis_labels) 
 	{
-		labels[label] = paste("<b>", label, "<b><img src='", sequence_logos_directory, "/motif_", label, ".png'
+		labels[label] = paste("<b>", label, "<b><img src='", sequence_logos_directory, "/", label, ".png'
     	width='100' height='18'>", sep = "")
 	}	
 }
