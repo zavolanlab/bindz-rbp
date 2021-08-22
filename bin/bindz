@@ -11,7 +11,60 @@
 #
 ###############################################################################
 
+###############################################################################
+# parse command line arguments
+###############################################################################
+
 if [ $# -eq 0 ]; then
     echo "bindz | Copyright: Zavolan Lab, 2021"
     exit 0
 fi
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+    case $key in
+        --cores)
+            CORES="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        --configfile)
+            CONFIGFILE="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        *) # unknown option
+            POSITIONAL+=("$1") # save it in an array for later
+            shift # past argument
+            ;;
+    esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+###############################################################################
+# MAIN
+###############################################################################
+
+# by default use 1 core
+if [ -z "$CORES" ]; then
+    CORES=1
+fi
+
+# you need to provide config
+if [ -z "$CONFIGFILE" ]; then
+    echo "You need to provide a configuration file for bindz."
+    exit 1
+fi
+
+BINARYDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+cd "$BINARYDIR"/..
+
+snakemake \
+    --snakefile="workflow/Snakefile" \
+    --configfile="${CONFIGFILE}" \
+    --use-conda \
+    --cores="${CORES}" \
+    --printshellcmds \
+    --verbose
