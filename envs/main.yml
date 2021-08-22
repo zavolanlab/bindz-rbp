@@ -23,6 +23,8 @@
     - curl=7.68.0
     - graphviz=2.38.0
     - jinja2=2.10
+    - logomaker=0.8
+    - matplotlib=3.3.0
     - pandas=1.0.1
     - pulp=1.6.8
     - python=3.7.4

@@ -14,6 +14,7 @@
 cleanup () {
   rc=$?
   conda env remove --name bindz
+  # rm -rf "$REPODIR"/ ?
   echo "Exit status: $rc"
 }
 trap cleanup SIGINT

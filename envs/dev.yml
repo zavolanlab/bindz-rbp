@@ -26,6 +26,8 @@
     - flake8=3.8.3
     - graphviz=2.38.0
     - jinja2=2.10
+    - logomaker=0.8
+    - matplotlib=3.3.0
     - pandas=1.0.1
     - pulp=1.6.8
     - pytest=5.4.3
