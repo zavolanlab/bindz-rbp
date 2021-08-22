@@ -28,6 +28,8 @@ set -eo pipefail
 set -u
 
 REPODIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+SHELLNAME=$(echo $SHELL | rev | cut -d '/' -f1 | rev)
+echo $SHELLNAME
 
 # remove git repository
 echo "[0/7]: Removing .git internal directory..."
@@ -36,14 +38,12 @@ echo "[0/7]: Removing .git internal directory..."
 # create and activate main bindz conda env
 echo "[1/7]: Creating main conda env for bindz..."
 conda env create --file envs/main.yml --quiet
-SHELLNAME=$(echo $SHELL | rev | cut -d '/' -f1 | rev)
-echo $SHELLNAME
 export PS1=
-if [ $SHELLNAME=="zsh" ]
+if [ $SHELLNAME = "zsh" ]
 then
   eval "$(conda shell.zsh hook)"
 fi
-if [ $SHELLNAME=="bash" ]
+if [ $SHELLNAME = "bash" ]
 then
   eval "$(conda shell.bash hook)"
 fi
@@ -66,6 +66,7 @@ python scripts/format-ATtRACT-motifs.py \
   --pwms resources/ATtRACT_backup_26082020/pwm.txt \
   --names resources/ATtRACT_backup_26082020/ATtRACT_db.txt \
   --organism Homo_sapiens \
+  --experiments SELEX,RNAcompete \
   --outdir resources/ATtRACT_hsa_pwms
 
 echo "[4/7]: Generating sequence logos..."
@@ -80,8 +81,16 @@ echo "[5/7]: Adjusting config template..."
 # sed?
 
 echo "[6/7]: Adjusting \$PATH..."
-# hook up /bin/bindz to PATH
-# separate for mac, linux
+if [ $SHELLNAME = "zsh" ]
+then
+  echo 123
+  # PATH=$PATH:$REPODIR/bin/bindz
+  # source / will that be visible outside?
+fi
+if [ $SHELLNAME = "bash" ]
+then
+  echo 456
+fi
 
 echo "[7/7]: Testing installation..."
 bindz

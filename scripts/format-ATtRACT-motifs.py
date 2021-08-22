@@ -52,6 +52,14 @@ def main():
     )
 
     parser.add_argument(
+        "--experiments",
+        dest="experiments",
+        help="Comma-separated list of experiments to filter from the database",
+        required=False,
+        default="0",
+    )
+
+    parser.add_argument(
         "--outdir",
         dest="outdir",
         help="Output directory for the motifs",
@@ -72,10 +80,10 @@ def main():
         parser.print_help()
         sys.exit(1)
 
-    get_motifs(options.names, options.pwms, options.outdir, options.organism)
+    get_motifs(options.names, options.pwms, options.outdir, options.organism, options.experiments)
 
 
-def get_motifs(names, pwm, outdir, organism):
+def get_motifs(names, pwm, outdir, organism, experiments):
     """main logic of the script - reformat motifs"""
     attract_info = pd.read_csv(
         names, header=0, sep="\t", index_col=None, comment="#", engine="python"
@@ -83,6 +91,9 @@ def get_motifs(names, pwm, outdir, organism):
 
     if organism != "0":
         attract_info = attract_info[attract_info["Organism"] == organism]
+
+    if experiments != "0":
+        attract_info = attract_info[attract_info["Experiment_description"].isin(experiments.split(","))]
 
     motifs = open(pwm, "r")
     each_motif = pd.DataFrame()
