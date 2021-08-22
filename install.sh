@@ -83,9 +83,10 @@ echo "[5/7]: Adjusting config template..."
 echo "[6/7]: Adjusting \$PATH..."
 if [ $SHELLNAME = "zsh" ]
 then
-  echo 123
-  # PATH=$PATH:$REPODIR/bin/bindz
-  # source / will that be visible outside?
+  echo "\nbindz exec path:" >> $HOME/.zshrc
+  PATH=\$PATH:$REPODIR/bin/bindz
+  echo "PATH=\$PATH:$REPODIR/bin/bindz" >> $HOME/.zshrc
+
 fi
 if [ $SHELLNAME = "bash" ]
 then
@@ -94,6 +95,7 @@ fi
 
 echo "[7/7]: Testing installation..."
 bindz
+# will that be visible outside?
 
 conda deactivate
 echo "SUCCESS!"
