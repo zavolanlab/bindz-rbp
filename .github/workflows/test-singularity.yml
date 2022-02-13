@@ -36,4 +36,3 @@ jobs:
         shell: bash -l {0}
         run: |
           bash tests/integration/execution/snakemake_local_run_singularity_containers.sh
-          md5sum --check tests/integration/expected_output.md5
