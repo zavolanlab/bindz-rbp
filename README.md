@@ -3,6 +3,7 @@
 # _bindz_
 
 [![test-conda](https://github.com/zavolanlab/bindz/workflows/test-conda/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz/actions?query=workflow%3Atest-conda)
+[![test-singularity](https://github.com/zavolanlab/bindz/workflows/test-singularity/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz/actions?query=workflow%3Atest-singularity)
 [![ATtRACT](https://github.com/zavolanlab/bindz/workflows/ATtRACT/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz/actions?query=workflow%3AATtRACT)
 [![GitHub issues](https://img.shields.io/github/issues/zavolanlab/bindz)](https://github.com/zavolanlab/bindz/issues)
 [![GitHub license](https://img.shields.io/github/license/zavolanlab/bindz)](https://github.com/zavolanlab/bindz/blob/dev/LICENSE)
