@@ -20,7 +20,7 @@ b0ee32a9b14b9a31240cbfedd6ed90f3 ./tests/integration/output/motevo/motif_HNRNPF_
 faa2f9e3e8f432575e281878d93a85a6 ./tests/integration/output/motevo/motif_HNRNPF_824/posteriors
 21e581eb309d21e194e33dbe1c4c0c05 ./tests/integration/output/motevo/motif_HNRNPF_823/posterior_sites
 20e7921795665bbe24e585e741705634 ./tests/integration/output/motevo/motif_HNRNPF_823/posteriors
-d00f0ca9b1561551a9cfe17a09747251 ./tests/integration/output/combined_MotEvo_results.tsv
+cce86c9e75596fcc0861ef8d420dde69 ./tests/integration/output/combined_MotEvo_results.tsv
 60dd0b7f9065f07660c385bac79ca94e ./tests/integration/output/sequence_logos/motif_HNRNPF_820.png
 25eb71df5f876d8f575dbc417319487c ./tests/integration/output/sequence_logos/motif_HNRNPF_821.png
 25eb71df5f876d8f575dbc417319487c ./tests/integration/output/sequence_logos/motif_HNRNPF_822.png

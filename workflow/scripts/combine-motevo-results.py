@@ -58,7 +58,7 @@ tabb["binding_posterior"] = []
 tabb["pwm_id"] = []
 tabb["binding_region"] = []
 tabb["binding_sequence"] = []
-tabb["binding_energy"] = []
+tabb["LogLik_ratio_fg_bg"] = []
 tabb["fasta_record"] = []
 
 ##### Taking input from commandline #####
@@ -98,7 +98,7 @@ for dirr in dirrs:
 
             ##### Appending values #####
             tabb["binding_sequence"] = tabb["binding_sequence"] + [each_word[0]]
-            tabb["binding_energy"] = tabb["binding_energy"] + [each_word[1]]
+            tabb["LogLik_ratio_fg_bg"] = tabb["LogLik_ratio_fg_bg"] + [each_word[1]]
             tabb["fasta_record"] = tabb["fasta_record"] + [each_word[2]]
 
         i = i + 1  # increment the value of i after we are done processing each line
@@ -108,7 +108,7 @@ list_items = [
     "binding_position",
     "binding_sequence",
     "binding_posterior",
-    "binding_energy",
+    "LogLik_ratio_fg_bg",
 ]  # these will be the headers in the final tsv file
 
 tempDict1 = (
