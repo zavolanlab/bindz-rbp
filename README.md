@@ -2,8 +2,8 @@
 
 # _bindz_
 
-[![test](https://github.com/zavolanlab/bindz/workflows/test/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz/actions?query=workflow%3Atest)
-[![install](https://github.com/zavolanlab/bindz/workflows/install/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz/actions?query=workflow%3Ainstall)
+[![test-conda](https://github.com/zavolanlab/bindz/workflows/test-conda/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz/actions?query=workflow%3Atest-conda)
+[![ATtRACT](https://github.com/zavolanlab/bindz/workflows/ATtRACT/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz/actions?query=workflow%3AATtRACT)
 [![GitHub issues](https://img.shields.io/github/issues/zavolanlab/bindz)](https://github.com/zavolanlab/bindz/issues)
 [![GitHub license](https://img.shields.io/github/license/zavolanlab/bindz)](https://github.com/zavolanlab/bindz/blob/dev/LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4063595.svg)](https://doi.org/10.5281/zenodo.4063595)
