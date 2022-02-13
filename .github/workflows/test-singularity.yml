@@ -1,0 +1,35 @@
+name: test-singularity
+
+on: push
+
+jobs:
+
+  pipeline-exec:
+    runs-on: ubuntu-20.04
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup miniconda & conda env
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.7.4
+          miniconda-version: 4.7.12
+          auto-update-conda: false
+          environment-file: envs/main.yml
+          activate-environment: bindz-rbp
+          auto-activate-base: false
+
+      - name: Display all miniconda & env info
+        shell: bash -l {0}
+        run: |
+          conda info -a
+          conda list
+
+      - name: Snakemake local run w/ singularity containers
+        shell: bash -l {0}
+        run: |
+          bash tests/integration/execution/snakemake_local_run_singularity_containers.sh
+          md5sum --check tests/integration/expected_output.md5
