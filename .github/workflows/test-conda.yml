@@ -165,7 +165,7 @@ jobs:
           miniconda-version: 4.7.12
           auto-update-conda: false
           environment-file: envs/main.yml
-          activate-environment: bindz
+          activate-environment: bindz-rbp
           auto-activate-base: false
 
       - name: Display all miniconda & env info
