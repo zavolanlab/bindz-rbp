@@ -133,7 +133,7 @@ happen smoothly:
 [res-git]: <https://git-scm.com/>
 [res-github]: <https://github.com>
 [res-git-flow]: <https://nvie.com/posts/a-successful-git-branching-model/>
-[res-issue-tracker]: <https://github.com/zavolanlab/bindz/issues>
+[res-issue-tracker]: <https://github.com/zavolanlab/bindz-rbp/issues>
 [res-bug-report]: .github/ISSUE_TEMPLATE/bug_report.md
 [res-feature-request]: .github/ISSUE_TEMPLATE/feature_request.md
 [res-py]: <https://www.python.org/>
