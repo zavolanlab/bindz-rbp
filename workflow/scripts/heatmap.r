@@ -1,6 +1,8 @@
 ###############################################################################
 #
 #   R script to generate a heatmap
+#   * suggested max input sequence length: 150
+#   * suggested max n.o. PWMs scanned with the pipeline: 200
 #
 #   AUTHOR: Krish Agarwal
 #   AFFILIATION: University_of_Basel

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#   Create conda virtual environment for bindz
+#   Create conda virtual environment for bindz-rbp
 #
 #   AUTHOR: Maciej_Bak
 #   AFFILIATION: University_of_Basel

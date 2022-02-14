@@ -169,7 +169,8 @@ rule prepare_MotEvo_parameters:
         )
 
     run:
-        with open(output.TXT_MotEvo_parameters, "w") as ofile, open(log.LOG_local_stderr, "w") as logfile:
+        with open(output.TXT_MotEvo_parameters, "w") as ofile, \
+            open(log.LOG_local_stderr, "w") as logfile:
             try:
                 # =================================
                 bgprior = params.FLOAT_MotEvo_bg_binding_prior
@@ -531,7 +532,8 @@ rule prepare_output_bedfile:
         )
 
     run:
-        with open(output.BED_binding_sites, "w") as ofile, open(log.LOG_local_stderr, "w") as logfile:
+        with open(output.BED_binding_sites, "w") as ofile, \
+            open(log.LOG_local_stderr, "w") as logfile:
             try:
                 # =================================
                 with open(input.TSV_combined_MotEvo_results) as ifile:
@@ -539,7 +541,19 @@ rule prepare_output_bedfile:
                 for line in lines[1:]:
                     start = line.split("\t")[1].split("-")[0]
                     end = line.split("\t")[1].split("-")[-1]
-                    ofile.write(params.STR_seq_name + "\t" + start + "\t" + end + "\t" + line.split("\t")[0] + "\t" + line.split("\t")[3] + "\t+" + os.linesep)
+                    ofile.write(
+                        params.STR_seq_name + 
+                        "\t" +
+                        start +
+                        "\t" +
+                        end +
+                        "\t" +
+                        line.split("\t")[0] +
+                        "\t" +
+                        line.split("\t")[3] +
+                        "\t+" +
+                        os.linesep
+                    )
             except Exception:
                 traceback.print_exc(file = logfile)
                 raise Exception(

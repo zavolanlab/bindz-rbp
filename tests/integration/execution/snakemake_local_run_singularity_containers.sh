@@ -1,4 +1,4 @@
-# Run the pipeline on the sciCORE computational cluster with conda environments
+# Run the pipeline on a local machine with conda environments
 
 cleanup () {
     rc=$?
@@ -20,18 +20,7 @@ cd "$repo_dir"
 snakemake \
     --snakefile="workflow/Snakefile" \
     --configfile="tests/integration/config.yml" \
-    --cluster-config="tests/integration/SLURM-cluster-config.json" \
-    --use-conda \
-    --cores=128 \
-    --local-cores 1 \
+    --use-singularity \
+    --cores=1 \
     --printshellcmds \
-    --verbose \
-    --latency-wait 60 \
-    --cluster \
-    "sbatch \
-    --cpus-per-task={cluster.threads} \
-    --mem={cluster.mem} \
-    --qos={cluster.queue} \
-    --time={cluster.time} \
-    --output={params.LOG_cluster_log}-%j-%N.log \
-    -p scicore"
+    --verbose
