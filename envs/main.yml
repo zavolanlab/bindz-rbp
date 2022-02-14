@@ -12,12 +12,12 @@
 ###############################################################################
 ---
 
-  name: binding-scanner
-    
+  name: bindz-rbp
+
   channels:
     - bioconda
     - conda-forge
-    
+
   dependencies:
     - bash=4.4.18
     - curl=7.68.0

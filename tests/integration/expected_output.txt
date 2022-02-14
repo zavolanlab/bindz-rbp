@@ -31,4 +31,4 @@
 ./tests/integration/output/sequence_logos/motif_HNRNPF_827.png
 ./tests/integration/output/sequence_logos/motif_HNRNPF_828.png
 ./tests/integration/output/sequence_logos/motif_HNRNPF_829.png
-
+./tests/integration/output/binding_sites.bed

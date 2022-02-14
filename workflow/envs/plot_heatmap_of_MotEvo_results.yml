@@ -11,7 +11,7 @@
 ###############################################################################
 ---
 
-  name: plot_heatmap_of_MotEvo_results
+  name: bindz-plot-heatmap-of-MotEvo-results
 
   channels:
     - conda-forge

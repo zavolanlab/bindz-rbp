@@ -1,4 +1,4 @@
-pwm_id	binding_position	binding_sequence	binding_posterior	binding_energy
+pwm_id	binding_position	binding_sequence	binding_posterior	LogLik_ratio_fg_bg
 HNRNPF_823	46-50	AGGGA	0.674978	6.71171
 HNRNPF_824	15-19	TGGGA	0.560144	6.71171
 HNRNPF_824	46-50	AGGGA	0.030141	2.51049

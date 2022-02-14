@@ -1,6 +1,8 @@
 ###############################################################################
 #
 #   R script to generate a heatmap
+#   * suggested max input sequence length: 150
+#   * suggested max n.o. PWMs scanned with the pipeline: 200
 #
 #   AUTHOR: Krish Agarwal
 #   AFFILIATION: University_of_Basel
@@ -21,25 +23,25 @@ library(ggtext)
 
 # list the command-line arguments
 option_list <- list(
-  make_option(c("--input_tsv"),
+  make_option("--input_tsv",
     action = "store",
     dest = "input_tsv",
     type = "character",
     help = "location and name of the tsv file"
   ),
-  make_option(c("--input_sequence"),
+  make_option("--input_sequence",
     action = "store",
     dest = "input_sequence",
     type = "character",
     help = "full input_sequence"
   ),
-  make_option(c("--outfile"),
+  make_option("--outfile",
     action = "store",
     dest = "output_tsv",
     type = "character",
     help = "location and name of output heatmap"
   ),
-  make_option(c("--sequence_logos_directory"),
+  make_option("--sequence_logos_directory",
     action = "store",
     dest = "sequence_logos_directory",
     type = "character",
@@ -69,7 +71,7 @@ x_axis_numbers = 1:nchar(input_sequence)
 
 file = file(input_tsv, "r")
 
-y_axis_labels = c()
+y_axis_labels = vector()
 
 while (length(line <- readLines(file, n = 1)) > 0) # Read the file line by line
 {
@@ -117,7 +119,7 @@ dff <-data.frame(col = rep(colnames(uniform_data), each = nrow(uniform_data)),
 
 input_seq = strsplit(input_sequence,"") 
 
-labels = c()
+labels = vector()
 
 #### Add the sequence logo pngs to the dictionary ####
 if(sequence_logos_directory != FALSE)

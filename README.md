@@ -1,32 +1,40 @@
 <img align="right" width="50" height="50" src="images/logo.128px.png">
 
-# BindingScanner
+# _bindz-rbp_
 
-BindingScanner is a tool for predicting binding sites of RNA-binding proteins in a given input RNA sequence, implemented in a snakemake pipeline.
+[![test-conda](https://github.com/zavolanlab/bindz-rbp/workflows/test-conda/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz-rbp/actions?query=workflow%3Atest-conda)
+[![test-singularity](https://github.com/zavolanlab/bindz-rbp/workflows/test-singularity/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz-rbp/actions?query=workflow%3Atest-singularity)
+[![ATtRACT](https://github.com/zavolanlab/bindz-rbp/workflows/ATtRACT/badge.svg?branch=dev)](https://github.com/zavolanlab/bindz-rbp/actions?query=workflow%3AATtRACT)
+[![GitHub issues](https://img.shields.io/github/issues/zavolanlab/bindz-rbp)](https://github.com/zavolanlab/bindz-rbp/issues)
+[![GitHub license](https://img.shields.io/github/license/zavolanlab/bindz-rbp)](https://github.com/zavolanlab/bindz-rbp/blob/dev/LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4063595.svg)](https://doi.org/10.5281/zenodo.4063595)
+
+bindz-rbp is a computational workflow which aims to predict binding sites of RNA-binding proteins in a given input RNA sequence, implemented in a snakemake pipeline 🐍
 
 ## Table of Contents
 
-- [BindingScanner](#bindingscanner)
-  - [Table of Contents](#table-of-contents)
-  - [General information](#general-information)
-  - [Installation instructions](#installation-instructions)
-    - [Step 1: Download and install Miniconda3](#step-1-download-and-install-miniconda3)
-    - [Step 2: Clone the repository](#step-2-clone-the-repository)
-    - [Step 3: Build and activate virtual environment for BindingScanner](#step-3-build-and-activate-virtual-environment-for-bindingscanner)
-  - [Optional: Download and parse PWMs from ATtRACT database](#optional-download-and-parse-pwms-from-attract-database)
-  - [Workflow execution](#workflow-execution)
-  - [Contributing](#contributing)
-  - [Contact](#contact)
+- [General information](#general-information)
+- [Installation instructions](#installation-instructions)
+  - [Step 1: Download and install Miniconda3](#step-1-download-and-install-miniconda3)
+  - [Step 2: Clone the repository](#step-2-clone-the-repository)
+  - [Step 3: Build and activate virtual environment for bindz-rbp](#step-3-build-and-activate-virtual-environment-for-bindz-rbp)
+- [Optional: Download and parse PWMs from ATtRACT database](#optional-download-and-parse-pwms-from-attract-database)
+- [Workflow execution](#workflow-execution)
+- [Contributing](#contributing)
+- [Contact](#contact)
 
 ## General information
 
-BindingScanner is a tool for predicting binding sites of distinct regulators in an RNA sequence by calculating posterior probabilities with [MotEvo], given the sequence specificity of regulators, represented as position-specific weight matrices. It is intended to help in the analysis of individual reporter sequences, by predicting regulatory that may act on the sequence as well as how the binding may be affected by specific mutations introduced in the reporter sequences. The tools scans the input sequence with a set of position-specific weight matrices (PWMs) representing the binding specificity of individual RNA-binding proteins. The run time scales linearly with both the sequence length and with the number of PWMs, so please make sure to test it on your architecture before running it on batches of sequences.
+bindz-rbp predicts binding sites of distinct regulators in an RNA sequence by calculating posterior probabilities with [MotEvo], given the sequence specificity of regulators, represented as position-specific weight matrices. It is intended to help in the analysis of individual reporter sequences, by predicting regulatory that may act on the sequence as well as how the binding may be affected by specific mutations introduced in the reporter sequences. The tools scans the input sequence with a set of position-specific weight matrices (PWMs) representing the binding specificity of individual RNA-binding proteins. The run time scales linearly with both the sequence length and with the number of PWMs, so please make sure to test it on your architecture before running it on batches of sequences.
 
 The tool is implemented as a [Snakemake] workflow.
 
 > ![rule_graph][rule-graph]
 
-The main output of the pipeline are: a tab-separated file (`combined_MotEvo_results.tsv`) and a PDF-formatted image (`ProbabilityVsSequence.pdf`). The former collects all predicted binding sites of all analyzed motifs into one table and reports: binding positions (relative to the input sequence start), binding posterior probability, bound subsequence as well as binding energy. The latter is a visualisation of these binding probabilities in a form of a heatmap.
+The main output of the pipeline are:
+* `combined_MotEvo_results.tsv`: a tab-separated file which collects information related to all predicted binding sites of all analyzed motifs into one table.
+* `binding_sites.bed`: simplified list of binding sites in a BED format.
+* `ProbabilityVsSequence.pdf`: a visualisation of binding positions and probabilities in a form of a heatmap.
 
 ## Installation instructions
 
@@ -60,24 +68,24 @@ Cloning repositories requires [git] to be installed (available via `conda`):
 conda install git
 ```
 
-Clone this git repository into a desired location (here: binding_scanner_git in the current working directory ) with the following command:
+Clone this git repository into a desired location (here: bindz-rbp in the current working directory ) with the following command:
 
 ```bash
-git clone https://github.com/zavolanlab/binding-scanner.git binding_scanner_git
+git clone https://github.com/zavolanlab/bindz-rbp
 ```
 
-### Step 3: Build and activate virtual environment for BindingScanner
+### Step 3: Build and activate virtual environment for bindz-rbp
 
-To help the users in the installation process we have prepared a recipe for a *conda* virtual environment that contains all the software needed to run BindingScanner. This environment can be created by the following script:
+To help the users in the installation process we have prepared a recipe for a *conda* virtual environment that contains all the software needed to run bindz-rbp. This environment can be created by the following script:
 
 ```bash
-bash binding_scanner_git/scripts/create-conda-environment-main.sh
+bash bindz-rbp/scripts/create-conda-environment-main.sh
 ```
 
 The built *conda* environment may then be activated with:
 
 ```bash
-conda activate binding-scanner
+conda activate bindz-rbp
 ```
 
 ## Optional: Download and parse PWMs from ATtRACT database
@@ -89,7 +97,7 @@ However, if the user would like to download and parse a new version of matrices 
 Please change directory to the pipeline's root directory:
 
 ```bash
-cd binding_scanner_git
+cd bindz-rbp
 ```
 
 To utilize position-specific weight matrices from the ATtRACT database of known RBPs' binding motifs we provide two scripts:
@@ -131,7 +139,7 @@ To utilize position-specific weight matrices from the ATtRACT database of known 
 Please change directory to the pipeline's root directory:
 
 ```bash
-cd binding_scanner_git
+cd bindz-rbp
 ```
 
 All the input, output and parameters for the pipeline execution should be specified in a snakemake configuration file in YAML format. Such a file can be created based on our prepared template located at `workflow/config/config-template.yml`. Assuming that the user created a `config.yml` and saved it in the repository's root directory (and that it is the current working directory) the workflow can be executed on the local machine with:
@@ -155,7 +163,9 @@ bash tests/integration/execution/snakemake_local_run_conda_environments.sh
 ## Contributing
 
 This project lives off your contributions, be it in the form of bug reports,
-feature requests, discussions, or fixes and other code changes. Please refer
+feature requests, discussions, or fixes and other code changes. 🙂
+
+Please refer
 to the [contributing guidelines](CONTRIBUTING.md) if you are interested to
 contribute. Please mind the [code of conduct](CODE_OF_CONDUCT.md) for all
 interactions with the community.
@@ -164,9 +174,9 @@ interactions with the community.
 
 For questions or suggestions regarding the code, please use the
 [issue tracker][res-issue-tracker]. For any other inquiries, please contact us
-by email: <zavolab-biozentrum@unibas.ch>
+by email: <zavolab-biozentrum@unibas.ch> 📨
 
-(c) 2020 [Zavolan lab, Biozentrum, University of Basel][res-zavolab]
+(c) 2022 [Zavolan lab, Biozentrum, University of Basel][res-zavolab]
 
 [MotEvo]: https://academic.oup.com/bioinformatics/article/28/4/487/212418
 [Snakemake]: https://snakemake.readthedocs.io/en/stable/
@@ -177,5 +187,5 @@ by email: <zavolab-biozentrum@unibas.ch>
 [miniconda]: https://docs.conda.io/en/latest/miniconda.html
 [git]: https://git-scm.com/
 [ATtRACT]: https://attract.cnic.es/index
-[res-issue-tracker]: <https://github.com/zavolanlab/binding-scanner/issues>
+[res-issue-tracker]: <https://github.com/zavolanlab/bindz-rbp/issues>
 [res-zavolab]: <https://zavolan.biozentrum.unibas.ch/>

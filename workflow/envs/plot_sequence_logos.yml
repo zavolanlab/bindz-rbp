@@ -11,7 +11,7 @@
 ###############################################################################
 ---
 
-  name: plot_sequence_logos
+  name: bindz-plot-sequence-logos
 
   channels:
     - conda-forge

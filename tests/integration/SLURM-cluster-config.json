@@ -1,0 +1,59 @@
+{
+
+    "__default__":
+    {
+        "queue": "30min",
+        "time": "00:30:00",
+        "threads": "1",
+        "mem": "5G"
+    },
+
+    "plot_sequence_logos":
+    {
+        "queue": "30min",
+        "time": "00:05:00",
+        "threads": "1",
+        "mem": "1G"
+    },
+
+    "prepare_MotEvo_parameters":
+    {
+        "queue": "30min",
+        "time": "00:05:00",
+        "threads": "1",
+        "mem": "1G"
+    },
+
+    "prepare_sequence_for_MotEvo":
+    {
+        "queue": "30min",
+        "time": "00:05:00",
+        "threads": "1",
+        "mem": "1G"
+    },
+
+    "run_MotEvo_analysis":
+    {
+        "queue": "30min",
+        "time": "00:05:00",
+        "threads": "1",
+        "mem": "1G"
+    },
+
+    "combine_MotEvo_results":
+    {
+        "queue": "30min",
+        "time": "00:05:00",
+        "threads": "1",
+        "mem": "1G"
+    },
+
+    "plot_heatmap_of_MotEvo_results":
+    {
+        "queue": "30min",
+        "time": "00:05:00",
+        "threads": "1",
+        "mem": "1G"
+    }
+
+}

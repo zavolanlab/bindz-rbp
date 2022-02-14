@@ -1,4 +1,4 @@
-# Run the pipeline on the sciCORE computational cluster with conda environments
+# Run the pipeline on the sciCORE computational cluster with singularity containers
 
 cleanup () {
     rc=$?
@@ -21,7 +21,7 @@ snakemake \
     --snakefile="workflow/Snakefile" \
     --configfile="tests/integration/config.yml" \
     --cluster-config="tests/integration/SLURM-cluster-config.json" \
-    --use-conda \
+    --use-singularity \
     --cores=128 \
     --local-cores 1 \
     --printshellcmds \

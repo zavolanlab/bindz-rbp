@@ -19,7 +19,7 @@ import glob
 import traceback
 
 # local rules
-localrules: all, create_results_directory
+localrules: all
 
 def gather_motifs_names(pwm_dir):
     """
@@ -32,6 +32,11 @@ def gather_motifs_names(pwm_dir):
     l = [i.split("/")[-1] for i in glob.glob(regex)]
     return(l)
 
+onstart:
+    shell("mkdir -p " + config["outdir"])
+    shell("mkdir -p " + config["outdir"] + "/local_log")
+    shell("mkdir -p " + config["outdir"] + "/cluster_log")
+
 rule all:
     """
     Target rule with final output of the pipeline
@@ -43,44 +48,14 @@ rule all:
                 "ProbabilityVsSequence.pdf"
             ),
             outdir = config["outdir"]
-        )
-
-rule create_results_directory:
-    """
-    Create directories for the results
-    """
-    output:
-        TEMP_ = temp(
+        ),
+        BED_binding_sites = expand(
             os.path.join(
                 "{outdir}",
-                "outdir"
-            )
+                "binding_sites.bed"
+            ),
+            outdir = config["outdir"]
         )
-
-    params:
-        DIR_output_dir = "{outdir}",
-        LOG_local_log = os.path.join(
-            "{outdir}",
-            "local_log"
-        ),
-        LOG_cluster_log = os.path.join(
-            "{outdir}",
-            "cluster_log"
-        )
-
-    conda:
-        "envs/bash.yml"
-
-    singularity:
-        "docker://bash:4.4.18"   
-
-    shell:
-        """
-        mkdir -p {params.DIR_output_dir}; \
-        mkdir -p {params.LOG_local_log}; \
-        mkdir -p {params.LOG_cluster_log}; \
-        touch {output.TEMP_}
-        """
 
 rule plot_sequence_logos:
     """
@@ -98,10 +73,6 @@ rule plot_sequence_logos:
             "workflow",
             "scripts",
             "sequence_logos.py"
-        ),
-        TEMP_ = os.path.join(
-            "{outdir}",
-            "outdir"
         )
             
     output:
@@ -159,12 +130,6 @@ rule prepare_MotEvo_parameters:
     """
     Prepare text file with parameters for MotEvo runs
     """
-    input:
-        TEMP_ = os.path.join(
-            "{outdir}",
-            "outdir"
-        )
-
     output:
         TXT_MotEvo_parameters = os.path.join(
             "{outdir}",
@@ -204,7 +169,8 @@ rule prepare_MotEvo_parameters:
         )
 
     run:
-        with open(output.TXT_MotEvo_parameters, "w") as ofile, open(log.LOG_local_stderr, "w") as logfile:
+        with open(output.TXT_MotEvo_parameters, "w") as ofile, \
+            open(log.LOG_local_stderr, "w") as logfile:
             try:
                 # =================================
                 bgprior = params.FLOAT_MotEvo_bg_binding_prior
@@ -248,12 +214,6 @@ rule prepare_sequence_for_MotEvo:
     """
     Create a FASTA-formatted file with the input sequence
     """
-    input:
-        TEMP_ = os.path.join(
-            "{outdir}",
-            "outdir"
-        )
-
     output:
         FASTA_MotEvo_input = os.path.join(
             "{outdir}",
@@ -262,7 +222,7 @@ rule prepare_sequence_for_MotEvo:
 
     params:
         STR_sequence = config["sequence"],
-        STR_MotEvo_fasta_header_tag = ">>MOTEVO_input-sequence",
+        STR_MotEvo_fasta_header_tag = ">>MOTEVO_" + config["seq_name"],
         LOG_cluster_log = os.path.join(
             "{outdir}",
             "cluster_log",
@@ -527,3 +487,75 @@ rule plot_heatmap_of_MotEvo_results:
         --sequence_logos_directory {params.DIR_sequence_logos} \
         1> {log.LOG_local_stdout} 2> {log.LOG_local_stderr}
         """
+
+rule prepare_output_bedfile:
+    """
+    Prepare outfile in bed format
+    """
+    input:
+        TSV_combined_MotEvo_results = os.path.join(
+            "{outdir}",
+            "combined_MotEvo_results.tsv"
+        )
+
+    output:
+        BED_binding_sites = os.path.join(
+            "{outdir}",
+            "binding_sites.bed"
+        )
+
+    params:
+        STR_seq_name = config["seq_name"],
+        LOG_cluster_log = os.path.join(
+            "{outdir}",
+            "cluster_log",
+            "prepare_output_bedfile.log"
+        )
+
+    log:
+        LOG_local_stdout = os.path.join(
+            "{outdir}",
+            "local_log",
+            "prepare_output_bedfile.stdout.log"
+        ),
+        LOG_local_stderr = os.path.join(
+            "{outdir}",
+            "local_log",
+            "prepare_output_bedfile.stderr.log"
+        )
+
+    benchmark:
+        os.path.join(
+            "{outdir}",
+            "local_log",
+            "prepare_output_bedfile.benchmark.log"
+        )
+
+    run:
+        with open(output.BED_binding_sites, "w") as ofile, \
+            open(log.LOG_local_stderr, "w") as logfile:
+            try:
+                # =================================
+                with open(input.TSV_combined_MotEvo_results) as ifile:
+                    lines = ifile.read().splitlines()
+                for line in lines[1:]:
+                    start = line.split("\t")[1].split("-")[0]
+                    end = line.split("\t")[1].split("-")[-1]
+                    ofile.write(
+                        params.STR_seq_name + 
+                        "\t" +
+                        start +
+                        "\t" +
+                        end +
+                        "\t" +
+                        line.split("\t")[0] +
+                        "\t" +
+                        line.split("\t")[3] +
+                        "\t+" +
+                        os.linesep
+                    )
+            except Exception:
+                traceback.print_exc(file = logfile)
+                raise Exception(
+                    "Workflow error at rule: prepare_output_bedfile"
+                )
