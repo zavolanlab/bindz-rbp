@@ -21,7 +21,7 @@ bindz-rbp is a computational workflow which aims to predict binding sites of RNA
 - [Optional: Download and parse PWMs from ATtRACT database](#optional-download-and-parse-pwms-from-attract-database)
 - [Workflow execution](#workflow-execution)
 - [Contributing](#contributing)
-- [Contact](#contact-📨)
+- [Contact](#contact)
 
 ## General information
 
@@ -163,16 +163,18 @@ bash tests/integration/execution/snakemake_local_run_conda_environments.sh
 ## Contributing
 
 This project lives off your contributions, be it in the form of bug reports,
-feature requests, discussions, or fixes and other code changes. Please refer
+feature requests, discussions, or fixes and other code changes. 🙂
+
+Please refer
 to the [contributing guidelines](CONTRIBUTING.md) if you are interested to
 contribute. Please mind the [code of conduct](CODE_OF_CONDUCT.md) for all
 interactions with the community.
 
-## Contact 📨
+## Contact
 
 For questions or suggestions regarding the code, please use the
 [issue tracker][res-issue-tracker]. For any other inquiries, please contact us
-by email: <zavolab-biozentrum@unibas.ch>
+by email: <zavolab-biozentrum@unibas.ch> 📨
 
 (c) 2022 [Zavolan lab, Biozentrum, University of Basel][res-zavolab]
 
