@@ -1,7 +1,7 @@
 # _bindz-rbp_: workflow documentation
 
 This document describes the individual steps of the workflow. For instructions
-on installation and usage please see [here](../README.md).
+on installation and usage please go [here](../README.md).
 
 ## Table of Contents
 - [**Description of workflow steps**](#description-of-workflow-steps)
@@ -108,7 +108,7 @@ Target rule with final output of the pipeline
 
 #### `combine_MotEvo_results`
 
-   Combine all motevo results into one tsv file
+   Combine all motevo results into one TSV file
 
 - **Input**
   - A directory with files containing binding posterior information which is generated in [**run_MotEvo_analysis**](#run_MotEvo_analysis)
