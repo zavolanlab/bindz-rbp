@@ -1,0 +1,124 @@
+language: bash
+
+os:
+  - linux
+  - osx
+
+install:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt update; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh; fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - source "$HOME/miniconda/etc/profile.d/conda.sh"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  # Useful for debugging any issues with conda
+  - conda info -a
+  # Install singularity
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y wget; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y build-essential; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y uuid-dev ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y squashfs-tools; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y libseccomp-dev; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y pkg-config; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y cryptsetup-bin; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then eval "$(gimme 1.13.1)"; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then go version; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export VERSION=3.5.2; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then tar -xzf singularity-${VERSION}.tar.gz; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd singularity; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then ./mconfig; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then make -C ./builddir; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo make -C ./builddir install; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then singularity --version; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cd ..; fi
+
+before_script:
+  # Create conda virtual environments
+  - conda env create -f envs/main.yml
+  - conda env create -f envs/dev.yml
+  - conda env create -f workflow/envs/plot_heatmap_of_MotEvo_results.yml
+  - conda env create -f workflow/envs/combine-motevo-results.yml
+  - conda env create -f workflow/envs/plot_sequence_logos.yml
+  # Activate the main env
+  - conda activate binding-scanner && echo $CONDA_DEFAULT_ENV
+
+script:
+  # Download and extract the ATtRACT db
+  #- bash scripts/download-ATtRACT-motifs.sh -o ATtRACT # this curl/wget do not work on Travis machine...
+  # Extract the backup db
+  - mkdir ATtRACT_backup_26082020
+  - unzip resources/ATtRACT_backup_26082020.zip -d ATtRACT_backup_26082020
+  # Extract motifs for Homo sapiens
+  - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
+  - >
+    python scripts/format-ATtRACT-motifs.py
+    --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt
+    --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt
+    --organism Homo_sapiens
+    --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_hsa
+  - md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_hsa.md5
+  # Extract motifs for Mus musculus
+  - mkdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
+  - >
+    python scripts/format-ATtRACT-motifs.py
+    --pwms tests/unit/format-ATtRACT-motifs/ATtRACT/pwm.txt
+    --names tests/unit/format-ATtRACT-motifs/ATtRACT/ATtRACT_db.txt
+    --organism Mus_musculus
+    --outdir tests/unit/format-ATtRACT-motifs/ATtRACT_mmu
+  - md5sum --check tests/unit/format-ATtRACT-motifs/expected_output_mmu.md5
+  # Test sequence_logos.py script
+  - conda activate plot_sequence_logos
+  - >
+    python workflow/scripts/sequence_logos.py 
+    --input_file tests/unit/plot_sequence_logos/motif_HNRNPF_820
+    --output_location tests/unit/plot_sequence_logos
+  - >
+    python workflow/scripts/sequence_logos.py 
+    --input_file tests/unit/plot_sequence_logos/motif_HNRNPF_821
+    --output_location tests/unit/plot_sequence_logos
+  - >
+    python workflow/scripts/sequence_logos.py 
+    --input_file tests/unit/plot_sequence_logos/motif_HNRNPF_822
+    --output_location tests/unit/plot_sequence_logos
+  - >
+    python workflow/scripts/sequence_logos.py 
+    --input_file tests/unit/plot_sequence_logos/motif_HNRNPF_823
+    --output_location tests/unit/plot_sequence_logos
+  - >
+    python workflow/scripts/sequence_logos.py 
+    --input_file tests/unit/plot_sequence_logos/motif_HNRNPF_824
+    --output_location tests/unit/plot_sequence_logos
+  - md5sum --check tests/unit/plot_sequence_logos/expected_output.md5
+  # Test combine-motevo-results.py script
+  - conda activate combine-motevo-results
+  - >
+    python workflow/scripts/combine-motevo-results.py
+    --input_directories tests/unit/combine_results/motif_HNRNPF_820 tests/unit/combine_results/motif_HNRNPF_821 tests/unit/combine_results/motif_HNRNPF_822 tests/unit/combine_results/motif_HNRNPF_823 tests/unit/combine_results/motif_HNRNPF_824
+    --filename posterior_sites
+    --outfile tests/unit/combine_results/combined_MotEvo_results.tsv
+  - md5sum --check tests/unit/combine_results/expected_output.md5
+  # Test heatmap.r script
+  - conda activate plot_heatmap_of_MotEvo_results
+  - >
+    Rscript workflow/scripts/heatmap.r 
+    --input_tsv tests/unit/Plot-heatmap-for-motifs/combined_MotEvo_results.tsv 
+    --input_sequence ATGTGAGTGAAGTGTGGGAAAGATGACTCGATATATCTGGATGCTAGGGATCGGATGGCGATACG
+    --outfile tests/unit/Plot-heatmap-for-motifs/ProbabilityvsSequences.pdf
+    --sequence_logos_directory tests/unit/Plot-heatmap-for-motifs/sequence_logos
+  #- md5sum --check tests/unit/Plot-heatmap-for-motifs/expected_output.md5
+  - conda activate binding-scanner
+  # Test snakemake Rulegraph and DAG
+  - bash tests/integration/execution/snakemake_rulegraph_run.sh
+  - bash tests/integration/execution/snakemake_dag_run.sh
+  # Test pipeline execution: local, conda envs:
+  - bash tests/integration/execution/snakemake_local_run_conda_environments.sh
+  - md5sum --check tests/integration/expected_output.md5
+  - rm -rf tests/integration/output/
+  # On Linux: Test pipeline execution: local, singularity containers:
+  # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then bash tests/integration/execution/snakemake_local_run_singularity_environments.sh; fi
+  # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then md5sum --check tests/integration/expected_output_singularity.md5; fi
+  # - if [ "$TRAVIS_OS_NAME" = "linux" ]; then rm -rf tests/integration/output/; fi
