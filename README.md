@@ -9,7 +9,7 @@
 [![GitHub license](https://img.shields.io/github/license/zavolanlab/bindz-rbp)](https://github.com/zavolanlab/bindz-rbp/blob/dev/LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4063595.svg)](https://doi.org/10.5281/zenodo.4063595)
 
-bindz-rbp is a computational workflow which aims to predict binding sites of RNA-binding proteins in a given input RNA sequence, implemented in a snakemake pipeline.
+bindz-rbp is a computational workflow which aims to predict binding sites of RNA-binding proteins in a given input RNA sequence, implemented in a snakemake pipeline 🐍
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@ bindz-rbp is a computational workflow which aims to predict binding sites of RNA
 - [Optional: Download and parse PWMs from ATtRACT database](#optional-download-and-parse-pwms-from-attract-database)
 - [Workflow execution](#workflow-execution)
 - [Contributing](#contributing)
-- [Contact](#contact)
+- [Contact](#contact-📨)
 
 ## General information
 
@@ -168,7 +168,7 @@ to the [contributing guidelines](CONTRIBUTING.md) if you are interested to
 contribute. Please mind the [code of conduct](CODE_OF_CONDUCT.md) for all
 interactions with the community.
 
-## Contact
+## Contact 📨
 
 For questions or suggestions regarding the code, please use the
 [issue tracker][res-issue-tracker]. For any other inquiries, please contact us
