@@ -13,17 +13,15 @@ bindz is a tool for predicting binding sites of RNA-binding proteins in a given 
 
 ## Table of Contents
 
-- [_bindz_](#bindz)
-  - [Table of Contents](#table-of-contents)
-  - [General information](#general-information)
-  - [Installation instructions](#installation-instructions)
-    - [Step 1: Download and install Miniconda3](#step-1-download-and-install-miniconda3)
-    - [Step 2: Clone the repository](#step-2-clone-the-repository)
-    - [Step 3: Build and activate virtual environment for bindz](#step-3-build-and-activate-virtual-environment-for-bindz)
-  - [Optional: Download and parse PWMs from ATtRACT database](#optional-download-and-parse-pwms-from-attract-database)
-  - [Workflow execution](#workflow-execution)
-  - [Contributing](#contributing)
-  - [Contact](#contact)
+- [General information](#general-information)
+- [Installation instructions](#installation-instructions)
+  - [Step 1: Download and install Miniconda3](#step-1-download-and-install-miniconda3)
+  - [Step 2: Clone the repository](#step-2-clone-the-repository)
+  - [Step 3: Build and activate virtual environment for bindz](#step-3-build-and-activate-virtual-environment-for-bindz)
+- [Optional: Download and parse PWMs from ATtRACT database](#optional-download-and-parse-pwms-from-attract-database)
+- [Workflow execution](#workflow-execution)
+- [Contributing](#contributing)
+- [Contact](#contact)
 
 ## General information
 

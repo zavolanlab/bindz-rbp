@@ -1,4 +1,4 @@
-# BINDING-SCANNER: workflow documentation
+# _bindz-rbp_: workflow documentation
 
 This document describes the individual steps of the workflow. For instructions
 on installation and usage please see [here](../README.md).
@@ -6,17 +6,16 @@ on installation and usage please see [here](../README.md).
 ## Table of Contents
 - [**Description of workflow steps**](#description-of-workflow-steps)
   - [**Rule graph**](#rule-graph)
-  - [**Preparatory**](#preparatory)
-    - [**Config file**](#config-file)
+  - [**Config file**](#config-file)
   - [**Snakemake Rules**](#snakemake-rules)
     - [**all**](#all)
-    - [**create_results_directory**](#create_results_directory)
     - [**plot_sequence_logos**](#plot_sequence_logos)
     - [**prepare_MotEvo_parameters**](#prepare_MotEvo_parameters)
     - [**prepare_sequence_for_MotEvo**](#prepare_sequence_for_MotEvo)
     - [**run_MotEvo_analysis**](#run_MotEvo_analysis)
     - [**combine_MotEvo_results**](#combine_MotEvo_results)
     - [**plot_heatmap_of_MotEvo_results**](#plot_heatmap_of_MotEvo_results)
+    - [**prepare_output_bedfile**](#prepare_output_bedfile)
 
 ## Description of workflow steps
 
@@ -27,18 +26,14 @@ on installation and usage please see [here](../README.md).
 Visual representation of workflow. Automatically prepared with
 [Snakemake][docs-snakemake].
 
-### Preparatory
+### Config file
 
-#### Config file
-
-##### Requirements
-
-- a config file as in [`config.yml`](config/config-template.yml)
-- a pwm directory containing files with binding probabilities matrices of various motifs.
+This workflow requires a config file as in [`config.yml`](config/config-template.yml)
 
 Parameter name | Description | Data type(s)
 --- | --- | ---
 pipeline_path | Absolute path to the pipeline directory | `str`
+seq_name | Input Sequence ID | `str`
 sequence | Input Sequence | `str`
 pwm_directory | Path to the directory with TRANSFAC-formatted PWM files | `str`
 outdir | Path to the output directory | `str`
@@ -53,46 +48,31 @@ MotEvo_Markov_chain_order | MotEvo parameter: order of the Markov chain | `float
 Target rule with final output of the pipeline
 
 - **Input**
-  - A heatmap depicting all the motifs with their sequence logos and names as y-axis tick-labels; input sequence as x-axis; and each cell representing the probability of corresponding motif and the part of the sequence.
-
-#### `create_results_directory`
-
-  Create directories for the results
-
-- **Parameters**
-  - Path to output directory
-  - Path to local log directory
-  - Path to cluster log directory  
-
-- **Output**
-  - An output directory which will be used in all the successive rules
+  - A heatmap depicting all the motifs with their sequence logos and names as y-axis tick-labels; input sequence as x-axis; and each cell representing per-position binding probability.
+  - BED-formatted list of inferred binding sites.
 
 #### `plot_sequence_logos`
 
-   Plot sequence logo for the motifs. This rule will run as many number as times as the number of motifs or number of files in the pwm directory.
+   Plot sequence logos for the motifs. This rule will run as many times as the number of motifs in the PWM directory.
 
 - **Input**
-  - PWM file containg binding probability matrices
-  - Script that processes matrices to sequence logos png [`sequence_logos.py`](../workflow/scripts/sequence_logos.py)
-  - Output directory generated in the rule [**create_results_directory**](#create_results_directory)
+  - PWM file containg binding probability matrix
+  - Script that generates sequence logos.[`sequence_logos.py`](../workflow/scripts/sequence_logos.py)
 
 - **Parameters**
   - Output directory for the logos
-  - File path of logs for each Pwm
+  - File path for cluster logs
 
 - **Output**
-  - A png file for each motif containing the sequence logo which will be used in the rule [**plot_heatmap_of_MotEvo_results**](#plot_heatmap_of_MotEvo_results)
+  - A png file containing the sequence logo which will be used in the rule [**plot_heatmap_of_MotEvo_results**](#plot_heatmap_of_MotEvo_results)
 
 #### `prepare_MotEvo_parameters`
 
    Prepare text file with parameters for MotEvo runs
 
-- **Input**
-  - Output directory generated in the rule [**create_results_directory**](#create_results_directory)
-
 - **Parameters**
-  - Path to output directory for the logos
-  - File path for the logs for each Pwm file 
+  - MotEvo parameters: bg binding probability, min binding posterior, Markov chain order
+  - File path for cluster logs
 
 - **Output**
     - A text file containing MotEvo paramaters which will be used in the rule [**run_MotEvo_analysis**](#run_MotEvo_analysis)
@@ -101,13 +81,10 @@ Target rule with final output of the pipeline
 
    Create a FASTA-formatted file with the input sequence
 
-- **Input**
-  - Output directory generated in the rule [**create_results_directory**](#create_results_directory)
-
 - **Parameters**
-  - Input sequence
-  - Header tag for the sequence 
-  - Path for the log of this rule
+  - Input sequence (from the configuration file)
+  - Header tag for the sequence (constructed from the configuration file)
+  - File path for cluster logs
 
 - **Output**
     - A fasta file which will be used in the rule [**run_MotEvo_analysis**](#run_MotEvo_analysis)
@@ -118,48 +95,62 @@ Target rule with final output of the pipeline
 
 - **Input**
   - MotEvo parameters file generated in rule [**prepare_MotEvo_parameters**](#prepare_MotEvo_parameters)
-  - Path of the pwm files containing the binding probabilities matrices
+  - Path of the PWM directory containing the binding probability matrices
   - Fasta file generated in the rule [**prepare_sequence_for_MotEvo**](#prepare_sequence_for_MotEvo)
 
 - **Parameters**
   - Absolute path of MotEvo parameters file generated in rule [**prepare_MotEvo_parameters**](#prepare_MotEvo_parameters)
-  - Absolute path of Fasta file generated in the rule [**prepare_sequence_for_MotEvo**](#prepare_sequence_for_MotEvo)
-  - Path for the log of this rule
+  - Absolute path of FASTA file generated in the rule [**prepare_sequence_for_MotEvo**](#prepare_sequence_for_MotEvo)
+  - File path for cluster logs
 
 - **Output**
-    - A directory with files containing posterior sites information which will be used in the rule [**combine_MotEvo_results**](#combine_MotEvo_results)
+    - A directory with files containing binding posterior information which will be used in the rule [**combine_MotEvo_results**](#combine_MotEvo_results)
 
 #### `combine_MotEvo_results`
 
    Combine all motevo results into one tsv file
 
 - **Input**
-  - A directory with files containing posterior sites information which is generated in [**run_MotEvo_analysis**](#run_MotEvo_analysis)
-  - Script that will do the job of combinining results in one tsv file [`combine-motevo-results.py`](../workflow/scripts/combine-motevo-results.py)
+  - A directory with files containing binding posterior information which is generated in [**run_MotEvo_analysis**](#run_MotEvo_analysis)
+  - Script that will combine results into one TSV file [`combine-motevo-results.py`](../workflow/scripts/combine-motevo-results.py)
 
 - **Parameters**
-  - Name of the file which would contain posterior sites information
-  - Path for the log of this rule
+  - Name of the MotEvo output file which contains posterior sites information
+  - File path for cluster logs
 
 - **Output**
-    - A tsv file which gathers information of every analysed PWM directory.
+    - A TSV file which gathers information from every analysed PWM.
 
 #### `plot_heatmap_of_MotEvo_results`
 
    Plot heatmap from the combined_MotEvo_results.tsv file
 
 - **Input**
-  - A TSV file containing information of every analysed PWM directory generated from rule [**combine_MotEvo_results**](#combine_MotEvo_results)
+  - A TSV file containing information from every analysed PWM, generated from rule [**combine_MotEvo_results**](#combine_MotEvo_results)
   - Script that will plot the heatmap with sequence logos as y axis ticks [`heatmap.r`](../workflow/scripts/heatmap.r)
-  - Sequence logo generated for each motif from the rule [**plot_sequence_logos**](#plot_sequence_logos)
+  - Sequence logos generated for each motif from the rule [**plot_sequence_logos**](#plot_sequence_logos)
 
 - **Parameters**
-  - Input sequence
-  - Directory of all sequence logos
-  - Path for the log of this rule
+  - Input sequence (from the configuration file)
+  - Directory with the all sequence logos
+  - File path for cluster logs
 
 - **Output**
-    - A heatmap depicting all the motifs with their sequence logos and names as y-axis tick-labels; input sequence as x-axis; and each cell representing the probability of corresponding motif and the part of the sequence.
+    - A heatmap depicting all the motifs with their sequence logos and names as y-axis tick-labels; input sequence as x-axis; and each cell representing per-position binding probability.
+
+#### `prepare_output_bedfile`
+
+   Prepare a list of all inferred binding sites in a BED format
+
+- **Input**
+  - A TSV file containing information from every analysed PWM, generated from rule [**combine_MotEvo_results**](#combine_MotEvo_results)
+
+- **Parameters**
+  - Input sequence ID (from the configuration file)
+  - File path for cluster logs
+
+- **Output**
+    - A list of all inferred binding sites in a BED format
 
 [rule-graph]: ../images/rulegraph.svg
 [docs-snakemake]: <https://snakemake.readthedocs.io/en/stable/>
